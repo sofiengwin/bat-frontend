@@ -1,10 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Layout from './components/Layout'
+import HomePage from './components/HomePage'
+import Profile from './components/Profile'
+import PostTip from './components/PostTip'
+import TipsAndHistory from './components/TipsAndHistory'
+
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import './styles/main.css';
+
+ReactDOM.render(
+  <Router>
+
+    <Switch>
+      <Layout>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/post-tip/countries' component={PostTip} />
+        <Route path='/countries/:countryId' render={() => (
+          <TipsAndHistory loadTips={() => console.log('loading more')} />
+        )} />
+        <Route path='/bets/:betId' render={() => (
+          <TipsAndHistory loadTips={() => console.log('loading more')} />
+        )} />
+        <Route path='/matches/:matchId' render={() => (
+          <TipsAndHistory loadTips={() => console.log('loading more')} />
+        )} />
+        <Route path='/leagues/:leagueId' render={() => (
+          <TipsAndHistory loadTips={() => console.log('loading more')} />
+        )} />
+        <Route path='/offers' render={() => (
+          <h1>Coming soon</h1>
+        )} />
+        <Route path='/bookmakers' render={() => (
+          <h1>Coming soon</h1>
+        )} />
+      </Layout>
+    </Switch>
+  </Router>,
+  document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
