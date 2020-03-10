@@ -1,24 +1,32 @@
-import {types, IModelType} from 'mobx-state-tree';
+import BackendCache from '../data/BackendCache';
+import Model from './Model';
+import User from './User';
 
-interface Props {
+interface Fields {
   id: string;
+  outcome?: boolean;
+  body: string;
   bet: string;
-  message: string;
-  outcome: boolean;
 }
 
-type TipModel = IModelType<any, any>
+interface References {
+  comments: string[];
+  user: User;
+  match: any;
+}
 
-const TipProps: TipModel = types.model().props({
-  id: types.identifier,
-  bet: types.string,
-  message: types.string,
-  outcome: types.boolean
-});
+type TipSnapshot = Fields & References;
 
-const Tip = TipProps.named('Tip')
+export default class Tip extends Model<Fields, References> implements Fields {
+  readonly id: string;
+  readonly outcome?: boolean;
+  readonly body: string;
+  readonly bet: string;
 
-export type ITip = typeof Tip.Type
-export default Tip;
+  constructor({comments, user, match, ...props}: TipSnapshot, cache: BackendCache) {
+    super(props, {comments, user, match}, cache);
+    this.cache = cache;
+  }
+}
 
 

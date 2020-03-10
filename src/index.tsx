@@ -7,10 +7,13 @@ import HomePage from './components/HomePage'
 import Profile from './components/Profile'
 import PostTip from './components/PostTip'
 import TipsAndHistory from './components/TipsAndHistory'
+import clientFactory from './lib/client'
 
 import * as serviceWorker from './serviceWorker';
 
 import './styles/main.css';
+
+const client = clientFactory('', () => 'fake.token');
 
 ReactDOM.render(
   <Provider>

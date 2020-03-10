@@ -1,23 +1,31 @@
-import {types, IModelType} from 'mobx-state-tree';
-
 import Tip from './Tip';
+import Model from './Model';
+import BackendCache from '../data/BackendCache';
 
-interface Props {
+interface Fields {
   id: string;
   userName: string;
   email: string;
-  tips: any[]
+  oauthId: string;
+  oauthType: string;
+  point?: number;
 }
 
-type UserModel = IModelType<any, any>
+type References = {
+  tips: any[];
+  comments: any[];
+}
 
-const UserProps: UserModel = types.model().props({
-  id: types.identifier,
-  userName: types.string,
-  email: types.string,
-  tips: types.optional(types.map(Tip), {})
-});
+export type UserSnapshot = Fields & Partial<References>
 
-const User = UserProps.named('Tip')
+export default class User extends Model<Fields, References> implements Fields {
+  readonly userName: string;
+  readonly email: string;
+  readonly oauthId: string;
+  readonly oauthType: string;
+  readonly point?: number;
 
-export type IUser = typeof User.Type
+  constructor({tips, ...props}: UserSnapshot, cache: BackendCache) {
+    super(props, {tips}, cache)
+  }
+}

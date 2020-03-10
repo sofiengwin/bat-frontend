@@ -12,5 +12,5 @@ const TipsStore = types.model('TipsStore', {
   }
 }))
 
-// export type ITipsStore = TipsStore.Type;
+// export type ITipsStore === TipsStore.Type;
 export default TipsStore
