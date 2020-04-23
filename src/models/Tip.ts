@@ -9,19 +9,19 @@ interface Fields {
   bet: string;
 }
 
-interface References {
+type References = {
   comments: string[];
-  user: User;
-  match: any;
+  user: string;
+  match: string;
 }
 
 type TipSnapshot = Fields & References;
 
 export default class Tip extends Model<Fields, References> implements Fields {
-  readonly id: string;
+  readonly id!: string;
   readonly outcome?: boolean;
-  readonly body: string;
-  readonly bet: string;
+  readonly body!: string;
+  readonly bet!: string;
 
   constructor({comments, user, match, ...props}: TipSnapshot, cache: BackendCache) {
     super(props, {comments, user, match}, cache);

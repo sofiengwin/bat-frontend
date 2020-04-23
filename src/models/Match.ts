@@ -10,11 +10,11 @@ interface Fields {
 }
 
 export class Match extends Model<Fields> implements Fields {
-  readonly id: string;
-  readonly homeTeam: string;
-  readonly awayTeam: string;
+  readonly id!: string;
+  readonly homeTeam!: string;
+  readonly awayTeam!: string;
   readonly score?: string;
-  readonly time: number;
+  readonly time!: number;
 
   constructor(props: Fields, cache: BackendCache) {
     super(props, {}, cache);

@@ -11,14 +11,14 @@ interface Fields {
 }
 
 export default class Bookmaker extends Model<Fields> implements Fields {
-  readonly id: string;
-  readonly name: string;
-  readonly review: string;
-  readonly imageUrl: string;
-  readonly url: string;
-  readonly rating: number;
+  readonly id!: string;
+  readonly name!: string;
+  readonly review!: string;
+  readonly imageUrl!: string;
+  readonly url!: string;
+  readonly rating!: number;
 
-  constructor(props: Field, cache: BackendCache) {
+  constructor(props: Fields, cache: BackendCache) {
     super(props, {}, cache);
     this.cache = cache;
   }

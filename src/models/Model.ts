@@ -6,7 +6,7 @@ export type Snapshot = {
 };
 
 export default abstract class Model<P extends Snapshot, R extends Dict<string | string[]> = {}, C = BackendCache>{
-  readonly id: string;
+  readonly id!: string;
 
   snapshot: P & Partial<R>;
   references: Partial<R>;

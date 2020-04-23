@@ -13,14 +13,14 @@ export default class IdentityMap<S extends Snapshot, M extends Model<any>> {
 
   @action
   set(snapshot: S) {
-    const existing = this.map.get(snapshot.id);
-    if (existing) {
-      existing.merge(snapshot);
-      return existing;
-    } else {
-      this.map.set(snapshot.id, this.factory(snapshot));
-      return this.map.get(snapshot.id);
-    }
+    // const existing = this.map.get(snapshot.id);
+    // if (existing) {
+    //   existing.merge(snapshot);
+    //   return existing;
+    // } else {
+    //   this.map.set(snapshot.id, this.factory(snapshot));
+    //   return this.map.get(snapshot.id);
+    // }
   }
 
   get(id: string) {

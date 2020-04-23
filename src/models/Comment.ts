@@ -10,16 +10,16 @@ interface Fields {
 
 }
 
-interface References {
-  user: User;
+type References = {
+  user: string;
 }
 
 type CommentSnapshot = Fields & References;
 
 export default class Comment extends Model<Fields, References> implements Fields {
-  readonly body: string;
-  readonly type: string;
-  readonly typeId: string;
+  readonly body!: string;
+  readonly type!: string;
+  readonly typeId!: string;
 
   constructor({user, ...props}: CommentSnapshot, cache: BackendCache) {
     super(props, {user}, cache);

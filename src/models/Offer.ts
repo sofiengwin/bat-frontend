@@ -9,17 +9,17 @@ interface Fields {
   body: string;
 }
 
-interface References {
-  bookmaker: Bookmaker;
+type References = {
+  bookmaker: string;
 }
 
 type OfferSnapshot = Fields & References;
 
 export default class Offer extends Model<Fields, References> implements Fields {
-  readonly id: string;
-  readonly name: string;
-  readonly amount: string;
-  readonly body: string;
+  readonly id!: string;
+  readonly name!: string;
+  readonly amount!: string;
+  readonly body!: string;
 
   constructor({bookmaker, ...props}: OfferSnapshot, cache: BackendCache) {
     super(props, {bookmaker}, cache);

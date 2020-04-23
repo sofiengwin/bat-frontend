@@ -29,9 +29,9 @@ export default class BackendCache {
   // upsertSnapshots will update or insert snapshots of a single type
   private upsertSnapshots<S extends Snapshot, M extends Model<any>>(snapshots: Dict<S>, map: ObservableMap<string, M>) {
     console.log({snapshots})
-    Object.keys(snapshots).forEach((id) => {
-      console.log({id})
-      map.set(id, snapshots[id]);
-    });
+    // Object.keys(snapshots).forEach((id) => {
+    //   console.log({id})
+    //   map.set(id, snapshots[id]);
+    // });
   }
 }
