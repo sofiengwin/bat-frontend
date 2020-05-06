@@ -14,8 +14,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 const StyledIcons = styled(Flex)`
-  width: 25%;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 export default () => {
@@ -24,6 +23,7 @@ export default () => {
       <StyledIcon type="twitter"/>
       <StyledIcon type="facebook"/>
       <StyledIcon type="google" />
+      <StyledIcon type="instagram" />
     </StyledIcons>
   );
 }

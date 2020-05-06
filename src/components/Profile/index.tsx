@@ -16,21 +16,18 @@ class Profile extends React.Component {
       <>
         <Row style={{marginBottom: '20px'}}>
           <Flex style={{flexDirection: 'column'}}>
-            <ProfileAnalytics />
+            {/* <ProfileAnalytics /> */}
             <Streak />
           </Flex>
         </Row>
 
         <Row style={{marginBottom: '20px'}}>
-        <Tabs size='large'>
-            <Tabs.TabPane tab="Tab 1" key="1">
+        <Tabs size='large' type="card">
+            <Tabs.TabPane tab="Upcoming " key="1">
               <Tips/>
             </Tabs.TabPane>
 
-            <Tabs.TabPane tab="Tab 2" key="2">
-              <Tips />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="Tab 3" key="3">
+            <Tabs.TabPane tab="History" key="2">
               <Tips />
             </Tabs.TabPane>
           </Tabs>

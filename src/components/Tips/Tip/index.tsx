@@ -12,7 +12,8 @@ const StyledCard = styled(Card)`
   border-bottom: 1px solid #e6ecf0;
   padding: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px #f4f4f4;
   .ant-card-wider-padding {
     padding: unset;
   }
@@ -51,7 +52,7 @@ class Tip extends React.Component {
       <StyledCard>
         <Flex>
           <div>
-            <Avatar size={48} icon="user" src='https://source.unsplash.com/random/1280x720'/>
+            <Avatar size={32} icon="user" src='https://source.unsplash.com/random/1280x720'/>
           </div>
           <PostContainer>
             <Header>

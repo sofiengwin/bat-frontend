@@ -2,19 +2,21 @@ import * as React from 'react';
 import {List} from 'antd'
 import {Link} from 'react-router-dom';
 import styled from '../../styles'
+import Trend, {ITrend} from './Trend';
 
 const PostHeading = styled.h5`
   margin: 0;
 `;
 
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+const D = {
+  league: 'Premier League',
+  country: 'England',
+  match: 'Man Utd vs Man City',
+  numOfTips: '25k',
+};
 
+const data = Array(10).fill(D)
+console.log({data})
 export default class User extends React.Component {
   render() {
     return (
@@ -22,7 +24,7 @@ export default class User extends React.Component {
           header={<PostHeading>Trending</PostHeading>}
           bordered
           dataSource={data}
-          renderItem={(item: string) => (<List.Item><Link to={`/bets/${item}`}>{item}</Link></List.Item>)}
+          renderItem={(item: ITrend) => (<List.Item><Link to={`/bets/${item.match}`}><Trend {...item} /></Link></List.Item>)}
         />
     );
   }

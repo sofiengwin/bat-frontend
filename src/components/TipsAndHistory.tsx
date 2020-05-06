@@ -10,15 +10,12 @@ class TipsAndHistory extends React.Component<Props> {
   render() {
     const {loadTips} = this.props;
     return (
-      <Tabs size='large' onTabClick={loadTips}>
-        <Tabs.TabPane tab="Tab 1" key="1">
+      <Tabs size='large' onTabClick={loadTips} type={'card'}>
+        <Tabs.TabPane tab="Up Coming" key="1">
           <Tips/>
         </Tabs.TabPane>
 
-        <Tabs.TabPane tab="Tab 2" key="2">
-          <Tips />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="Tab 3" key="3">
+        <Tabs.TabPane tab="History" key="2">
           <Tips />
         </Tabs.TabPane>
       </Tabs>
