@@ -1,18 +1,5 @@
 import * as React from "react";
-import {
-  Container,
-  CardGrid,
-  Flex,
-  Header,
-  Rule,
-  FlexContainer,
-  SmallCard,
-  BigCard,
-  FirstCard,
-  SecondCard,
-  ThirdCard,
-  List,
-} from "./style";
+import { Container, CardGrid } from "./style";
 import DisplayCard from "./Cards";
 import LongCard from "./Longcards";
 import OneWayComparison from "./OneWayComparison";
