@@ -13,7 +13,7 @@ import clientFactory from "./lib/client";
 import * as serviceWorker from "./serviceWorker";
 
 import "./styles/main.css";
-import Match from "./components/Match/Matches";
+import Match from "./components/Match";
 
 const client = clientFactory("", () => "fake.token");
 
