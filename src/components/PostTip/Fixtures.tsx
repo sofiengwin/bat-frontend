@@ -2,11 +2,34 @@ import * as React from "react";
 import { Card } from "antd";
 import { Link } from "react-router-dom";
 
-import styled from "../../styles";
+import styled from '../../styles'
+import { useEffect, useState } from 'react';
+import {rapidApiClient} from '../../lib/client';
 
 const Flex = styled.div`
   display: flex;
 `;
+const Logo = styled.div`
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+  margin-right: 1em;
+  overflow: hidden;
+
+  img{
+    width: 100%;
+  }
+
+  p{
+    line-height: 100%;
+  }
+`;
+
+const Sub = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+`
 
 const StyledCard = styled(Card)`
   margin: 0.4em 0;
@@ -25,122 +48,45 @@ const StyledSpan = styled.span`
   margin-top: -15px;
 `;
 
-const matches = [
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-  {
-    match_hometeam_name: "Hello",
-    match_awayteam_name: "Hey",
-    time: "2019-02-03 21:00",
-  },
-];
+interface RapidActionMatch {
+  event_date: string;
+  homeTeam: {
+    team_name: string;
+    logo: string;
+  };
+  awayTeam: {
+    team_name: string;
+    logo: string;
+  };
+}
 
-class Fixtures extends React.Component {
-  render() {
-    return (
-      <Flex style={{ flexDirection: "column" }}>
-        {matches.map((match: any, index: number) => {
-          return (
-            <StyledCard key={index}>
-              <Link
-                to={`/post-tip/countries/${index}/leagues/${index}/matches/${match}`}
-              >
-                <Flex style={{ flexDirection: "column" }}>
-                  <p>
-                    {match.match_hometeam_name} vs {match.match_awayteam_name}
-                  </p>
-                  <StyledSpan>2019-02-03 21:00:</StyledSpan>
-                </Flex>
-              </Link>
-            </StyledCard>
-          );
-        })}
-      </Flex>
-    );
-  }
+const Fixtures = () => {
+  const [matches, setMatches] = useState<Partial<RapidActionMatch>[]>([]);
+  console.log({matches})
+  useEffect(() => {
+    rapidApiClient('/fixtures/league/524/last/10')
+      .then(({fixtures}) => {
+        console.log({fixtures})
+        setMatches(fixtures);
+      });
+
+  }, []);
+
+  return (
+    <Flex style={{flexDirection: 'column'}}>
+      {matches.map((match: any, index: number) => {
+        console.log({match})
+        return <StyledCard key={index}>
+          <Link to={`/post-tip/countries/${index}/leagues/${index}/matches/${match}`}>
+            <Flex style={{flexDirection: 'column'}}>
+                <Sub><Logo><img src={match.homeTeam.logo} /></Logo> <p>{match.homeTeam.team_name} vs {match.awayTeam.team_name}</p> <Logo><img src={match.awayTeam.logo} /></Logo></Sub>
+                <StyledSpan>{match.event_date}</StyledSpan>
+            </Flex>
+          </Link>
+        </StyledCard>
+      })}
+    </Flex>
+  );
 }
 
 export default Fixtures;
