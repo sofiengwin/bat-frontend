@@ -1,4 +1,4 @@
-import styled from '../../styles'
+import styled from "../../../styles";
 
 export default styled.div`
   background: green;
