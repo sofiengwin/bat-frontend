@@ -14,6 +14,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./styles/main.css";
 import Match from "./components/Match/Matches";
+import Offers from "./components/Offers/Offers";
 
 const client = clientFactory("", () => "fake.token");
 
@@ -44,7 +45,7 @@ ReactDOM.render(
               <TipsAndHistory loadTips={() => console.log("loading more")} />
             )}
           />
-          <Route path='/offers' render={() => <h1>Coming soon</h1>} />
+          <Route path='/offers' render={() => <Offers />} />
           <Route path='/bookmakers' render={() => <h1>Coming soon</h1>} />
           <Route
             path='/value-accumulators'
