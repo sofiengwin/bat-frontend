@@ -10,6 +10,7 @@ const OfferCard = () => {
       </Image>
       <Content>
         <H2>Black Bets</H2>
+        <Span>100% bonus up to €130 / $</Span>
         <P>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iste
           cum sed culpa consequuntur repudiandae optio impedit eius facilis
@@ -51,8 +52,12 @@ export const Content = styled.div`
   }
 `;
 export const H2 = styled.h2`
-  padding-bottom: 1em;
+  padding-bottom: 0;
 `;
 export const P = styled.p`
   padding-bottom: 0.7em;
+`;
+export const Span = styled.span`
+  padding-bottom: 1em;
+  color: orangered;
 `;
