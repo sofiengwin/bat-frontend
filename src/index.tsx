@@ -8,17 +8,25 @@ import Profile from "./components/Profile";
 import PostTip from "./components/PostTip";
 import TipsAndHistory from "./components/TipsAndHistory";
 import ValueAccumulations from "./components/ValueAccumulations";
-import clientFactory from "./lib/client";
+import clientFactory, {mockClient} from "./lib/client";
+import {Services} from './lib/useService';
+import SessionService from './services/SessionService';
 
 import * as serviceWorker from "./serviceWorker";
 
 import "./styles/main.css";
 import Match from "./components/Match";
 
-const client = clientFactory("", () => "fake.token");
+// const client = clientFactory("", () => "fake.token");
+const client = mockClient();
+const sessionService = new SessionService({client});
+
+const services = {
+  sessionService,
+}
 
 ReactDOM.render(
-  <Provider>
+  <Provider {...services}>
     <Router>
       <Switch>
         <Layout>

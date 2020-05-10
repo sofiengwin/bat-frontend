@@ -1,3 +1,5 @@
+import mockData from '../mock';
+
 export interface FetchQl {
   (query: string, variables?: JSONSerializable, opts?: Dict<any>): Promise<any>;
 }
@@ -63,6 +65,22 @@ export const rapidApiClient = (endpoint: string, options?: Dict<string>) => {
     })
     .then(response => response.json())
     .then((response => response.api));
+}
+
+export const mockClient = (): FetchQl => {
+  return (query: string, variables?: JSONSerializable, opts?: Dict<any>) => {
+    console.log({query, variables, opts})
+
+    return new Promise((resolve, _reject) => {
+      // @ts-ignore
+      resolve(mockData[queryName(query)]);
+    })
+  }
+}
+
+function queryName(query: string): string {
+  let message = query.split('{').map((s) => s.split('(')[0].replace(/\s+/, ''));
+  return `${message[1]}`;
 }
 
 export default clientFactory;
