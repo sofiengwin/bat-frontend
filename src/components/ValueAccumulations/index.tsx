@@ -1,8 +1,6 @@
-import * as React from "react";
-import styled from "../../styles";
-import { List, Typography, Button, PageHeader } from "antd";
-import ActionButton from "antd/lib/modal/ActionButton";
-import Accumulation from "./Accumulation";
+import * as React from 'react';
+import Accumulation from './Accumulation';
+import styled from '../../styles';
 
 const data = [
   "Racing car sprays burning fuel into crowd.",
@@ -12,18 +10,21 @@ const data = [
   "Los Angeles battles huge wildfires.",
 ];
 
+const Grid = styled.div`
+  display: grid;
+  grid-gap: 10px;
+`;
+
+const accas = Array(10).fill(1);
+
 const ValueAccumulations = () => {
   return (
-    <div>
-      <PageHeader
-        className='site-page-header'
-        title='Title'
-        subTitle='This is a subtitle'
-      />
-      <Accumulation data={data} name="Featured Bets"/>
-      <Accumulation data={data} name="Generate Bet"/>
-    </div>
+    <Grid>
+      {accas.map((_, index) => (
+        <Accumulation data={data} key={index}/>
+      ))}
+    </Grid>
   );
-};
+}
 
 export default ValueAccumulations;

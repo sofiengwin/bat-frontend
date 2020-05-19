@@ -1,7 +1,8 @@
-import * as React from 'react';
-import {Link} from 'react-router-dom';
-import Item from './Item';
+import * as React from "react";
 import { List } from "antd";
+import ActionButtons from "./ActionButtons";
+import ActionInputs from "./ActionInputs";
+import Item from './Item';
 
 interface Props {
   data: string[];
@@ -11,7 +12,8 @@ const Accumulation: React.FC<Props> = ({ data }) => {
   return (
     <>
       <List
-        header={<h3><Link to="value-accumulators/value-by-user">Value Bets By @user</Link> </h3>}
+        header={<h3>Value Bets By @user</h3>}
+        footer={<ActionInputs />}
         bordered
         size='large'
         dataSource={data}
@@ -21,6 +23,7 @@ const Accumulation: React.FC<Props> = ({ data }) => {
           </List.Item>
         )}
       />
+      <ActionButtons />
     </>
   );
 };
