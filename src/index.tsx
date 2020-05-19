@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import Profile from "./components/Profile";
 import PostTip from "./components/PostTip";
 import TipsAndHistory from "./components/TipsAndHistory";
+import AccumulationView from "./components/AccumulationView";
 import ValueAccumulations from "./components/ValueAccumulations";
 import clientFactory, {mockClient} from "./lib/client";
 import {Services} from './lib/useService';
@@ -55,7 +56,11 @@ ReactDOM.render(
           <Route path='/offers' render={() => <h1>Coming soon</h1>} />
           <Route path='/bookmakers' render={() => <h1>Coming soon</h1>} />
           <Route
-            path='/value-accumulators'
+            path='/value-accumulators/:id'
+            render={() => <AccumulationView />}
+          />
+          <Route
+            exact path='/value-accumulators'
             render={() => <ValueAccumulations />}
           />
         </Layout>
