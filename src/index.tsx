@@ -16,7 +16,9 @@ import SessionService from './services/SessionService';
 import * as serviceWorker from "./serviceWorker";
 
 import "./styles/main.css";
-import Match from "./components/Match";
+import Match from "./components/Match/Matches";
+import Offers from "./components/Offers/index";
+import TipDashboard from "./components/TipDashboard/TipDashboard";
 
 // const client = clientFactory("", () => "fake.token");
 const client = mockClient();
@@ -33,6 +35,7 @@ ReactDOM.render(
         <Layout>
           <Route exact path='/' component={HomePage} />
           <Route path='/profile' component={Profile} />
+          <Route path='/tip' component={TipDashboard} />
           <Route path='/post-tip/countries' component={PostTip} />
           <Route
             path='/countries/:countryId'
@@ -53,7 +56,7 @@ ReactDOM.render(
               <TipsAndHistory loadTips={() => console.log("loading more")} />
             )}
           />
-          <Route path='/offers' render={() => <h1>Coming soon</h1>} />
+          <Route path='/offers' render={() => <Offers />} />
           <Route path='/bookmakers' render={() => <h1>Coming soon</h1>} />
           <Route
             path='/value-accumulators/:id'
