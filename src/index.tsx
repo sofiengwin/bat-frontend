@@ -14,7 +14,8 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./styles/main.css";
 import Match from "./components/Match/Matches";
-import Offers from "./components/Offers/Offers";
+import Offers from "./components/Offers/index";
+import TipDashboard from "./components/TipDashboard/TipDashboard";
 
 const client = clientFactory("", () => "fake.token");
 
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Layout>
           <Route exact path='/' component={HomePage} />
           <Route path='/profile' component={Profile} />
+          <Route path='/tip' component={TipDashboard} />
           <Route path='/post-tip/countries' component={PostTip} />
           <Route
             path='/countries/:countryId'

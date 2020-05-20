@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import OfferCard from "./OfferCard";
 
-const Offers = () => {
+const index = () => {
   return (
     <Flex>
       {Array(10)
@@ -14,6 +14,6 @@ const Offers = () => {
   );
 };
 
-export default Offers;
+export default index;
 
 export const Flex = styled.div``;
