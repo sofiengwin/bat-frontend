@@ -1,3 +1,5 @@
+import mockData from '../mock';
+
 export interface FetchQl {
   (query: string, variables?: JSONSerializable, opts?: Dict<any>): Promise<any>;
 }
@@ -40,6 +42,45 @@ const authHeaders = () => {
   return {
     'Content-Type': 'application/json'
   }
+}
+
+const RAPID_API_BASE = 'https://api-football-v1.p.rapidapi.com/v2'
+
+export const rapidApiClient = (endpoint: string, options?: Dict<string>) => {
+  return fetch(RAPID_API_BASE + endpoint, {
+    method: 'GET',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+      'X-RapidAPI-Key': '7850c93c7amshce44d177e4d57e3p18c434jsn758783b07818',
+    }),
+  })
+    .then(response => {
+      console.log({response})
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      return response;
+    })
+    .then(response => response.json())
+    .then((response => response.api));
+}
+
+export const mockClient = (): FetchQl => {
+  return (query: string, variables?: JSONSerializable, opts?: Dict<any>) => {
+    console.log({query, variables, opts})
+
+    return new Promise((resolve, _reject) => {
+      // @ts-ignore
+      resolve(mockData[queryName(query)]);
+    })
+  }
+}
+
+function queryName(query: string): string {
+  let message = query.split('{').map((s) => s.split('(')[0].replace(/\s+/, ''));
+  return `${message[1]}`;
 }
 
 export default clientFactory;

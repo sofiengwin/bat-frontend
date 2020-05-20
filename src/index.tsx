@@ -7,8 +7,11 @@ import HomePage from "./components/HomePage";
 import Profile from "./components/Profile";
 import PostTip from "./components/PostTip";
 import TipsAndHistory from "./components/TipsAndHistory";
+import AccumulationView from "./components/AccumulationView";
 import ValueAccumulations from "./components/ValueAccumulations";
-import clientFactory from "./lib/client";
+import clientFactory, {mockClient} from "./lib/client";
+import {Services} from './lib/useService';
+import SessionService from './services/SessionService';
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -17,10 +20,16 @@ import Match from "./components/Match/Matches";
 import Offers from "./components/Offers/index";
 import TipDashboard from "./components/TipDashboard/TipDashboard";
 
-const client = clientFactory("", () => "fake.token");
+// const client = clientFactory("", () => "fake.token");
+const client = mockClient();
+const sessionService = new SessionService({client});
+
+const services = {
+  sessionService,
+}
 
 ReactDOM.render(
-  <Provider>
+  <Provider {...services}>
     <Router>
       <Switch>
         <Layout>
@@ -50,7 +59,11 @@ ReactDOM.render(
           <Route path='/offers' render={() => <Offers />} />
           <Route path='/bookmakers' render={() => <h1>Coming soon</h1>} />
           <Route
-            path='/value-accumulators'
+            path='/value-accumulators/:id'
+            render={() => <AccumulationView />}
+          />
+          <Route
+            exact path='/value-accumulators'
             render={() => <ValueAccumulations />}
           />
         </Layout>

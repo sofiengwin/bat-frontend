@@ -1,6 +1,10 @@
+// @ts-nocheck
 import * as React from 'react';
 import {Modal, Button} from 'antd';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { GoogleLogin } from 'react-google-login';
 import styled from '../../styles';
+import useService from '../../lib/useService';
 
 interface Props {
   visible: boolean;
@@ -10,7 +14,6 @@ interface Props {
 interface State {
   loading: boolean;
 }
-
 
 const SocialButtons = styled.div`
   display: flex;
@@ -27,29 +30,52 @@ const buttonStyle = {
   fontWeigth: 'bolder'
 }
 
-class LoginModal extends React.Component<Props, State> {
-  state: State = {loading: false}
-  handleOk = () => {
+const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
+  const {sessionService} = useService();
 
-  }
+  return (
+    <Modal
+      title="Basic Modal"
+      visible={visible}
+      onOk={() => undefined}
+      onCancel={handleCancel}
+      footer={[]}
+    >
+      <SocialButtons>
+        <FacebookLogin
+          appId={'1950306921766824'}
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={(response) => sessionService.facebook(response)}
+          onClick={() => undefined}
+          render={renderProps => (
+            <Button
+              style={{background: '#4267b2', ...buttonStyle}} icon="facebook"
+              onClick={renderProps.onClick}
+            >
+              Login With Facebook
+            </Button>
+          )}
+        />
 
-  render() {
-    return (
-      <Modal
-        title="Basic Modal"
-        visible={this.props.visible}
-        onOk={this.handleOk}
-        onCancel={this.props.handleCancel}
-        footer={[]}
-      >
-        <SocialButtons>
-          <Button style={{background: '#4267b2', ...buttonStyle}} icon="facebook" loading={this.state.loading} >Login With Facebook</Button>
-          <Button style={{background: '#1dcaff', ...buttonStyle}} icon="twitter">Login With Twitter</Button>
-          <Button style={{background: '#DB4437', ...buttonStyle}} icon="google">Login With Google</Button>
-        </SocialButtons>
-      </Modal>
-    );
-  }
+<         GoogleLogin
+          clientId="767047999329-q4gohqcv0vr3nsmsbq93v09tsm25jg0n.apps.googleusercontent.com"
+          onSuccess={(res) => sessionService.google(res)}
+          onFailure={(err) => console.log({err})}
+          render={renderProps => (
+            <Button
+              style={{background: '#DB4437', ...buttonStyle}}
+              icon="google"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              Login With Google
+            </Button>
+          )}
+        />
+      </SocialButtons>
+    </Modal>
+  );
 }
 
 export default LoginModal;

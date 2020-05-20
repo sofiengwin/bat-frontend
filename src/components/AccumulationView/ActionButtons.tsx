@@ -15,7 +15,7 @@ const ActionButtons = () => {
           Clear
         </Button>
         <Button style={{ background: "#4267b2", color: 'white' }}>
-          Regenerate
+          Save
         </Button>
       </StyledButtons>
     );
