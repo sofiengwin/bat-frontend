@@ -18,17 +18,17 @@ const Layout: React.SFC = ({children}) => {
       </Row>
 
       <MainContainer gutter={24}>
-        <Col span={5} style={{marginLeft: '20px'}}>
+        {/* <Col span={5} style={{marginLeft: '20px'}}>
           <Trending />
-        </Col>
+        </Col> */}
 
-        <Col span={12}>
+        <Col>
           {children}
         </Col>
 
-        <Col span={6} >
+        {/* <Col span={6} >
           <Points />
-        </Col>
+        </Col> */}
       </MainContainer>
     </div>
   );
