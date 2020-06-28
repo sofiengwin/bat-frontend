@@ -1,9 +1,9 @@
 import * as React from "react";
 import { List, Button } from "antd";
-import ActionButtons from "./ActionButtons";
 import Item from './Item';
 import SelectInput from '../ui/SelectInput';
 import styled from '../../styles';
+import {PlusCircleTwoTone} from '@ant-design/icons'
 
 const Filter = styled.div`
   display: grid;
@@ -18,10 +18,25 @@ const ButtonWrapper = styled.div`
 `;
 
 interface Props {
-  data: string[];
+  data: any[];
+  addToAccumulation: (match: any) => void;
 }
 
-const AvailableMatches: React.FC<Props> = ({ data }) => {
+const AvailableMatches: React.FC<Props> = ({ data, addToAccumulation }) => {
+  const [selectedId, setSelected] = React.useState<number>(0);
+  const [selectedMatches, setSelectedMatches] = React.useState([])
+
+  const onSelect = (e: any) => {
+    console.log({e})
+    if (e.target.checked) {
+      const match = data.find((m) => m.id === e.target.value)
+      setSelectedMatches(selectedMatches.concat(match))
+    } else {
+      const arr = selectedMatches.filter((m: any) => m.id !== e.target.value);
+      setSelectedMatches(arr);
+    }
+  }
+
   return (
     <>
       <Filter>
@@ -34,14 +49,24 @@ const AvailableMatches: React.FC<Props> = ({ data }) => {
         bordered
         size='large'
         dataSource={data}
-        renderItem={(item) => (
+        renderItem={(match) => (
           <List.Item>
-            <Item action={() => null} actionName="Add"/>
+            <Item
+              action={() => null}
+              actionName="Add"
+              match={match}
+              selectedId={selectedId}
+              setSelected={setSelected}
+              onSelect={onSelect}
+              render={() => (
+                <PlusCircleTwoTone onClick={() => addToAccumulation([match])}/>
+              )}
+            />
           </List.Item>
         )}
       />
       <ButtonWrapper>
-        <Button type="primary">Add Selected</Button>
+        <Button type="primary" onClick={() => addToAccumulation(selectedMatches)}>Add Selected</Button>
       </ButtonWrapper>
     </>
   );

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Item from './Item';
 import { List } from "antd";
 
+
 interface Props {
   data: string[];
 }
@@ -17,7 +18,7 @@ const Accumulation: React.FC<Props> = ({ data }) => {
         dataSource={data}
         renderItem={(item) => (
           <List.Item>
-            <Item action={() => null} actionName="Remove" />
+            <Item action={() => null} actionName="Remove"/>
           </List.Item>
         )}
       />

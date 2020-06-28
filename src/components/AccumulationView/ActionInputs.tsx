@@ -3,20 +3,27 @@ import TextInput from '../ui/TextInput';
 import styled from '../../styles';
 
 const Flex = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  justify-content: space-between;
 `;
 
-const StyledInput = styled(TextInput)`
-  width: 100px;
-`;
 
-const ActionInputs = () => {
+interface Props {
+  odds: number;
+  winnings: number;
+  stake: number;
+  setStake: (stake: number) => void;
+}
+
+
+const ActionInputs: React.FC<Props> = ({odds, winnings, stake, setStake}) => {
   return (
     <Flex>
-      <StyledInput value={'10.0'}  onChnage={() => null} addonBefore={'Odds'}/>
-      <StyledInput value={'10.0'}  onChnage={() => null} addonBefore={'Stake'}/>
-      <StyledInput value={'10.0'}  onChnage={() => null} addonBefore={'Winnings'}/>
+      <TextInput value={Math.round(odds)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Odds'}/>
+      <TextInput value={stake}  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStake(Number(e.target.value))} addonBefore={'Stake'} />
+      <TextInput value={Math.round(winnings)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Winnings'} />
     </Flex>
   );
 }

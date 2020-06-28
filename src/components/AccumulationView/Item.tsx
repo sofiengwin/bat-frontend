@@ -8,25 +8,27 @@ const Flex = styled.div`
   grid-template-columns: 8fr 1fr 1fr 1fr;
 `;
 
-const StyledPopover = styled(Popover)`
-  .ant-popover & {
-    width: 100%;
-    background: red;
-  }
-`;
-
 const PopoverTitle = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 280px;
+`;
+
+const MatchName = styled.div`
+  display: flex;
 `;
 
 interface Props {
   action: () => void;
   actionName: string;
+  match: any;
+  selectedId: number;
+  setSelected: (id: number) => void;
+  onSelect?: (e: any) => void;
+  render: () => React.ReactNode;
 }
 
-const Item: React.FC<Props> = ({action, actionName}) => {
-  const [showPopover, setPop] = React.useState<boolean>(false);
+const Item: React.FC<Props> = (props) => {
   const content = (
     <div>
       <p>Odd: 1.0</p>
@@ -35,27 +37,29 @@ const Item: React.FC<Props> = ({action, actionName}) => {
       <p>Country: England</p>
     </div>
   );
+
   return (
-    <StyledPopover
+    <Popover
       content={content}
-      title={(): React.ReactNode => (
+      title={(
         <PopoverTitle>
-          <span>HomeHomeHome vs AwayAwayAway</span>
-          <span><CloseCircleTwoTone twoToneColor="red"/></span>
+          <span>HomeHome vs AwayAway</span>
+          <span><CloseCircleTwoTone twoToneColor="red" onClick={() => props.setSelected(0)}/></span>
         </PopoverTitle>
       )}
       trigger="click"
-      visible={showPopover}
-      placement="topRight"
+      visible={props.selectedId === props.match.id}
     >
-      <Skeleton avatar title={false} loading={false} active>
-        <div><Checkbox /></div>
-        <div onClick={() => setPop(true)}>HomeHome vs AwayAway</div>
+      <Skeleton avatar title={false} loading={false}>
+        <MatchName>
+          <Checkbox onChange={props.onSelect} value={props.match.id}/>
+          <div onClick={() => props.setSelected(props.match.id)} style={{marginLeft: '10px'}}>HomeHome vs AwayAway</div>
+        </MatchName>
         <div>1.0</div>
         <div>80%</div>
-        <div><CloseCircleTwoTone twoToneColor="red"/></div>
+        <div>{props.render()}</div>
       </Skeleton>
-    </StyledPopover>
+    </Popover>
   );
 }
 

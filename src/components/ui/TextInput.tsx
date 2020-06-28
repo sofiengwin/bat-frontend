@@ -1,25 +1,24 @@
 import * as React from 'react';
-import {Input} from 'antd';
+import {Input, Form} from 'antd';
 
 interface Props {
-  value: string;
+  value: string | number;
   defaultValue?: string;
-  onChnage: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addonBefore?: string | React.ReactNode;
   addonAfter?: string | React.ReactNode;
 }
 
-const TextInput: React.FC<Props> = ({value, defaultValue, onChnage, addonAfter, addonBefore}) => {
+const TextInput: React.FC<Props> = ({value, defaultValue, onChange, addonBefore}) => {
   return (
-    <div>
+    <Form.Item label={addonBefore} colon>
       <Input
+        placeholder="input placeholder"
         value={value}
         defaultValue={defaultValue}
-        onChange={onChnage}
-        addonAfter={addonAfter}
-        addonBefore={addonBefore}
+        onChange={onChange}
       />
-    </div>
+    </Form.Item>
   );
 }
 
