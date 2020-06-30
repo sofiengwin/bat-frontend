@@ -1,29 +1,18 @@
 import * as React from 'react';
-import Accumulation from './Accumulation';
-import styled from '../../styles';
-
-const data = [
-  "Racing car sprays burning fuel into crowd.",
-  "Japanese princess to wed commoner.",
-  "Australian walks 100km after outback crash.",
-  "Man charged over missing wedding girl.",
-  "Los Angeles battles huge wildfires.",
-];
-
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 10px;
-`;
-
-const accas = Array(10).fill(1);
+import { Tabs } from 'antd';
+import ListAccumulations from './ListAccumulations';
 
 const ValueAccumulations = () => {
   return (
-    <Grid>
-      {accas.map((_, index) => (
-        <Accumulation data={data} key={index}/>
-      ))}
-    </Grid>
+    <Tabs size='large' onTabClick={() => null} type={'card'}>
+      <Tabs.TabPane tab="Up Coming" key="1">
+        <ListAccumulations/>
+      </Tabs.TabPane>
+
+      <Tabs.TabPane tab="History" key="2">
+        <ListAccumulations />
+      </Tabs.TabPane>
+    </Tabs>
   );
 }
 

@@ -8,7 +8,15 @@ import {PlusCircleTwoTone} from '@ant-design/icons'
 const Filter = styled.div`
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 1fr;
-  margin: 20px;
+  grid-gap: 10px;
+  margin: 10px;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+    grid-template-columns: 0.9fr;
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 `;
 
 const ButtonWrapper = styled.div`

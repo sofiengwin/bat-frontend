@@ -1,16 +1,17 @@
 import * as React from 'react';
-import {Card, Statistic, Icon} from 'antd';
+import {Card, Statistic, Icon} from 'antd'
 
 import styled from '../../../styles';
 
-const Flex = styled.div`
-  display: flex;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `
 
 export default () => {
   return (
-    <Flex style={{padding: '30px', justifyContent: 'space-between'}}>
-      {Array(4).fill(0).map((_, index) => {
+    <Grid>
+      {Array(3).fill(0).map((_, index) => {
         return <Card key={index}>
           <Statistic
             title="Active"
@@ -22,6 +23,6 @@ export default () => {
           />
         </Card>
       })}
-    </Flex>
+    </Grid>
   );
 }

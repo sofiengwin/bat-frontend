@@ -12,7 +12,7 @@ const SelectInput: React.FC<Props> = ({onChange, options}) => {
   return (
     <div>
         <Select
-          style={{ width: 200 }}
+          style={{ width: '100%' }}
           placeholder="Select a person"
           optionFilterProp="children"
           onChange={onChange}
