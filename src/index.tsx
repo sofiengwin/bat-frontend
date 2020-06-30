@@ -9,6 +9,7 @@ import PostTip from "./components/PostTip";
 import TipsAndHistory from "./components/TipsAndHistory";
 import AccumulationView from "./components/AccumulationView";
 import ValueAccumulations from "./components/ValueAccumulations";
+import Trending from './components/Trending';
 import clientFactory, {mockClient} from "./lib/client";
 import {Services} from './lib/useService';
 import SessionService from './services/SessionService';
@@ -65,6 +66,10 @@ ReactDOM.render(
           <Route
             exact path='/value-accumulators'
             render={() => <ValueAccumulations />}
+          />
+          <Route
+            exact path='/trending-bets'
+            render={() => <Trending />}
           />
         </Layout>
       </Switch>

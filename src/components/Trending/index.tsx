@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "../../styles";
 import Trend, { ITrend } from "./Trend";
 
-const PostHeading = styled.h5`
+const PostHeading = styled.h3`
   margin: 0;
 `;
 
@@ -26,12 +26,11 @@ export default class User extends React.Component {
         dataSource={data}
         renderItem={(item: ITrend) => (
           <List.Item>
-            <Link to={`/match`}>
+            <Link to={`/value-accumulators`}>
               <Trend {...item} />
             </Link>
           </List.Item>
         )}
-        // renderItem={(item: ITrend) => (<List.Item><Link to={`/bets/${item.match}`}><Trend {...item} /></Link></List.Item>)}
       />
     );
   }
