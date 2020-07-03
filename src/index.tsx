@@ -10,8 +10,7 @@ import TipsAndHistory from "./components/TipsAndHistory";
 import AccumulationView from "./components/AccumulationView";
 import ValueAccumulations from "./components/ValueAccumulations";
 import Trending from './components/Trending';
-import clientFactory, {mockClient} from "./lib/client";
-import {Services} from './lib/useService';
+import Points from './components/Points';
 import SessionService from './services/SessionService';
 
 import * as serviceWorker from "./serviceWorker";
@@ -22,15 +21,15 @@ import Offers from "./components/Offers/index";
 import TipDashboard from "./components/TipDashboard/TipDashboard";
 
 // const client = clientFactory("", () => "fake.token");
-const client = mockClient();
-const sessionService = new SessionService({client});
+// const client = mockClient();
+// const sessionService = new SessionService({client});
 
-const services = {
-  sessionService,
-}
+// const services = {
+//   sessionService,
+// }
 
 ReactDOM.render(
-  <Provider {...services}>
+  <Provider>
     <Router>
       <Switch>
         <Layout>
@@ -70,6 +69,10 @@ ReactDOM.render(
           <Route
             exact path='/trending-bets'
             render={() => <Trending />}
+          />
+          <Route
+            exact path='/user-ranking'
+            render={() => <Points />}
           />
         </Layout>
       </Switch>
