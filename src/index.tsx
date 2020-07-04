@@ -10,6 +10,7 @@ import TipsAndHistory from "./components/TipsAndHistory";
 import AccumulationView from "./components/AccumulationView";
 import ValueAccumulations from "./components/ValueAccumulations";
 import Trending from './components/Trending';
+import BetGenerator from './components/BetGenerator';
 import Points from './components/Points';
 import SessionService from './services/SessionService';
 
@@ -73,6 +74,10 @@ ReactDOM.render(
           <Route
             exact path='/user-ranking'
             render={() => <Points />}
+          />
+          <Route
+            exact path='/bet-generator'
+            render={() => <BetGenerator />}
           />
         </Layout>
       </Switch>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Menu, Layout } from "antd";
+import { Menu, Layout, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import styled from '../../styles';
 
@@ -32,6 +32,9 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         <Menu.Item key='4'>
           <Link to='/value-accumulators'>Accumulations</Link>
         </Menu.Item>
+        <Menu.Item key='5'>
+          <Link to='/bet-generator'>Bet Generator</Link>
+        </Menu.Item>
       </Menu>
     </Flex>
     <Menu
@@ -46,7 +49,9 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         <Link to='/post-tip/countries'>Post</Link>
       </Menu.Item>
       <Menu.Item key='6'>
-        <Link to='/profile'>Profile</Link>
+        <Link to='/profile'>
+          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={'large'} />
+        </Link>
       </Menu.Item>
     </Menu>
   </Flex>
