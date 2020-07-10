@@ -5,12 +5,17 @@ import Trending from '../Trending';
 import Points from '../Points';
 
 import styled from '../../styles'
+import { useMediaQuery } from 'react-responsive';
 
 const MainContainer = styled(Row)`
   margin-top: 20px;
 `;
 
 const Layout: React.SFC = ({children}) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+  })
+  const mainColSpan = isDesktopOrLaptop ? 12 : undefined;
   return (
     <div>
       <Row>
@@ -18,17 +23,17 @@ const Layout: React.SFC = ({children}) => {
       </Row>
 
       <MainContainer gutter={24}>
-        {/* <Col span={5} style={{marginLeft: '20px'}}>
+        {isDesktopOrLaptop && <Col span={5} style={{marginLeft: '20px'}}>
           <Trending />
-        </Col> */}
+        </Col>}
 
-        <Col>
+        <Col span={mainColSpan}>
           {children}
         </Col>
 
-        {/* <Col span={6} >
+        {isDesktopOrLaptop && <Col span={6} >
           <Points />
-        </Col> */}
+        </Col>}
       </MainContainer>
     </div>
   );

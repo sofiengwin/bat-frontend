@@ -28,7 +28,6 @@ export default OfferCard;
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 250px;
   width: 100%;
   box-shadow: 0 2px 10px #dddddd;
   border-radius: 0.5em;
@@ -38,7 +37,7 @@ export const Grid = styled.div`
 export const Image = styled.div`
   img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
 `;
 export const Content = styled.div`

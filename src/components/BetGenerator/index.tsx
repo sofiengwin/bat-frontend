@@ -1,23 +1,17 @@
 import * as React from 'react';
-import {Slider} from 'antd';
+import BetGeneratorForm from './Form';
+import GeneratedBet from './GeneratedBet'
 
 const BetGenerator = () => {
-  const [oddRange, setOddRange] = React.useState<[number, number]>([1.5, 2.5])
-  const onChange = (value: any) => {
-    console.log({value})
-    setOddRange(value);
-  }
+  const [showGenerated, setShowGenerated] = React.useState<boolean>(false)
+ 
   return (
     <>
-      <Slider
-        range
-        defaultValue={oddRange}
-        max={4.1}
-        min={1.1} 
-        tooltipVisible
-        step={0.1}
-        onChange={onChange}
-      />
+      {showGenerated ? (
+        <GeneratedBet />
+      ) : (
+        <BetGeneratorForm onGenerate={() => setShowGenerated(true)}/>
+      )}
     </>
   )
 }

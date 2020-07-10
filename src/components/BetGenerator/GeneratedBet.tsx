@@ -1,5 +1,5 @@
 import * as React from 'react';
-import View from './View';
+import AccumulationView from '../AccumulationView/View'
 
 const match = {
   id: 1,
@@ -11,10 +11,10 @@ const match = {
 
 const data = Array(10).fill(undefined).map((_, i) => ({...match, id: i + 1}))
 
-const AccumulationView = () => {
+const GeneratedBet = () => {
   return (
-    <View accumulation={data} availableMatches={data} />
-  );
+    <AccumulationView availableMatches={data} accumulation={data} />
+  )
 }
 
-export default AccumulationView;
+export default GeneratedBet;
