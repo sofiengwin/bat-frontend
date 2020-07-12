@@ -12,6 +12,7 @@ import ValueAccumulations from "./components/ValueAccumulations";
 import Trending from './components/Trending';
 import BetGenerator from './components/BetGenerator';
 import Points from './components/Points';
+import Bookmakers from './components/Bookmakers';
 import SessionService from './services/SessionService';
 
 import * as serviceWorker from "./serviceWorker";
@@ -58,7 +59,7 @@ ReactDOM.render(
             )}
           />
           <Route path='/offers' render={() => <Offers />} />
-          <Route path='/bookmakers' render={() => <h1>Coming soon</h1>} />
+          <Route path='/bookmakers' render={() => <Bookmakers /> } />
           <Route
             path='/value-accumulators/:id'
             render={() => <AccumulationView />}

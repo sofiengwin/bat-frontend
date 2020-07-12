@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import OfferCard from "./OfferCard";
+import BookmakerCard from "./BookmakerCard";
 
 const index = () => {
   return (
@@ -8,7 +8,7 @@ const index = () => {
       {Array(10)
         .fill("fill")
         .map((fill: string) => (
-          <OfferCard />
+          <BookmakerCard />
         ))}
     </Flex>
   );

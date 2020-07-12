@@ -44,6 +44,8 @@ const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick}) => {
         <MenuItem onClick={onClose}><Link to='/offers'>Offers</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/bookmakers'>Bookmakers</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/bet-generator'>Bet Generator</Link></MenuItem>
+        <MenuItem onClick={onClose}><Link to='/user-ranking'>Users Ranking</Link></MenuItem>
+        <MenuItem onClick={onClose}><Link to='/trending-bets'>Trending Bets</Link></MenuItem>
       </Drawer>
     </>
   )

@@ -9,7 +9,7 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const OfferCard = () => {
+const BookmakerCard = () => {
   const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
   const cardWidth = isDesktopOrLaptop ? 300 : '100%';
   return (
@@ -27,15 +27,15 @@ const OfferCard = () => {
         <P>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
         </P>
-        <Button type="primary">Claim Offer</Button>
+        <Button type="primary">Visit</Button>
      </Content>
     </StyledCard>
   );
 }
 
-export default OfferCard
+export default BookmakerCard
 
-export const Content = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -44,9 +44,10 @@ export const Content = styled.div`
     justify-self: flex-end;
   }
 `;
-export const H2 = styled.h2`
+const H2 = styled.h2`
   padding-bottom: 0;
 `;
-export const P = styled.p`
+
+const P = styled.p`
   padding-bottom: 0.7em;
 `;
