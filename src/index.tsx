@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "mobx-react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ApolloClient, {InMemoryCache} from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import Layout from "./components/Layout";
 import HomePage from "./components/HomePage";
 import Profile from "./components/Profile";
@@ -13,7 +14,6 @@ import Trending from './components/Trending';
 import BetGenerator from './components/BetGenerator';
 import Points from './components/Points';
 import Bookmakers from './components/Bookmakers';
-import SessionService from './services/SessionService';
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -22,16 +22,18 @@ import Match from "./components/Match/";
 import Offers from "./components/Offers/index";
 import TipDashboard from "./components/TipDashboard/TipDashboard";
 
-// const client = clientFactory("", () => "fake.token");
-// const client = mockClient();
-// const sessionService = new SessionService({client});
+const cache = new InMemoryCache();
 
-// const services = {
-//   sessionService,
-// }
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_HOST,
+  headers: {
+    authorization: localStorage.getItem('session') || null
+  },
+  cache,
+});
 
 ReactDOM.render(
-  <Provider>
+  <ApolloProvider client={client}>
     <Router>
       <Switch>
         <Layout>
@@ -83,7 +85,7 @@ ReactDOM.render(
         </Layout>
       </Switch>
     </Router>
-  </Provider>,
+  </ApolloProvider>,
   document.getElementById("root")
 );
 
