@@ -1,5 +1,4 @@
 import {observable, action, ObservableMap} from 'mobx';
-import User, {UserSnapshot} from '../models/User';
 import {Snapshot} from '../models/Model';
 import Model from '../models/Model';
 import Tip from '../models/Tip';
@@ -10,11 +9,11 @@ import Offer from '../models/Offer';
 
 interface UpsertSnapshots {
   tips?: Dict<any>;
-  users?: Dict<UserSnapshot>
+  // users?: Dict<UserSnapshot>
 }
 
 export default class BackendCache {
-  users = observable.map<string, User>({});
+  // users = observable.map<string, User>({});
   tips = observable.map<string, Tip>({});
   bookmakers = observable.map<string, Bookmaker>({});
   comments = observable.map<string, Comment>({});
@@ -23,7 +22,7 @@ export default class BackendCache {
 
   @action
   upsertAll(snapshotMap: UpsertSnapshots) {
-    this.upsertSnapshots<UserSnapshot, User>(snapshotMap.users || {}, this.users)
+    // this.upsertSnapshots<UserSnapshot, User>(snapshotMap.users || {}, this.users)
   }
 
   // upsertSnapshots will update or insert snapshots of a single type

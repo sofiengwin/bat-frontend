@@ -1,6 +1,6 @@
 import BackendCache from '../data/BackendCache';
 import Model from './Model';
-import User from './User';
+// // import User from './User';
 
 interface Fields {
   id: string;

@@ -1,8 +1,5 @@
 import {observable, action} from 'mobx';
-import User from '../models/User';
-import loginCall from './apis/login';
-import {FetchQl} from '../lib/client'
-import findOrCreateCall, {IFindOrCreate} from '../data/graphql/findOrCreate';
+import {Fields as IUser} from '../models/User';
 import meCall from '../data/graphql/me';
 
 interface ISessionService {
@@ -13,15 +10,15 @@ interface ISessionService {
 
 export default class SessionService {
   client: any;
-  @observable user: User | null;
+  @observable user: IUser | null;
 
   constructor({client, stores}: ISessionService) {
     this.client = client;
     this.user = null;
   }
 
-  @action async facebook(data: any) {
-    await this.findOrCreate({
+  @action async facebook(client: any, data: any) {
+    await client({
       name: data.name,
       email: data.email,
       accessToken: data.accessToken,
@@ -31,8 +28,8 @@ export default class SessionService {
     })
   }
 
-  @action async google(data: any) {
-    await this.findOrCreate({
+  @action async google(client: any, data: any) {
+    await client({
       name: data.profileObj.name,
       email: data.profileObj.email,
       accessToken: data.accessToken,
@@ -42,13 +39,8 @@ export default class SessionService {
     })
   }
 
-  @action async findOrCreate(data: IFindOrCreate) {
-    if (this.user) {
-      return;
-    }
+  @action async login(data: IUser) {
     
-    this.user = await findOrCreateCall(this.client, data)
-    localStorage.setItem('session', 'this.user.')
   }
 
   @action async restoreSession() {
