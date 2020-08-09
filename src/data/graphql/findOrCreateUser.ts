@@ -1,12 +1,14 @@
 export const QUERY = `
-  mutation createUser($name: String, $username: String!, $email: String!, $accessToken: String, $tokenId: String, $providerId: String, $avatarUrl: String) {
-    createUser(input: {name: $name, username: $username, email: $email, accessToken: $accessToken tokenId: $tokenId, providerId: $providerId avatarUrl: $avatarUrl}) {
-      user {
-        id
-        name
-        username
-        email
-        avatarUrl
+  mutation createUser($name: String, $email: String!, $accessToken: String, $tokenId: String, $providerId: String, $avatarUrl: String) {
+    createUser(input: {name: $name, email: $email, accessToken: $accessToken tokenId: $tokenId, providerId: $providerId avatarUrl: $avatarUrl}) {
+      userDetails {
+        accessToken
+        user {
+          id
+          name
+          email
+          avatarUrl
+        }
       }
       errors {
         field
@@ -22,5 +24,5 @@ export interface IFindOrCreate {
   providerId: string;
   name: string;
   email: string;
-  imageUrl: string;
+  avatarUrl: string;
 }
