@@ -18,7 +18,7 @@ const ErrorModal: React.FC<Props> = ({onCancel, onOk}) => {
         status="warning"
         title="There are some problems with your operation."
         extra={
-          <Button type="primary" key="console">
+          <Button type="primary" key="console" onClick={onOk}>
             Go Console
           </Button>
         }
