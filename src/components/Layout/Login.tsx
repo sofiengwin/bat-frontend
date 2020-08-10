@@ -3,10 +3,12 @@ import {Modal, Spin} from 'antd';
 import styled from '../../styles';
 import { useMutation } from '@apollo/react-hooks';
 import {QUERY as createOrFindUserQuery, IFindOrCreate} from '../../data/graphql/findOrCreateUser';
-import { gql } from 'apollo-boost';
+import { gql, ApolloError } from 'apollo-boost';
 import {Fields as IUser} from '../../models/User'
 import FacebookLogin from '../ui/Facebook';
 import GoogleLogin from '../ui/Google';
+import ErrorModal from '../ui/ErrorModal';
+import {useFoster} from '../Fosterage';
 
 interface Props {
   visible: boolean;
@@ -21,7 +23,14 @@ const SocialButtons = styled.div`
 `;
 
 const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
-  const [findOrCreateUser, { data, error, called, loading }] = useMutation<IUser, IFindOrCreate>(gql(createOrFindUserQuery), {onCompleted: (data: IUser) => console.log({data})});
+  const {foster, reset} = useFoster();
+  const onError = (_error: ApolloError) => foster(() => <ErrorModal onCancel={reset} onOk={reset}/>);
+  const onCompleted = (data: any) => {
+    console.log({data});
+    foster(() => <ErrorModal onCancel={reset} onOk={reset}/>)
+  };
+
+  const [findOrCreateUser, { data, error, called, loading }] = useMutation<IUser, IFindOrCreate>(gql(createOrFindUserQuery), {onError, onCompleted });
   console.log({data, error, called, loading})
 
   return (
