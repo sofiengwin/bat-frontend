@@ -23,6 +23,7 @@ const AppLoadingMoadl: React.FC<Props> = ({visible }) => {
       maskClosable={false}
       centered
       closable={false}
+      zIndex={9000}
     >
       <Container>
         <Spin size="large" />
