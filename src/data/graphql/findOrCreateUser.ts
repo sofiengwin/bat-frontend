@@ -31,8 +31,10 @@ export interface IFindOrCreate {
 
 export interface Response {
   createUser: {
-    accessToken: string;
-    user: IUser;
+    userDetails: {
+      accessToken: string;
+      user: IUser;
+    }
     errors: any;
   }
 }

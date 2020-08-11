@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {Modal, Spin} from 'antd';
+import {Modal} from 'antd';
 import styled from '../../styles';
+import Spinner from '../ui/Spinner';
 
 interface Props {
   visible: boolean;
@@ -25,9 +26,7 @@ const AppLoadingMoadl: React.FC<Props> = ({visible }) => {
       closable={false}
       zIndex={9000}
     >
-      <Container>
-        <Spin size="large" />
-      </Container>
+      <Spinner />
     </Modal>
   );
 }

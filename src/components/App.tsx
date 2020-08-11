@@ -28,19 +28,19 @@ const App: React.FC<{children: React.ReactNode}> = ({children}) => {
   const addUser = (user: IUser) => setUser(user);
   const removeUser = () => setUser(null);
 
-  const {loading, error, data} = useQuery(gql(meQuery), {
-    onCompleted: (data: {me: IUser}) => {
-      setUser(data.me);
-    },
-    onError: (error: ApolloError) => {
-      console.log({error}, 'appolo error')
-    }
-  })
-  console.log({loading, error, data})
+  // const {loading, error, data} = useQuery(gql(meQuery), {
+  //   onCompleted: (data: {me: IUser}) => {
+  //     setUser(data.me);
+  //   },
+  //   onError: (error: ApolloError) => {
+  //     console.log({error}, 'appolo error')
+  //   }
+  // })
+  // console.log({loading, error, data})
 
   return (
     <AppContext.Provider value={{user, addUser, removeUser, appLoading, setAppLoading}}>
-      <AppLoadingMoadl visible={loading || appLoading} />
+      <AppLoadingMoadl visible={appLoading} />
       {children}
     </AppContext.Provider>
   );
