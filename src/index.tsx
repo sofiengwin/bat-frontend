@@ -22,6 +22,7 @@ import Match from "./components/Match/";
 import Offers from "./components/Offers/index";
 import TipDashboard from "./components/TipDashboard/TipDashboard";
 import Fosterage from "./components/Fosterage";
+import App from "./components/App";
 
 const cache = new InMemoryCache();
 
@@ -36,57 +37,59 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Fosterage>
-      <Router>
-        <Switch>
-          <Layout>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/tip' component={TipDashboard} />
-            <Route path='/post-tip/countries' component={PostTip} />
-            <Route
-              path='/countries/:countryId'
-              render={() => (
-                <TipsAndHistory loadTips={() => console.log("loading more")} />
-              )}
-            />
-            <Route
-              path='/bets/:betId'
-              render={() => (
-                <TipsAndHistory loadTips={() => console.log("loading more")} />
-              )}
-            />
-            <Route path='/matches/:matchId' render={() => <Match />} />
-            <Route
-              path='/leagues/:leagueId'
-              render={() => (
-                <TipsAndHistory loadTips={() => console.log("loading more")} />
-              )}
-            />
-            <Route path='/offers' render={() => <Offers />} />
-            <Route path='/bookmakers' render={() => <Bookmakers /> } />
-            <Route
-              path='/value-accumulators/:id'
-              render={() => <AccumulationView />}
-            />
-            <Route
-              exact path='/value-accumulators'
-              render={() => <ValueAccumulations />}
-            />
-            <Route
-              exact path='/trending-bets'
-              render={() => <Trending />}
-            />
-            <Route
-              exact path='/user-ranking'
-              render={() => <Points />}
-            />
-            <Route
-              exact path='/bet-generator'
-              render={() => <BetGenerator />}
-            />
-          </Layout>
-        </Switch>
-      </Router>
+      <App>
+        <Router>
+          <Switch>
+            <Layout>
+              <Route exact path='/' component={HomePage} />
+              <Route path='/profile' component={Profile} />
+              <Route path='/tip' component={TipDashboard} />
+              <Route path='/post-tip/countries' component={PostTip} />
+              <Route
+                path='/countries/:countryId'
+                render={() => (
+                  <TipsAndHistory loadTips={() => console.log("loading more")} />
+                )}
+              />
+              <Route
+                path='/bets/:betId'
+                render={() => (
+                  <TipsAndHistory loadTips={() => console.log("loading more")} />
+                )}
+              />
+              <Route path='/matches/:matchId' render={() => <Match />} />
+              <Route
+                path='/leagues/:leagueId'
+                render={() => (
+                  <TipsAndHistory loadTips={() => console.log("loading more")} />
+                )}
+              />
+              <Route path='/offers' render={() => <Offers />} />
+              <Route path='/bookmakers' render={() => <Bookmakers /> } />
+              <Route
+                path='/value-accumulators/:id'
+                render={() => <AccumulationView />}
+              />
+              <Route
+                exact path='/value-accumulators'
+                render={() => <ValueAccumulations />}
+              />
+              <Route
+                exact path='/trending-bets'
+                render={() => <Trending />}
+              />
+              <Route
+                exact path='/user-ranking'
+                render={() => <Points />}
+              />
+              <Route
+                exact path='/bet-generator'
+                render={() => <BetGenerator />}
+              />
+            </Layout>
+          </Switch>
+        </Router>
+      </App>
     </Fosterage>
   </ApolloProvider>,
   document.getElementById("root")

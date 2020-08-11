@@ -1,16 +1,20 @@
-export interface Fields {
+export interface IUser {
   id: string;
-  userName: string;
   email: string;
-  accessToken: string;
-  tokenId: string;
-  providerId: string;
+  name: string;
   avatarUrl: string;
 }
+
+export const userFields = `
+  id
+  name
+  email
+  avatarUrl
+`
 
 type References = {
   tips: string[];
   comments: string[];
 }
 
-export type UserSnapshot = Fields & References;
+export type UserSnapshot = IUser & References;

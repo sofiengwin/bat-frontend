@@ -12,7 +12,8 @@ const ErrorModal: React.FC<Props> = ({onCancel, onOk}) => {
       visible={true}
       onOk={onOk}
       onCancel={onCancel}
-      footer={[]}
+      footer={null}
+      zIndex={10000}
     >
       <Result
         status="warning"

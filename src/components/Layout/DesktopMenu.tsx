@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Menu, Layout, Avatar } from "antd";
+import { Menu, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import styled from '../../styles';
+import { useAppContext } from '../App';
 
 const Flex = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ interface Props {
   showLogin: () => void;
 }
 const DesktopMenu: React.FC<Props> = ({showLogin}) => {
+  const {user} = useAppContext();
   return (
     <Flex style={{ justifyContent: "space-between" }}>
     <Flex>
@@ -37,23 +39,33 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         </Menu.Item>
       </Menu>
     </Flex>
-    <Menu
-      theme='dark'
-      mode='horizontal'
-      style={{ lineHeight: "64px" }}
-    >
-      <Menu.Item key='4' onClick={showLogin}>
-        Login
-      </Menu.Item>
-      <Menu.Item key='5'>
-        <Link to='/post-tip/countries'>Post</Link>
-      </Menu.Item>
-      <Menu.Item key='6'>
-        <Link to='/profile'>
-          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={'large'} />
-        </Link>
-      </Menu.Item>
-    </Menu>
+
+      {user ? (
+        <Menu
+          theme='dark'
+          mode='horizontal'
+          style={{ lineHeight: "64px" }}
+        >
+          <Menu.Item key='5'>
+            <Link to='/post-tip/countries'>Post</Link>
+          </Menu.Item>
+          <Menu.Item key='6'>
+            <Link to='/profile'>
+              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={'large'} />
+            </Link>
+          </Menu.Item>
+        </Menu>
+      ) : (
+        <Menu
+          theme='dark'
+          mode='horizontal'
+          style={{ lineHeight: "64px" }}
+        >
+          <Menu.Item key='7' onClick={showLogin}>
+            Login
+          </Menu.Item>
+        </Menu>
+        ) }
   </Flex>
   );
 }

@@ -1,6 +1,5 @@
-import {observable, action} from 'mobx';
-import {Fields as IUser} from '../models/User';
-import meCall from '../data/graphql/me';
+import {observable} from 'mobx';
+import {IUser} from '../models/User';;
 
 interface ISessionService {
   client: any;
@@ -17,42 +16,42 @@ export default class SessionService {
     this.user = null;
   }
 
-  @action async facebook(client: any, data: any) {
-    await client({
-      name: data.name,
-      email: data.email,
-      accessToken: data.accessToken,
-      tokenId: data.signedRequest,
-      providerId: data.userId,
-      imageUrl: data.picture.url,
-    })
-  }
+  // @action async facebook(client: any, data: any) {
+  //   await client({
+  //     name: data.name,
+  //     email: data.email,
+  //     accessToken: data.accessToken,
+  //     tokenId: data.signedRequest,
+  //     providerId: data.userId,
+  //     imageUrl: data.picture.url,
+  //   })
+  // }
 
-  @action async google(client: any, data: any) {
-    await client({
-      name: data.profileObj.name,
-      email: data.profileObj.email,
-      accessToken: data.accessToken,
-      tokenId: data.tokenId,
-      providerId: data.profileObj.googleId,
-      imageUrl: data.profileObj.imageUrl,
-    })
-  }
+  // @action async google(client: any, data: any) {
+  //   await client({
+  //     name: data.profileObj.name,
+  //     email: data.profileObj.email,
+  //     accessToken: data.accessToken,
+  //     tokenId: data.tokenId,
+  //     providerId: data.profileObj.googleId,
+  //     imageUrl: data.profileObj.imageUrl,
+  //   })
+  // }
 
-  @action async login(data: IUser) {
+  // @action async login(data: IUser) {
     
-  }
+  // }
 
-  @action async restoreSession() {
-    if (this.user) {
-      return;
-    }
-    const accessToken = localStorage.getItem('session');
+  // @action async restoreSession() {
+  //   if (this.user) {
+  //     return;
+  //   }
+  //   const accessToken = localStorage.getItem('session');
 
-    if (!accessToken) {
-      throw 'No Access token';
-    }
+  //   if (!accessToken) {
+  //     throw 'No Access token';
+  //   }
 
-    this.user = await meCall(this.client, accessToken)
-  }
+  //   this.user = await meCall(this.client, accessToken)
+  // }
 }
