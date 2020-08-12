@@ -1,23 +1,17 @@
-import BackendCache from '../data/BackendCache';
-import Model from './Model';
+export const matchFields = `
+  id
+  homeTeamName
+  awayTeamName
+  score
+  league
+  country
+`;
 
-interface Fields {
+export interface IMatch {
   id: string;
-  homeTeam: string;
-  awayTeam: string;
-  score?: string;
-  time: number;
-}
-
-export class Match extends Model<Fields> implements Fields {
-  readonly id!: string;
-  readonly homeTeam!: string;
-  readonly awayTeam!: string;
-  readonly score?: string;
-  readonly time!: number;
-
-  constructor(props: Fields, cache: BackendCache) {
-    super(props, {}, cache);
-    this.cache = cache;
-  }
+  homeTeamName: string;
+  awayTeamName: string;
+  score: string;
+  league: string;
+  country: string;
 }

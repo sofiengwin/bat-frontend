@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, Row, Col} from 'antd';
+import {Row, Col} from 'antd';
 import Header from './Header';
 import Trending from '../Trending';
 import Points from '../Points';

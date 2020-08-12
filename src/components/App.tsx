@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {createContext, useContext, useState} from 'react';
 import {IUser} from '../models/User';
-import { useQuery } from '@apollo/react-hooks';
-import meQuery from '../data/graphql/me';
-import { gql, ApolloError } from 'apollo-boost';
+// import { useQuery } from '@apollo/react-hooks';
+// import meQuery from '../data/graphql/me';
+// import { gql, ApolloError } from 'apollo-boost';
 import AppLoadingMoadl from './ui/AppLoadingModal';
 
 interface IAppContext {

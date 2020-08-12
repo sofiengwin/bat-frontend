@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../styles';
 import OutcomeIcon from './OutcomeIcon';
+import { ITip } from '../../models/Tip';
 
 const Flex = styled.div`
   display: grid;
@@ -9,13 +10,10 @@ const Flex = styled.div`
 `;
 
 interface Props {
-  action: () => void;
-  actionName: string;
-  match: any;
+  tip: ITip;
 }
 
-const Item: React.FC<Props> = ({action, actionName, match}) => {
-  console.log(match.outcome)
+const Item: React.FC<Props> = ({tip}) => {
   return (
     <Flex>
       <div>
@@ -28,7 +26,7 @@ const Item: React.FC<Props> = ({action, actionName, match}) => {
         89%
       </div>
       <div>
-        <OutcomeIcon outcome={match.outcome} fontSize='16px' />
+        <OutcomeIcon outcome={tip.outcome} fontSize='16px' />
       </div>
     </Flex>
   );

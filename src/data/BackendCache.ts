@@ -1,10 +1,8 @@
 import {observable, action, ObservableMap} from 'mobx';
 import {Snapshot} from '../models/Model';
 import Model from '../models/Model';
-import Tip from '../models/Tip';
 import Bookmaker from '../models/Bookmaker';
 import Comment from '../models/Comment';
-import { Match } from '../models/Match';
 import Offer from '../models/Offer';
 
 interface UpsertSnapshots {
@@ -14,10 +12,8 @@ interface UpsertSnapshots {
 
 export default class BackendCache {
   // users = observable.map<string, User>({});
-  tips = observable.map<string, Tip>({});
   bookmakers = observable.map<string, Bookmaker>({});
   comments = observable.map<string, Comment>({});
-  matches = observable.map<string, Match>({});
   offers = observable.map<string, Offer>({});
 
   @action

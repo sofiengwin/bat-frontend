@@ -1,32 +1,22 @@
-import BackendCache from '../data/BackendCache';
-import Model from './Model';
-// // import User from './User';
+import {IMatch, matchFields} from './Match';
 
-interface Fields {
-  id: string;
-  outcome?: boolean;
-  body: string;
-  bet: string;
-}
-
-type References = {
-  comments: string[];
-  user: string;
-  match: string;
-}
-
-type TipSnapshot = Fields & References;
-
-export default class Tip extends Model<Fields, References> implements Fields {
-  readonly id!: string;
-  readonly outcome?: boolean;
-  readonly body!: string;
-  readonly bet!: string;
-
-  constructor({comments, user, match, ...props}: TipSnapshot, cache: BackendCache) {
-    super(props, {comments, user, match}, cache);
-    this.cache = cache;
+export const tipFields = `
+  id
+  rating
+  outcome
+  bet
+  match {
+    ${matchFields}
   }
-}
+`;
 
+export type IOUTCOME = 'PENDING' | 'WON' | 'LOST';
+
+export interface ITip {
+  id: string;
+  rating: string;
+  outcome: IOUTCOME;
+  bet: string;
+  match: IMatch;
+}
 

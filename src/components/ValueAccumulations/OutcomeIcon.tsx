@@ -1,7 +1,6 @@
 import React from 'react';
 import { ExclamationCircleFilled, CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons/lib/icons';
-
-export type IOUTCOME = 'PENDING' | 'WON' | 'LOST';
+import {IOUTCOME} from '../../models/Tip';
 
 interface Props {
   outcome: IOUTCOME;
