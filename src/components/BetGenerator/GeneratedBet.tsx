@@ -1,19 +1,71 @@
 import * as React from 'react';
 import AccumulationView from '../AccumulationView/View'
+import { ITip } from '../../models/Tip';
+import { IAccumulation } from '../../models/Accumulation';
 
 const match = {
-  id: 1,
+  id: '1',
   odd: 1.5,
   league: 'Premier League',
   country: 'England', 
-  confidence: '80.0%',
+  rating: '80.0%',
+  score: '2 - 2',
+  awayTeamName: 'Manchester United',
+  homeTeamName: 'Chelsea',
 }
 
-const data = Array(10).fill(undefined).map((_, i) => ({...match, id: i + 1}))
+const tip: ITip = {
+  bet: '1X',
+  id: '1',
+  match: match,
+  rating: '80%',
+  outcome: 'PENDING',
+  odd: 1.55
+}
+
+const countries = [
+  'England',
+  'Spain',
+  'France',
+  'Italy',
+  'Germany',
+  'Norway',
+  'Denmark',
+  'Nigeria',
+  'South Africa',
+  'Sweden'
+];
+const leagues = [
+  'Premier League',
+  'La Liga BBVA',
+  'Ligue 1',
+  'Seria A',
+  'Bundesliga',
+  'Super Liga',
+  'Main Liga',
+  'Super League',
+  'Great Liga',
+  'Liga Lag'
+];
+
+
+const tips = Array(10).fill(undefined).map((_, i) => {
+  const copyTip = {...tip};
+  copyTip['id'] = String(i + 1);
+  copyTip.match['id'] = String(1 + 1);
+  copyTip.match['country'] = countries[i];
+  copyTip.match['league'] = leagues[i];
+  return copyTip;
+})
+const accumulation: IAccumulation = {
+  id: '1',
+  rating: '90%',
+  tips: tips.slice(0, 3),
+}
 
 const GeneratedBet = () => {
   return (
-    <AccumulationView availableMatches={data} accumulation={data} />
+    <AccumulationView availableTips={tips} accumulation={accumulation} />
   )
 }
 

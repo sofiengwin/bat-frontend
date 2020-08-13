@@ -14,4 +14,5 @@ export interface IMatch {
   score: string;
   league: string;
   country: string;
+  rating?: string;
 }

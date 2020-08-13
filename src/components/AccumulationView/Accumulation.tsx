@@ -4,24 +4,26 @@ import {CloseCircleTwoTone} from '@ant-design/icons'
 import ActionButtons from "./ActionButtons";
 import ActionInputs from "./ActionInputs";
 import Item from './Item';
+import { IAccumulation } from "../../models/Accumulation";
 
 interface Props {
-  data: any[];
+  accumulation: IAccumulation;
   resetAcummulation: () => void;
   removeFromAccumulation: (match: any) => void;
 }
 
-const Accumulation: React.FC<Props> = ({ data, resetAcummulation, removeFromAccumulation }) => {
+const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, removeFromAccumulation }) => {
   const [selectedId, setSelected] = React.useState<number>(0);
   const [stake, setStake] = React.useState<number>(1000);
   const [odd, setOdd] = React.useState<number>(1);
   const [winning, setWinning] = React.useState<number>(1000);
+  const {tips} = accumulation;
 
   React.useEffect(() => {
-    const totalOdds = data.length > 0 ? data.map((m) => m.odd).reduce((total, current) => total *= current) : 1;
+    const totalOdds = tips.length > 0 ? tips.map((tip) => tip.odd).reduce((total, current) => total *= current) : 1;
     setOdd(totalOdds);
     setWinning(odd * stake)
-  }, [data.length, stake, odd])
+  }, [tips, stake, odd])
   console.log({winning, odd, stake});
 
   return (
@@ -31,7 +33,7 @@ const Accumulation: React.FC<Props> = ({ data, resetAcummulation, removeFromAccu
         footer={<ActionInputs stake={stake} odds={odd} winnings={winning} setStake={setStake}/>}
         bordered
         size='large'
-        dataSource={data}
+        dataSource={tips}
         renderItem={(match) => (
           <List.Item>
             <Item

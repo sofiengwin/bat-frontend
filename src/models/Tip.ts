@@ -18,5 +18,6 @@ export interface ITip {
   outcome: IOUTCOME;
   bet: string;
   match: IMatch;
+  odd: number;
 }
 

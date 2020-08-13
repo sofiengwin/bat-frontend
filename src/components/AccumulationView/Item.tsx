@@ -4,8 +4,9 @@ import {CloseCircleTwoTone} from '@ant-design/icons'
 import styled from '../../styles';
 
 const Flex = styled.div`
-  display: grid;
-  grid-template-columns: 8fr 1fr 1fr 1fr;
+  display: flex;
+  /* grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-gap: 1px; */
 `;
 
 const PopoverTitle = styled.div`
@@ -31,7 +32,7 @@ interface Props {
 const Item: React.FC<Props> = (props) => {
   const content = (
     <div>
-      <p>Odd: 1.0</p>
+      <p>Odd: 1.5</p>
       <p>Confidence: 80%</p>
       <p>League: Premier League</p>
       <p>Country: England</p>
@@ -51,13 +52,16 @@ const Item: React.FC<Props> = (props) => {
       visible={props.selectedId === props.match.id}
     >
       <Skeleton avatar title={false} loading={false}>
-        <MatchName>
-          <Checkbox onChange={props.onSelect} value={props.match.id}/>
-          <div onClick={() => props.setSelected(props.match.id)} style={{marginLeft: '10px'}}>HomeHome vs AwayAway</div>
-        </MatchName>
-        <div>1.0</div>
-        <div>80%</div>
-        <div>{props.render()}</div>
+        <Flex>
+
+          <MatchName>
+            <Checkbox onChange={props.onSelect} value={props.match.id}/>
+            <MatchName onClick={() => props.setSelected(props.match.id)} style={{marginLeft: '10px'}}>HomeHome vs AwayAway</MatchName>
+          </MatchName>
+          <div>BTTS</div>
+          <div>1.55</div>
+          <div>{props.render()}</div>
+        </Flex>
       </Skeleton>
     </Popover>
   );

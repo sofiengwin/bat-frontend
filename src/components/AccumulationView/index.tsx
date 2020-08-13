@@ -12,9 +12,12 @@ const match = {
 const data = Array(10).fill(undefined).map((_, i) => ({...match, id: i + 1}))
 
 const AccumulationView = () => {
-  return (
-    <View accumulation={data} availableMatches={data} />
-  );
+  // return (
+  //   <View accumulation={data} availableMatches={data} />
+  // );
+
+
+  return null;
 }
 
 export default AccumulationView;

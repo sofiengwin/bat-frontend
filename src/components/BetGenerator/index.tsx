@@ -3,7 +3,7 @@ import BetGeneratorForm from './Form';
 import GeneratedBet from './GeneratedBet'
 
 const BetGenerator = () => {
-  const [showGenerated, setShowGenerated] = React.useState<boolean>(false)
+  const [showGenerated, setShowGenerated] = React.useState<boolean>(true)
  
   return (
     <>

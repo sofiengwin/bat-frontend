@@ -2,40 +2,41 @@ import * as React from "react";
 import Accumulation from "./Accumulation";
 import AvailableGames from './AvailableMatches';
 import { Divider } from "antd";
+import { IAccumulation } from "../../models/Accumulation";
+import { ITip } from "../../models/Tip";
 
 interface Props {
-  accumulation: any[];
-  availableMatches: any[];
+  accumulation: IAccumulation;
+  availableTips: ITip[];
 }
 
 const View: React.FC<Props> = (props) => {
-  const [accumulation, setAccumulations] = React.useState<any>([]);
-  const [availableMatches, setAvailableMateches] = React.useState<any>([]);
+  const [accumulation, setAccumulations] = React.useState<IAccumulation>(props.accumulation);
+  const [availableTips, setAvailableMateches] = React.useState<ITip[]>([]);
 
   React.useEffect(() => {
     setAccumulations(props.accumulation);
-    setAvailableMateches(props.availableMatches);
+    setAvailableMateches(props.availableTips);
   }, [])
 
   const resetAcummulation = () => {
     setAccumulations(props.accumulation)
   }
 
-  const addToAccumulation = (matches: any[]) => {
-    const arr = accumulation.concat(matches);
-    setAccumulations(arr);
-    removeFromAvailableMatches(matches)
+  const addToAccumulation = (tips: ITip[]) => {
+    const newAccumulation = {...accumulation, tips: accumulation.tips.concat(tips)}
+    setAccumulations(newAccumulation);
+    removeFromAvailableMatches(tips)
   }
 
-  const removeFromAccumulation = (match: any) => {
-    const arr = accumulation.filter((m: any) => m.id !== match.id);
+  const removeFromAccumulation = (tips: ITip[]) => {
+    // const arr = availableTips.filter((m: any) => m.id !== match.id);
 
-    setAccumulations(arr);
-    setAvailableMateches(availableMatches.concat(match))
+    // setAvailableMateches(availableTips.concat(match))
   }
 
   const removeFromAvailableMatches = (matches: any[]) => {
-    const arr = availableMatches;
+    const arr = availableTips;
 
     matches.forEach((match) => {
       const index = arr.indexOf(match);
@@ -46,9 +47,9 @@ const View: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Accumulation data={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
+      <Accumulation accumulation={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
       <Divider orientation="left" >Other Great Games</Divider>
-      <AvailableGames data={availableMatches} addToAccumulation={addToAccumulation}/>
+      <AvailableGames data={availableTips} addToAccumulation={addToAccumulation}/>
     </div>
   );
 };
