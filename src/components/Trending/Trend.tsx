@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../styles'
+// import 
 
 const SmallText = styled.div`
   font-size: 12px;
@@ -9,21 +10,22 @@ const SmallText = styled.div`
 export interface ITrend {
   league: string;
   country: string;
-  match: string;
-  numOfTips: string;
+  homeTeamName: string;
+  awayTeamName: string;
+  tipCount: number;
 }
 
-const Trend: React.FC<ITrend> = ({country, league, match, numOfTips}) => {
+const Trend: React.FC<ITrend> = ({country, league, homeTeamName, awayTeamName, tipCount}) => {
   return (
     <div>
       <SmallText>
         {country} - {league}
       </SmallText>
       <div style={{color: 'black'}}>
-        #{match}
+        #{homeTeamName} vs {awayTeamName}
       </div>
       <SmallText>
-        {numOfTips} Tips
+        {tipCount} Tips
       </SmallText>
     </div>
   );

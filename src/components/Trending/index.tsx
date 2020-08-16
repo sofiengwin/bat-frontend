@@ -1,37 +1,19 @@
 import * as React from "react";
-import { List } from "antd";
-import { Link } from "react-router-dom";
-import styled from "../../styles";
-import Trend, { ITrend } from "./Trend";
+import Trends from "./Trends";
+import { useQuery } from "@apollo/react-hooks";
+import { fetchTrendingQuery, Response } from "../../data/graphql/fetchTrending";
+import { gql } from "apollo-boost";
+import {ITrend} from '../../models/Trend';
 
-const PostHeading = styled.h3`
-  margin: 0;
-`;
 
-const D = {
-  league: "Premier League",
-  country: "England",
-  match: "Man Utd vs Man City",
-  numOfTips: "25k",
-};
-
-const data = Array(10).fill(D);
-console.log({ data });
-export default class User extends React.Component {
-  render() {
-    return (
-      <List
-        header={<PostHeading>Trending</PostHeading>}
-        bordered
-        dataSource={data}
-        renderItem={(item: ITrend) => (
-          <List.Item>
-            <Link to={`/value-accumulators`}>
-              <Trend {...item} />
-            </Link>
-          </List.Item>
-        )}
-      />
-    );
-  }
+const Trending = () => {
+  const {loading, data} = useQuery<Response, {}>(gql(fetchTrendingQuery));
+  const trends: ITrend[] = data ? data.fetchTrending : [];
+  return (
+    <>
+      <Trends trends={trends} loading={loading} />
+    </>
+  );
 }
+
+export default Trending;
