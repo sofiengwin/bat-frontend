@@ -67,7 +67,7 @@ ReactDOM.render(
               <Route path='/offers' render={() => <Offers />} />
               <Route path='/bookmakers' render={() => <Bookmakers /> } />
               <Route
-                path='/value-accumulators/:id'
+                path='/value-accumulators/:accumulationId'
                 render={() => <AccumulationView />}
               />
               <Route

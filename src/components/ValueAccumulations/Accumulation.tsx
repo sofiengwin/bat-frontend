@@ -50,7 +50,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
 
   const header = (
     <Flex>
-      <h3><Link to="value-accumulators/value-by-user">Value Bets By @user</Link> </h3>
+      <h3><Link to={`value-accumulators/${accumulation.id}`}>Value Bets By @user</Link> </h3>
       <OutcomeIcon outcome={outcome()} fontSize={'25px'} />
     </Flex>
   );

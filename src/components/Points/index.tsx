@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Tabs, Table, Card } from "antd";
-const TabPane = Tabs.TabPane;
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { fetchRankingQuery, Response } from "../../data/graphql/fetchRanking";
 
 export default class Points extends React.Component {
   render() {
@@ -74,5 +76,7 @@ const columns = [
 ];
 
 const PointsTable = () => {
-  return <Table columns={columns} dataSource={data} pagination={false} />;
+  const {loading, data} = useQuery<Response, {}>(gql(fetchRankingQuery));
+  const points = data ? data.fetchRanking.map((point, index) => ({key: index + 1, ...point})) : [];
+  return <Table columns={columns} dataSource={points} pagination={false} loading={loading}/>;
 };

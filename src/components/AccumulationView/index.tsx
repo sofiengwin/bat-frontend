@@ -1,23 +1,24 @@
 import * as React from 'react';
 import View from './View';
-
-const match = {
-  id: 1,
-  odd: 1.5,
-  league: 'Premier League',
-  country: 'England', 
-  confidence: '80.0%',
-}
-
-const data = Array(10).fill(undefined).map((_, i) => ({...match, id: i + 1}))
+import { useQuery } from '@apollo/react-hooks';
+import { viewAccumulationQuery, Response } from '../../data/graphql/viewAccumulation';
+import { gql } from 'apollo-boost';
+import { useParams } from 'react-router-dom';
+import AppLoadingModal from '../ui/AppLoadingModal';
 
 const AccumulationView = () => {
-  // return (
-  //   <View accumulation={data} availableMatches={data} />
-  // );
-
-
-  return null;
-}
+  const {accumulationId} = useParams();
+  const {loading, data} = useQuery<Response, {accumulationId: string | undefined}>(gql(viewAccumulationQuery), {variables: {accumulationId}});
+  console.log({data, accumulationId});
+  return (
+    <>
+      {data ? (
+        <View accumulation={data.viewAccumulation.accumulation} availableTips={data.viewAccumulation.availableTips} />
+      ) : (
+        <AppLoadingModal visible={loading} />
+      )}
+    </>
+  );
+};
 
 export default AccumulationView;
