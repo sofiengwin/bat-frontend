@@ -5,6 +5,7 @@ import ActionButtons from "./ActionButtons";
 import ActionInputs from "./ActionInputs";
 import Item from './Item';
 import { IAccumulation } from "../../models/Accumulation";
+import CustomList from "../CustomList";
 
 interface Props {
   accumulation: IAccumulation;
@@ -28,27 +29,23 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
   return (
     <>
-      <List
+      <CustomList
+        tips={tips}
         header={<h3>Value Bets By @user</h3>}
         footer={<ActionInputs stake={stake} odds={odd} winnings={winning} setStake={setStake}/>}
-        bordered
-        size='large'
-        dataSource={tips}
-        renderItem={(match) => (
-          <List.Item>
+      >
+        {(leagueTips) => (
             <Item
-              action={() => null}
-              actionName="Remove"
-              match={match}
-              selectedId={selectedId}
-              setSelected={setSelected}
-              render={() => (
-                <CloseCircleTwoTone twoToneColor="red" onClick={() => removeFromAccumulation(match)}/>
-              )}
-            />
-          </List.Item>
+            leagueTips={leagueTips}
+            selectedId={selectedId}
+            setSelected={setSelected}
+            onAction={removeFromAccumulation}
+            render={() => (
+              <CloseCircleTwoTone twoToneColor="red" onClick={removeFromAccumulation}/>
+            )}
+          />
         )}
-      />
+      </CustomList>
       <ActionButtons resetAcummulation={resetAcummulation}/>
     </>
   );

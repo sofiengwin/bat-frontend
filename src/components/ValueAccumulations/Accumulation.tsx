@@ -6,11 +6,15 @@ import styled from '../../styles';
 import OutcomeIcon from './OutcomeIcon';
 import {IAccumulation} from '../../models/Accumulation';
 import {IOUTCOME, ITip} from '../../models/Tip';
+import CustomList from '../CustomList';
 
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: lightblue;
+  padding: 5px 10px;
+  margin-bottom: -12px;
 `;
 
 const headerColor = {
@@ -18,7 +22,7 @@ const headerColor = {
   'WON': 'rgba(119,205,198,0.2)',
   'PENDING': 'white',
 }
-const StyledList = styled(List)<{readonly outcome: IOUTCOME}>`
+const StyledList = styled(CustomList)<{readonly outcome: IOUTCOME}>`
   .ant-list-header {
     background: ${(props) => headerColor[props.outcome] };
   }
@@ -27,9 +31,11 @@ const StyledList = styled(List)<{readonly outcome: IOUTCOME}>`
 
 interface Props {
   accumulation: IAccumulation;
+  loading?: boolean;
 }
 
-const Accumulation: React.FC<Props> = ({ accumulation }) => {
+const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
+  console.log({accumulation})
   const {tips} = accumulation;
   const outcome = () => {
     const allOutcomes = tips.map(tip => tip.outcome);
@@ -53,15 +59,12 @@ const Accumulation: React.FC<Props> = ({ accumulation }) => {
       <StyledList
         outcome={outcome()}
         header={header}
-        bordered
-        size='large'
-        dataSource={accumulation.tips}
-        renderItem={(tip) => (
-          <List.Item>
-            <Item tip={tip as ITip} />
-          </List.Item>
+        tips={tips}
+      >
+        {(leagueTips) => (
+          <Item leagueTips={leagueTips} loading={loading} />
         )}
-      />
+      </StyledList>
     </>
   );
 };

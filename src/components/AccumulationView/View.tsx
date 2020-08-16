@@ -49,7 +49,7 @@ const View: React.FC<Props> = (props) => {
     <div>
       <Accumulation accumulation={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
       <Divider orientation="left" >Other Great Games</Divider>
-      <AvailableGames data={availableTips} addToAccumulation={addToAccumulation}/>
+      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation}/>
     </div>
   );
 };

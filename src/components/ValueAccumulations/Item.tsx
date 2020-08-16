@@ -1,34 +1,43 @@
 import * as React from 'react';
-import styled from '../../styles';
 import OutcomeIcon from './OutcomeIcon';
 import { ITip } from '../../models/Tip';
-
-const Flex = styled.div`
-  display: grid;
-  grid-template-columns: 24fr 1fr 1fr 1fr;
-  grid-column-gap: 15px;
-`;
+import {TipDetails, MatchName, LeagueCountryName, LeagueTipsWrapper} from '../ui/ItemHelpers';
+import { Skeleton } from 'antd';
 
 interface Props {
-  tip: ITip;
+  leagueTips: [string, ITip[]];
+  loading?: boolean;
 }
 
-const Item: React.FC<Props> = ({tip}) => {
+const Item: React.FC<Props> = ({leagueTips, loading}) => {
+  const [league, tips] = leagueTips;
   return (
-    <Flex>
-      <div>
-        Home vs Away
-      </div>
-      <div>
-        10.0
-      </div>
-      <div>
-        89%
-      </div>
-      <div>
-        <OutcomeIcon outcome={tip.outcome} fontSize='16px' />
-      </div>
-    </Flex>
+    <Skeleton  title={false} loading={loading}>
+      <LeagueTipsWrapper>
+        <LeagueCountryName>{tips[0].match.country} - {league}</LeagueCountryName>
+        <>
+          {tips.map((tip) => (
+            <TipDetails>
+              <MatchName>
+                Home vs Away
+              </MatchName>
+              <div>
+                10.0
+              </div>
+              <div>
+                89%
+              </div>
+              <div>
+                BTTS
+              </div>
+              <div>
+                <OutcomeIcon outcome={tip.outcome} fontSize='16px' />
+              </div>
+            </TipDetails>
+          ))}
+        </>
+      </LeagueTipsWrapper>
+    </Skeleton>
   );
 }
 

@@ -14,7 +14,7 @@ const Container = styled.div`
   margin: 20px auto;
 `;
 
-const AppLoadingMoadl: React.FC<Props> = ({visible }) => {
+const AppLoadingModal: React.FC<Props> = ({visible }) => {
   return (
     <Modal
       visible={visible}
@@ -31,4 +31,4 @@ const AppLoadingMoadl: React.FC<Props> = ({visible }) => {
   );
 }
 
-export default AppLoadingMoadl; 
+export default AppLoadingModal; 

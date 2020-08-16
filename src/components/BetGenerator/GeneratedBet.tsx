@@ -50,13 +50,12 @@ const leagues = [
 
 
 const tips = Array(10).fill(undefined).map((_, i) => {
-  const copyTip = {...tip};
-  copyTip['id'] = String(i + 1);
-  copyTip.match['id'] = String(1 + 1);
-  copyTip.match['country'] = countries[i];
-  copyTip.match['league'] = leagues[i];
+  const copyTip = {...tip, id: String(i + 1), match: {...match, id: String(i + 1), league: leagues[i], country: countries[i]}};
+  
+  console.log({copyTip})
   return copyTip;
 })
+console.log({tips})
 const accumulation: IAccumulation = {
   id: '1',
   rating: '90%',

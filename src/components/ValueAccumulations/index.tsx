@@ -13,11 +13,11 @@ const ValueAccumulations = () => {
   return (
     <Tabs size='large' onTabClick={() => null} type={'card'}>
       <Tabs.TabPane tab="Up Coming" key="1">
-        <ListAccumulations accumulations={data ? data.fetchValueAccumulations : []}/>
+        <ListAccumulations accumulations={accumulations} loading={loading}/>
       </Tabs.TabPane>
 
       <Tabs.TabPane tab="History" key="2">
-        <ListAccumulations accumulations={accumulations} />
+        <ListAccumulations accumulations={accumulations} loading={loading} />
       </Tabs.TabPane>
     </Tabs>
   );
