@@ -2,14 +2,14 @@ import * as React from 'react';
 import {Checkbox, Skeleton } from 'antd';
 import { ITip } from '../../models/Tip';
 import {TipDetails, MatchName, LeagueCountryName, LeagueTipsWrapper} from '../ui/ItemHelpers';
+import Tip from '../Tips/Tip';
 
 interface Props {
   leagueTips: [string, ITip[]];
   selectedId: number;
   setSelected: (id: number) => void;
-  onAction: (tips: ITip[]) => void;
   onSelect?: (e: any) => void;
-  render: () => React.ReactNode;
+  render: (tip: ITip) => React.ReactNode;
 }
 
 const Item: React.FC<Props> = (props) => {
@@ -21,13 +21,15 @@ const Item: React.FC<Props> = (props) => {
         <>
           {tips.map((tip) => (
             <TipDetails key={tip.id}>
-              <MatchName>
-                <Checkbox onChange={props.onSelect} value={tip.id}/>
-                <MatchName onClick={() => props.setSelected(Number(tip.id))} style={{marginLeft: '10px'}}>HomeHome vs AwayAway</MatchName>
+              <MatchName
+                onClick={() => props.setSelected(Number(tip.id))}             
+              >
+                <Checkbox onChange={props.onSelect} value={tip.id}  style={{marginRight: '10px'}}/>
+                {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>
-              <div>BTTS</div>
-              <div>1.55</div>
-              <div onClick={() => props.onAction([tip])}>{props.render()}</div>
+              <div>{tip.bet}</div>
+              <div>{1.55}</div>
+              <div>{props.render(tip)}</div>
             </TipDetails>
           ))}
         </>
@@ -36,4 +38,5 @@ const Item: React.FC<Props> = (props) => {
   );
 }
 
-export default Item;  
+export default Item;
+

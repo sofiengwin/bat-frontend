@@ -26,20 +26,23 @@ const View: React.FC<Props> = (props) => {
   const addToAccumulation = (tips: ITip[]) => {
     const newAccumulation = {...accumulation, tips: accumulation.tips.concat(tips)}
     setAccumulations(newAccumulation);
-    removeFromAvailableMatches(tips)
+    removeFromAvailableTips(tips)
   }
 
   const removeFromAccumulation = (tips: ITip[]) => {
-    // const arr = availableTips.filter((m: any) => m.id !== match.id);
+    console.log({tips})
+    const tipIds = tips.map(t => t.id)
+    const arr = accumulation.tips.filter((m: ITip) => !tipIds.includes(m.id));
 
-    // setAvailableMateches(availableTips.concat(match))
+    setAccumulations({...accumulation, tips: arr});
+    setAvailableMateches(availableTips.concat(tips))
   }
 
-  const removeFromAvailableMatches = (matches: any[]) => {
+  const removeFromAvailableTips = (tips: ITip[]) => {
     const arr = availableTips;
 
-    matches.forEach((match) => {
-      const index = arr.indexOf(match);
+    tips.forEach((tip) => {
+      const index = arr.indexOf(tip);
       arr.splice(index, 1);
     })
     setAvailableMateches(arr);

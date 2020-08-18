@@ -5,6 +5,7 @@ import SelectInput from '../ui/SelectInput';
 import styled from '../../styles';
 import {PlusCircleTwoTone} from '@ant-design/icons'
 import CustomList from '../CustomList';
+import { ITip } from "../../models/Tip";
 
 const Filter = styled.div`
   display: grid;
@@ -28,7 +29,7 @@ const ButtonWrapper = styled.div`
 
 interface Props {
   tips: any[];
-  addToAccumulation: (match: any) => void;
+  addToAccumulation: (tips: ITip[]) => void;
 }
 
 const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation }) => {
@@ -57,13 +58,12 @@ const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation }) => {
       <CustomList tips={tips}>
         {(leagueTips) => (
           <Item
-            onAction={addToAccumulation}
             leagueTips={leagueTips}
             selectedId={selectedId}
             setSelected={setSelected}
             onSelect={onSelect}
-            render={() => (
-              <PlusCircleTwoTone />
+            render={(tip) => (
+              <PlusCircleTwoTone onClick={() => addToAccumulation([tip])} />
             )}
           />
         )}

@@ -8,6 +8,7 @@ export const tipFields = `
   match {
     ${matchFields}
   }
+  odd
 `;
 
 export type IOUTCOME = 'PENDING' | 'WON' | 'LOST';

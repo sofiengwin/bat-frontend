@@ -5,7 +5,6 @@ import { ITip } from '../../models/Tip';
 const groupTips = (tips: ITip[]): Dict<ITip[]> => {
   const groubByLeague: {[key: string]: ITip[]} = {};
   tips.forEach((tip: ITip) => {
-    console.log({groubByLeague, tip}, groubByLeague[tip.match.league],tip.match.league)
     groubByLeague[tip.match.league] = groubByLeague[tip.match.league] ? [...groubByLeague[tip.match.league], tip] : Array(tip);
   });
 
@@ -19,7 +18,6 @@ interface Props {
   footer?: React.ReactNode;
 }
 const CustomList: React.FC<Props> = ({children, tips, header, footer}) => {
-  console.log({tips}, 'custom list')
   const groupedTips: Dict<ITip[]> = groupTips(tips);
   return (
     <List

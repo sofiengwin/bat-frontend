@@ -1,5 +1,4 @@
 import * as React from "react";
-import { List } from "antd";
 import {CloseCircleTwoTone} from '@ant-design/icons'
 import ActionButtons from "./ActionButtons";
 import ActionInputs from "./ActionInputs";
@@ -19,7 +18,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const [odd, setOdd] = React.useState<number>(1);
   const [winning, setWinning] = React.useState<number>(1000);
   const {tips} = accumulation;
-
+  console.log(tips.map((tip) => tip))
   React.useEffect(() => {
     const totalOdds = tips.length > 0 ? tips.map((tip) => tip.odd).reduce((total, current) => total *= current) : 1;
     setOdd(totalOdds);
@@ -35,13 +34,12 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
         footer={<ActionInputs stake={stake} odds={odd} winnings={winning} setStake={setStake}/>}
       >
         {(leagueTips) => (
-            <Item
+          <Item
             leagueTips={leagueTips}
             selectedId={selectedId}
             setSelected={setSelected}
-            onAction={removeFromAccumulation}
-            render={() => (
-              <CloseCircleTwoTone twoToneColor="red" onClick={removeFromAccumulation}/>
+            render={(tip) => (
+              <CloseCircleTwoTone twoToneColor="red" onClick={() => removeFromAccumulation([tip])}/>
             )}
           />
         )}

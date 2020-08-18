@@ -17,7 +17,10 @@ const HomePage = () => {
       {loading ? (
         <AppLooadingModal visible={loading} />
       ) : (
-        <CustomList tips={tips}>
+        <CustomList
+          tips={tips}
+          header={<h3>Today's Betting Tips</h3>}
+        >
           {(leagueTips) => (
             <Item leagueTips={leagueTips} loading={loading} />
           )}
