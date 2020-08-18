@@ -18,7 +18,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const [odd, setOdd] = React.useState<number>(1);
   const [winning, setWinning] = React.useState<number>(1000);
   const {tips} = accumulation;
-  console.log(tips.map((tip) => tip))
+
   React.useEffect(() => {
     const totalOdds = tips.length > 0 ? tips.map((tip) => tip.odd).reduce((total, current) => total *= current) : 1;
     setOdd(totalOdds);

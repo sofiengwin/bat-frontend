@@ -60,6 +60,9 @@ const accumulation: IAccumulation = {
   id: '1',
   rating: '90%',
   tips: tips.slice(0, 3),
+  userId: '1',
+  userName: 'Idaboski',
+  day: '18 August'
 }
 
 const GeneratedBet = () => {
