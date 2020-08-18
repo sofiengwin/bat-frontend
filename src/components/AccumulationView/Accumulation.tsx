@@ -30,7 +30,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
     <>
       <CustomList
         tips={tips}
-        header={<h3>Value Bets By @user</h3>}
+        header={<h3>Value Bets By {accumulation.userName} for {accumulation.day} </h3>}
         footer={<ActionInputs stake={stake} odds={odd} winnings={winning} setStake={setStake}/>}
       >
         {(leagueTips) => (

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import Item from './Item';
-import { List } from "antd";
 import styled from '../../styles';
 import OutcomeIcon from './OutcomeIcon';
 import {IAccumulation} from '../../models/Accumulation';
-import {IOUTCOME, ITip} from '../../models/Tip';
+import {IOUTCOME} from '../../models/Tip';
 import CustomList from '../CustomList';
 
 const Flex = styled.div`
@@ -50,7 +49,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
 
   const header = (
     <Flex>
-      <h3><Link to={`value-accumulators/${accumulation.id}`}>Value Bets By @user</Link> </h3>
+      <h3><Link to={`value-accumulators/${accumulation.id}`}><h3>Value Bets By {accumulation.userName} for {accumulation.day} </h3></Link> </h3>
       <OutcomeIcon outcome={outcome()} fontSize={'25px'} />
     </Flex>
   );
