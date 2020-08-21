@@ -15,3 +15,11 @@ export const fetchTipQuery = `
 export interface Response {
   fetchTips: ITip[];
 }
+
+export interface FilterOptions {
+  betType?: string;
+  country?: string;
+  maxOdd?: string;
+  minOdd?: string;
+  currentTips?: string[];
+}

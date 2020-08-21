@@ -9,6 +9,7 @@ import AppLoadingModal from '../ui/AppLoadingModal';
 const AccumulationView = () => {
   const {accumulationId} = useParams();
   const {loading, data} = useQuery<Response, {accumulationId: string | undefined}>(gql(viewAccumulationQuery), {variables: {accumulationId}});
+
   console.log({data, accumulationId});
   return (
     <>

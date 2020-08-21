@@ -6,6 +6,11 @@ import styled from '../../styles';
 import {PlusCircleTwoTone} from '@ant-design/icons'
 import CustomList from '../CustomList';
 import { ITip } from "../../models/Tip";
+import {COUNTRIES, BET_TYPES, ODDS} from '../../lib/filterOptions';
+import { fetchTipQuery, Response as FilterResponse,  FilterOptions} from '../../data/graphql/fetchTips';
+import { useLazyQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import FilterTips from './FilterTips';
 
 const Filter = styled.div`
   display: grid;
@@ -30,9 +35,10 @@ const ButtonWrapper = styled.div`
 interface Props {
   tips: any[];
   addToAccumulation: (tips: ITip[]) => void;
+  currentTips: string[];
 }
 
-const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation }) => {
+const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation, currentTips }) => {
   const [selectedId, setSelected] = React.useState<number>(0);
   const [selectedMatches, setSelectedMatches] = React.useState([])
 
@@ -47,15 +53,14 @@ const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation }) => {
     }
   }
 
+  const [filterTips, {loading, data}] = useLazyQuery<FilterResponse, FilterOptions>(gql(fetchTipQuery), {});
+
+  const filteredTips = data ? data.fetchTips : tips;
+
   return (
     <>
-      <Filter>
-        <SelectInput options={['David', 'James', 'Charles', 'Peralta', 'Morty']} onChange={() => null} />
-        <SelectInput options={['David', 'James', 'Charles', 'Peralta', 'Morty']} onChange={() => null} />
-        <SelectInput options={['David', 'James', 'Charles', 'Peralta', 'Morty']} onChange={() => null} />
-        <Button type="primary">Filter</Button>
-      </Filter>
-      <CustomList tips={tips}>
+      <FilterTips filterTips={filterTips} loading={loading} currentTips={currentTips}/>
+      <CustomList tips={filteredTips} loading={loading}>
         {(leagueTips) => (
           <Item
             leagueTips={leagueTips}

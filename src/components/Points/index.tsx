@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Tabs, Table, Card } from "antd";
+import { Table, Card } from "antd";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { fetchRankingQuery, Response } from "../../data/graphql/fetchRanking";

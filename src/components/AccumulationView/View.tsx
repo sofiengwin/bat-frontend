@@ -48,11 +48,13 @@ const View: React.FC<Props> = (props) => {
     setAvailableMateches(arr);
   }
 
+  const currentlySelectedTips = accumulation.tips.map(tip => tip.id);
+
   return (
     <div>
       <Accumulation accumulation={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
       <Divider orientation="left" >Other Great Games</Divider>
-      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation}/>
+      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation} currentTips={currentlySelectedTips} />
     </div>
   );
 };

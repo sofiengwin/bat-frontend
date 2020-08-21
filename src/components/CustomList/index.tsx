@@ -16,14 +16,16 @@ interface Props {
   children: (leagueTips: [string, ITip[]]) => React.ReactNode;
   header?: React.ReactNode;
   footer?: React.ReactNode;
+  loading?: boolean;
 }
-const CustomList: React.FC<Props> = ({children, tips, header, footer}) => {
+const CustomList: React.FC<Props> = ({children, tips, header, footer, loading}) => {
   const groupedTips: Dict<ITip[]> = groupTips(tips);
   return (
     <List
       header={header}
       footer={footer}
       size='large'
+      loading={loading}
       dataSource={Object.entries(groupedTips)}
       renderItem={(leagueTips: [string, ITip[]]) => (
         <List.Item>
