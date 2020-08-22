@@ -20,9 +20,11 @@ const Filter = styled.div`
   }
 `;
 
+export type IFilterTipsFunctions = (options: {variables: FilterOptions}) => void;
+
 interface Props {
   loading: boolean;
-  filterTips: (options: {variables: FilterOptions}) => void;
+  filterTips: IFilterTipsFunctions;
   currentTips: string[];
 }
 
