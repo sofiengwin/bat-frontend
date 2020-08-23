@@ -2,11 +2,11 @@ import {tipFields, ITip} from '../../models/Tip';
 import {matchFields} from '../../models/Match';
 
 export const fetchTipQuery = `
-  query fetchTips {
-    fetchTips {
+  query fetchTips($betType: String, $country: String, $maxOdd: Float, $minOdd: Float, $currentTips: [ID!]!) {
+    fetchTips(betType: $betType, country: $country, maxOdd: $maxOdd, minOdd: $minOdd, currentTips: $currentTips) {
       ${tipFields}
       match {
-        ${matchFields}  
+        ${matchFields}
       }
     }
   }

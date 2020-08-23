@@ -42,7 +42,7 @@ ReactDOM.render(
           <Switch>
             <Layout>
               <Route exact path='/' component={HomePage} />
-              <Route path='/profile' component={Profile} />
+              <Route path='/profile/:userId' component={Profile} />
               <Route path='/tip' component={TipDashboard} />
               <Route path='/post-tip/countries' component={PostTip} />
               <Route

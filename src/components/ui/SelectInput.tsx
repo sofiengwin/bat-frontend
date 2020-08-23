@@ -19,6 +19,7 @@ const SelectInput: React.FC<Props> = ({onChange, options, placeholder, value}) =
           optionFilterProp="children"
           onChange={onChange}
           value={value}
+          allowClear={true}
         >
           {options.map((option, index) => (
             <Option value={option} key={index}>{option}</Option>

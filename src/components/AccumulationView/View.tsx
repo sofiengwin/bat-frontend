@@ -4,6 +4,9 @@ import AvailableGames from './AvailableMatches';
 import { Divider } from "antd";
 import { IAccumulation } from "../../models/Accumulation";
 import { ITip } from "../../models/Tip";
+import { useLazyQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { fetchTipQuery, Response as FilterResponse,  FilterOptions} from '../../data/graphql/fetchTips';
 
 interface Props {
   accumulation: IAccumulation;
@@ -12,11 +15,12 @@ interface Props {
 
 const View: React.FC<Props> = (props) => {
   const [accumulation, setAccumulations] = React.useState<IAccumulation>(props.accumulation);
-  const [availableTips, setAvailableMateches] = React.useState<ITip[]>([]);
+  const [availableTips, setAvailableTips] = React.useState<ITip[]>([]);
+  const currentlySelectedTips = accumulation.tips.map(tip => tip.id);
 
   React.useEffect(() => {
     setAccumulations(props.accumulation);
-    setAvailableMateches(props.availableTips);
+    setAvailableTips(props.availableTips);
   }, [])
 
   const resetAcummulation = () => {
@@ -35,7 +39,7 @@ const View: React.FC<Props> = (props) => {
     const arr = accumulation.tips.filter((m: ITip) => !tipIds.includes(m.id));
 
     setAccumulations({...accumulation, tips: arr});
-    setAvailableMateches(availableTips.concat(tips))
+    setAvailableTips(availableTips.concat(tips))
   }
 
   const removeFromAvailableTips = (tips: ITip[]) => {
@@ -45,16 +49,16 @@ const View: React.FC<Props> = (props) => {
       const index = arr.indexOf(tip);
       arr.splice(index, 1);
     })
-    setAvailableMateches(arr);
+    setAvailableTips(arr);
   }
 
-  const currentlySelectedTips = accumulation.tips.map(tip => tip.id);
+  const [filterTips, {loading}] = useLazyQuery<FilterResponse, FilterOptions>(gql(fetchTipQuery), {onCompleted: (data: FilterResponse) => setAvailableTips(data.fetchTips)});
 
   return (
     <div>
       <Accumulation accumulation={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
       <Divider orientation="left" >Other Great Games</Divider>
-      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation} currentTips={currentlySelectedTips} />
+      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation} currentTips={currentlySelectedTips} filterTips={filterTips} loading={loading}/>
     </div>
   );
 };

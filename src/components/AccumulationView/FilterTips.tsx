@@ -32,7 +32,7 @@ const FilterTips: React.FC<Props> = ({loading, filterTips, currentTips}) => {
   const [betType, setBetType] = useState<string | undefined>(undefined);
   const [country, setCountry] = useState<string | undefined>(undefined);
   const [odd, setOdd] = useState<string | undefined>(undefined);
-  
+  console.log({betType})
   return (
     <Filter>
       <SelectInput options={COUNTRIES} onChange={(value) => setCountry(value)} placeholder="Select Country" value={country} />
