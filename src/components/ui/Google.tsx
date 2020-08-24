@@ -18,7 +18,7 @@ interface Props {
 const Google: React.FC<Props> = ({callback}) => {
   return (
     <GoogleLogin
-      clientId="767047999329-q4gohqcv0vr3nsmsbq93v09tsm25jg0n.apps.googleusercontent.com"
+      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
       onSuccess={(res) => {
         console.log({res})
         const {profileObj, tokenId, accessToken}: any = res;

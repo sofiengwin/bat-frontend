@@ -19,7 +19,7 @@ const buttonStyle = {
 const Facebook: React.FC<Props> = ({callback}) => {
   return (
     <FacebookLogin
-      appId={'1950306921766824'}
+      appId={process.env.REACT_APP_FB_APP_ID}
       autoLoad={false}
       fields="name,email,picture"
       callback={(response: any) => {
