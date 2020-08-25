@@ -19,7 +19,7 @@ export interface Response {
 export interface FilterOptions {
   betType?: string;
   country?: string;
-  maxOdd?: string;
-  minOdd?: string;
+  maxOdd?: number;
+  minOdd?: number;
   currentTips?: string[];
 }

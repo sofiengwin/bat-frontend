@@ -44,8 +44,8 @@ const FilterTips: React.FC<Props> = ({loading, filterTips, currentTips}) => {
           if (odd) {
             const  [min, max] = odd?.split('-');
 
-            minOdd = min.trim();
-            maxOdd = max.trim();
+            minOdd = Number(min.trim());
+            maxOdd = Number(max.trim());
           }
 
           filterTips({variables: {
