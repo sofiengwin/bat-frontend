@@ -17,7 +17,7 @@ const BetGenerator = () => {
     setShowGenerated(true);
   }})
   const tips = availableTips ? availableTips.fetchTips : [];
-  console.log({tips})
+  console.log({tips, availableTips})
   return (
     <>
       {showGenerated ? (

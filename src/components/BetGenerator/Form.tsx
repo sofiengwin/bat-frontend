@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {Slider, Card, Button} from 'antd';
 import TextInput from '../ui/TextInput';
+import { GeneratorOptions } from '../../data/graphql/betGenerator';
 
 interface Props {
-  onGenerate: () => void;
+  onGenerate: (options: {variables: GeneratorOptions}) => void;
 }
 
 const BetGeneratorForm: React.FC<Props> = ({onGenerate}) => {
@@ -47,7 +48,13 @@ const BetGeneratorForm: React.FC<Props> = ({onGenerate}) => {
           addonBefore={'Amount to win'}
         />
         
-        <Button type="primary" block onClick={onGenerate}>
+        <Button type="primary" block onClick={() => {
+          onGenerate({variables: {
+            minOdd: oddRange[0],
+            maxOdd: oddRange[1],
+            totalodds: 8.00,
+          }})
+        }}>
           Generate
         </Button>
       </Card>

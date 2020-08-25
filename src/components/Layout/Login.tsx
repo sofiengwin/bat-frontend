@@ -37,7 +37,6 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
   };
 
   const [findOrCreateUser, { loading }] = useMutation<Response, IFindOrCreate>(gql(createOrFindUserQuery), {onError, onCompleted });
-  console.log({loading})
   setAppLoading(loading);
 
   return (

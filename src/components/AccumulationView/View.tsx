@@ -22,7 +22,7 @@ const View: React.FC<Props> = (props) => {
   React.useEffect(() => {
     setAccumulations(props.accumulation);
     setAvailableTips(props.availableTips);
-  }, [])
+  }, [props.availableTips.length])
 
   const resetAcummulation = () => {
     setAccumulations(props.accumulation)
