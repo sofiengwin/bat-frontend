@@ -10,17 +10,16 @@ import AppLoadingModal from '../ui/AppLoadingModal';
 
 
 const BetGenerator = () => {
-  const [showGenerated, setShowGenerated] = React.useState<boolean>(false);
+  const [oddRange, setOddRange] = React.useState<[number, number]>([1.5, 2.5])
   const [fetchTips, {loading: loadingAvailableTips, data: availableTips}] = useLazyQuery<Response, FilterOptions>(gql(fetchTipQuery), {variables: {currentTips: []}})
   const [generateBet, {loading, data}] = useLazyQuery<BetGeneratorResponse, GeneratorOptions>(gql(betGeneratorQuery), {onCompleted: (_data) => {
     fetchTips();
-    setShowGenerated(true);
   }})
   const tips = availableTips ? availableTips.fetchTips : [];
   console.log({tips, availableTips})
   return (
     <>
-      {showGenerated ? (
+      {data?.betGenerator ? (
         <GeneratedBet
           generatedTips={data?.betGenerator || []}
           availableTips={tips}
@@ -29,7 +28,11 @@ const BetGenerator = () => {
       ) : (
         <>
           <AppLoadingModal visible={loading} />
-          <BetGeneratorForm onGenerate={generateBet}/>
+          <BetGeneratorForm
+            onGenerate={generateBet}
+            oddRange={oddRange}
+            onChangeOdd={setOddRange}
+          />
         </>
       )}
     </>
