@@ -11,6 +11,7 @@ import { fetchTipQuery, Response as FilterResponse,  FilterOptions} from '../../
 interface Props {
   accumulation: IAccumulation;
   availableTips: ITip[];
+  loading?: boolean;
 }
 
 const View: React.FC<Props> = (props) => {
@@ -58,7 +59,7 @@ const View: React.FC<Props> = (props) => {
     <div>
       <Accumulation accumulation={accumulation} resetAcummulation={resetAcummulation} removeFromAccumulation={removeFromAccumulation} />
       <Divider orientation="left" >Other Great Games</Divider>
-      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation} currentTips={currentlySelectedTips} filterTips={filterTips} loading={loading}/>
+      <AvailableGames tips={availableTips} addToAccumulation={addToAccumulation} currentTips={currentlySelectedTips} filterTips={filterTips} loading={loading || props.loading as boolean}/>
     </div>
   );
 };

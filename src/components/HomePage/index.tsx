@@ -9,7 +9,7 @@ import { ITip } from '../../models/Tip';
 
 
 const HomePage = () => {
-  const {loading, data, error} = useQuery<Response, {}>(gql(fetchTipQuery));
+  const {loading, data, error} = useQuery<Response, {}>(gql(fetchTipQuery), {variables: {currentTips: []}});
   console.log({loading, data, error})
   const tips: ITip[] = data ? data.fetchTips : [];
   return (
