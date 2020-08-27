@@ -7,22 +7,44 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 `
+export interface ProfileAnalyticsProps {
+  totalTips: number;
+  totalWins: number;
+  percentageWin: number;
+}
 
-export default () => {
+const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins, percentageWin}) => {
   return (
     <Grid>
-      {Array(3).fill(0).map((_, index) => {
-        return <Card key={index}>
-          <Statistic
-            title="Active"
-            value={11.28}
-            precision={2}
-            valueStyle={{ color: '#3f8600' }}
-            prefix={<Icon type="arrow-up" />}
-            suffix="%"
-          />
-        </Card>
-      })}
+      <Card>
+        <Statistic
+          title="Total Tips"
+          value={totalTips}
+          valueStyle={{ color: '#3f8600' }}
+          prefix={<Icon type="arrow-up" />}
+        />
+      </Card>
+      <Card>
+        <Statistic
+          title="Total Wins"
+          value={totalWins}
+          precision={2}
+          valueStyle={{ color: '#3f8600' }}
+          prefix={<Icon type="arrow-up" />}
+        />
+      </Card>
+      <Card>
+        <Statistic
+          title="Percentage Win"
+          value={percentageWin}
+          precision={2}
+          valueStyle={{ color: '#3f8600' }}
+          prefix={<Icon type="arrow-up" />}
+          suffix="%"
+        />
+      </Card>
     </Grid>
   );
 }
+
+export default ProfileAnalytics;

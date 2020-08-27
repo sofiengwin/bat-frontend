@@ -20,7 +20,7 @@ const BetGenerator = () => {
     }});
   }})
   const tips = availableTips ? availableTips.fetchTips : [];
-  console.log({tips, availableTips})
+
   return (
     <>
       {data?.betGenerator ? (

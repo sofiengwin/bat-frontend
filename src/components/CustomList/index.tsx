@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { List } from 'antd';
 import { ITip } from '../../models/Tip';
+import Offer from '../../models/Offer';
 
 const groupTips = (tips: ITip[]): Dict<ITip[]> => {
   const groubByLeague: {[key: string]: ITip[]} = {};
@@ -28,7 +29,7 @@ const CustomList: React.FC<Props> = ({children, tips, header, footer, loading}) 
       loading={loading}
       dataSource={Object.entries(groupedTips)}
       renderItem={(leagueTips: [string, ITip[]]) => (
-        <List.Item>
+        <List.Item key={leagueTips[0]}>
           {children(leagueTips)}
         </List.Item>
       )}
@@ -37,3 +38,4 @@ const CustomList: React.FC<Props> = ({children, tips, header, footer, loading}) 
 };
 
 export default CustomList;
+

@@ -34,7 +34,6 @@ interface Props {
 }
 
 const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
-  console.log({accumulation})
   const {tips} = accumulation;
   const outcome = () => {
     const allOutcomes = tips.map(tip => tip.outcome);
