@@ -39,10 +39,8 @@ interface Props {
 const AvailableMatches: React.FC<Props> = ({ tips, addToAccumulation, currentTips, filterTips, loading }) => {
   const [selectedId, setSelected] = React.useState<number>(0);
   const [selectedMatches, setSelectedMatches] = React.useState([])
-  console.log({tips})
 
   const onSelect = (e: any) => {
-    console.log({e})
     if (e.target.checked) {
       const match = tips.find((m) => m.id === e.target.value)
       setSelectedMatches(selectedMatches.concat(match))

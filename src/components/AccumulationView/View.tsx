@@ -16,26 +16,22 @@ interface Props {
 
 const View: React.FC<Props> = (props) => {
   const [accumulation, setAccumulations] = React.useState<IAccumulation>(props.accumulation);
-  const [availableTips, setAvailableTips] = React.useState<ITip[]>([]);
+  const [availableTips, setAvailableTips] = React.useState<ITip[]>(props.availableTips);
   const currentlySelectedTips = accumulation.tips.map(tip => tip.id);
-
-  React.useEffect(() => {
-    setAccumulations(props.accumulation);
-    setAvailableTips(props.availableTips);
-  }, [props.availableTips.length])
 
   const resetAcummulation = () => {
     setAccumulations(props.accumulation)
   }
 
   const addToAccumulation = (tips: ITip[]) => {
+    console.log({tips})
     const newAccumulation = {...accumulation, tips: accumulation.tips.concat(tips)}
     setAccumulations(newAccumulation);
     removeFromAvailableTips(tips)
   }
 
   const removeFromAccumulation = (tips: ITip[]) => {
-    console.log({tips})
+    // console.log({tips})
     const tipIds = tips.map(t => t.id)
     const arr = accumulation.tips.filter((m: ITip) => !tipIds.includes(m.id));
 

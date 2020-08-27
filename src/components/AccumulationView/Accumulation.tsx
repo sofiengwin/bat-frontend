@@ -13,6 +13,7 @@ import { useAppContext } from "../App";
 import { useFoster } from "../Fosterage";
 import LoginModal from "../Layout/Login";
 import { useHistory } from "react-router-dom";
+import openNotification from '../../lib/notification';
 
 interface Props {
   accumulation: IAccumulation;
@@ -30,7 +31,6 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const {tips} = accumulation;
 
   const {user} = useAppContext();
-  const {foster} = useFoster();
   const history = useHistory();
 
   React.useEffect(() => {
@@ -48,8 +48,8 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const createAccumulationSuccess = async () => {
     await createAccumulation();
     setShowLogin(false);
-    console.log({user})
     if (user) {
+      openNotification('Accumulation Created Successfully', 'Thank you for saving your accumulation! Remember to share with your friends');
       history.push(`/profile/${user.id}`)
     }
   }
@@ -81,11 +81,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
         )}
       </CustomList>
       <ActionButtons resetAcummulation={resetAcummulation} onSave={() => {
-        if (user) {
-          createAccumulationSuccess();
-        } else {
-          setShowLogin(true);
-        }
+        createAccumulationSuccess();
       }}/>
     </>
   );

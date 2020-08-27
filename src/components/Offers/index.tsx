@@ -23,13 +23,13 @@ const Offers = () => {
           />
           <Flex>
             {offers.map((offer: IOffer) => (
-                <OfferCard
-                  title={offer.title}
-                  description={offer.description}
-                  link={offer.link}
-                  imageUrl={offer.imageUrl}
-                />
-              ))}
+              <OfferCard
+                title={offer.title}
+                description={offer.description}
+                link={offer.link}
+                imageUrl={offer.imageUrl}
+              />
+            ))}
           </Flex>
         </>
       )}
