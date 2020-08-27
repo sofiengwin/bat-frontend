@@ -6,6 +6,7 @@ import { gql } from "apollo-boost";
 import { fetchOffersQuery, Response } from "../../data/graphql/fetchOffers";
 import { IOffer } from "../../models/Offer";
 import AppLoadingModal from "../ui/AppLoadingModal";
+import { PageHeader } from "antd";
 
 const Offers = () => {
   const {loading, data} = useQuery<Response, {}>(gql(fetchOffersQuery))
@@ -15,16 +16,22 @@ const Offers = () => {
       {loading ? (
         <AppLoadingModal visible={loading} />
       ) : (
-        <Flex>
-          {offers.map((offer: IOffer) => (
-              <OfferCard
-                title={offer.title}
-                description={offer.description}
-                link={offer.link}
-                imageUrl={offer.imageUrl}
-              />
-            ))}
-        </Flex>
+        <>
+         <PageHeader
+            className="site-page-header"
+            title="Free Bets & Betting Offers"
+          />
+          <Flex>
+            {offers.map((offer: IOffer) => (
+                <OfferCard
+                  title={offer.title}
+                  description={offer.description}
+                  link={offer.link}
+                  imageUrl={offer.imageUrl}
+                />
+              ))}
+          </Flex>
+        </>
       )}
     </>
   );
