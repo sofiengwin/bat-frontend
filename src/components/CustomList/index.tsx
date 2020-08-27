@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { List } from 'antd';
 import { ITip } from '../../models/Tip';
-import Offer from '../../models/Offer';
 
 const groupTips = (tips: ITip[]): Dict<ITip[]> => {
   const groubByLeague: {[key: string]: ITip[]} = {};

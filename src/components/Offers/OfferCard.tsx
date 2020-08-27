@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, Button} from 'antd';
 import styled from '../../styles';
-import { useMediaQuery } from 'react-responsive';
+import { IOffer } from '../../models/Offer';
 
 const StyledCard = styled(Card)`
   .ant-card-body {
@@ -9,25 +9,21 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const OfferCard = () => {
-  const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 });
-  const cardWidth = isDesktopOrLaptop ? 300 : '100%';
+const OfferCard: React.FC<IOffer> = ({title, link, description, imageUrl}) => {
   return (
     <StyledCard
-      style={{width: cardWidth, margin: 10}}
+      style={{margin: 10}}
       cover={
         <img
           alt="Offer"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          src={imageUrl}
         />
       }
     >
      <Content>
-        <H2>Hello World Offer</H2>
-        <P>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-        </P>
-        <Button type="primary">Claim Offer</Button>
+        <H2>{title}</H2>
+        <P>{description}</P>
+        <Button type="danger" href={link}>Claim Offer</Button>
      </Content>
     </StyledCard>
   );

@@ -1,28 +1,14 @@
-import BackendCache from '../data/BackendCache';
-import Model from './Model';
-import Bookmaker from './Bookmaker';
+export const offerFields = `
+  title
+  link
+  description
+  imageUrl
+  subtitle
+`;
 
-interface Fields {
-  id: string;
-  name: string;
-  amount: string;
-  body: string;
-}
-
-type References = {
-  bookmaker: string;
-}
-
-type OfferSnapshot = Fields & References;
-
-export default class Offer extends Model<Fields, References> implements Fields {
-  readonly id!: string;
-  readonly name!: string;
-  readonly amount!: string;
-  readonly body!: string;
-
-  constructor({bookmaker, ...props}: OfferSnapshot, cache: BackendCache) {
-    super(props, {bookmaker}, cache);
-    this.cache = cache;
-  }
+export interface IOffer {
+  link: string;
+  title: string;
+  description: string;
+  imageUrl: string;
 }

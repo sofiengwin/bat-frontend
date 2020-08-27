@@ -1,20 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import OfferCard from "./OfferCard";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { fetchOffersQuery, Response } from "../../data/graphql/fetchOffers";
+import { IOffer } from "../../models/Offer";
+import AppLoadingModal from "../ui/AppLoadingModal";
 
-const index = () => {
+const Offers = () => {
+  const {loading, data} = useQuery<Response, {}>(gql(fetchOffersQuery))
+  const offers = data ? data.fetchOffers : [];
   return (
-    <Flex>
-      {Array(10)
-        .fill("fill")
-        .map((fill: string) => (
-          <OfferCard />
-        ))}
-    </Flex>
+    <>
+      {loading ? (
+        <AppLoadingModal visible={loading} />
+      ) : (
+        <Flex>
+          {offers.map((offer: IOffer) => (
+              <OfferCard
+                title={offer.title}
+                description={offer.description}
+                link={offer.link}
+                imageUrl={offer.imageUrl}
+              />
+            ))}
+        </Flex>
+      )}
+    </>
   );
 };
 
-export default index;
+export default Offers;
 
 const Flex = styled.div`
   display: flex;
