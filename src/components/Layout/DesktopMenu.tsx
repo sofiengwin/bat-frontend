@@ -28,9 +28,6 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         <Menu.Item key='2'>
           <Link to='/offers'>Offers</Link>
         </Menu.Item>
-        <Menu.Item key='3'>
-          <Link to='/bookmakers'>Bookmakers</Link>
-        </Menu.Item>
         <Menu.Item key='4'>
           <Link to='/value-accumulators'>Accumulations</Link>
         </Menu.Item>
