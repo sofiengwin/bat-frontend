@@ -20,14 +20,14 @@ const UserName = styled.div`
   font-weight: 800;
 `;
 
-const ProfileHeader: React.FC<Props> = ({totalTips, totalWins, percentageWin, avatarUrl, userName}) => {
+const ProfileHeader: React.FC<Props> = ({totalTips, totalWins, totalPoints, avatarUrl, userName}) => {
   return (
     <div>
       <AvatarWrapper>
         <Avatar size={64} icon={<UserOutlined />} src={avatarUrl} />
         <UserName>{userName}</UserName>
       </AvatarWrapper>
-      <ProfileAnalytics totalTips={totalTips} totalWins={totalWins} percentageWin={percentageWin} />
+      <ProfileAnalytics totalTips={totalTips} totalWins={totalWins} totalPoints={totalPoints} />
     </div>
   );
 };

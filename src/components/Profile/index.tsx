@@ -4,16 +4,14 @@ import ValueAccumulations from '../ValueAccumulations'
 import ProfileHeader from './ProfileHeader';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { profileQuery } from '../../data/graphql/profile';
+import { profileQuery, Response } from '../../data/graphql/profile';
 import { useParams } from 'react-router-dom';
 import AppLoadingModal from '../ui/AppLoadingModal';
 import ProfileDetails from './ProfileDetails';
 
 const Profile = () => {
   const {userId} = useParams();
-  const {data, loading} = useQuery(gql(profileQuery), {variables: {userId: userId}});
-  const totalTips = data ? data.profile.accumulations.length : 0;
-  const totalwins = data ? data.profile.accumulations.length : 0;
+  const {data, loading} = useQuery<Response, {}>(gql(profileQuery), {variables: {userId: userId}});
 
   return (
     <>
@@ -21,9 +19,9 @@ const Profile = () => {
         <>
           <Row style={{marginBottom: '20px'}}>
             <ProfileHeader
-              totalTips={totalTips}
-              totalWins={totalwins}
-              percentageWin={100}
+              totalTips={data.profile.totalTips}
+              totalWins={data.profile.totalWins}
+              totalPoints={data.profile.totalPoints}
               userName={data.profile.name} avatarUrl={data.profile.avatarUrl} />
           </Row>
 

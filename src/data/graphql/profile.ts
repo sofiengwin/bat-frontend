@@ -6,6 +6,9 @@ export const profileQuery = `
   query profile($userId: ID!) {
     profile(userId: $userId) {
       ${userFields}
+      totalTips
+      totalWins
+      totalPoints
       accumulations {
         ${accumulationFields}
       }
@@ -18,7 +21,10 @@ export const profileQuery = `
 
 export interface Response {
   profile: IUser & {
-    accumulation: IAccumulation,
-    availableTips: ITip[],
+    accumulations: IAccumulation[],
+    tips: ITip[],
+    totalTips: number;
+    totalWins: number;
+    totalPoints: number;
   }
 }

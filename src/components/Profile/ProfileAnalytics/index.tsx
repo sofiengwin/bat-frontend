@@ -10,10 +10,10 @@ const Grid = styled.div`
 export interface ProfileAnalyticsProps {
   totalTips: number;
   totalWins: number;
-  percentageWin: number;
+  totalPoints: number;
 }
 
-const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins, percentageWin}) => {
+const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins, totalPoints}) => {
   return (
     <Grid>
       <Card>
@@ -35,12 +35,11 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins
       </Card>
       <Card>
         <Statistic
-          title="Percentage Win"
-          value={percentageWin}
+          title="Total Points"
+          value={totalPoints}
           precision={2}
           valueStyle={{ color: '#3f8600' }}
           prefix={<Icon type="arrow-up" />}
-          suffix="%"
         />
       </Card>
     </Grid>

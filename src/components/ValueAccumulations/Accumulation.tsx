@@ -48,7 +48,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
 
   const header = (
     <Flex>
-      <h3><Link to={`value-accumulators/${accumulation.id}`}><h3>Value Bets By {accumulation.userName} for {accumulation.day} </h3></Link> </h3>
+      <h3><Link to={`/value-accumulators/${accumulation.id}`}><h3>Value Bets By {accumulation.userName} for {accumulation.day} </h3></Link> </h3>
       <OutcomeIcon outcome={outcome()} fontSize={'25px'} />
     </Flex>
   );
