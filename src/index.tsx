@@ -14,6 +14,7 @@ import Trending from './components/Trending';
 import BetGenerator from './components/BetGenerator';
 import Points from './components/Points';
 import Bookmakers from './components/Bookmakers';
+import NoMatch from './components/NoMatch';
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -42,7 +43,7 @@ ReactDOM.render(
           <Switch>
             <Layout>
               <Route exact path='/' component={HomePage} />
-              <Route path='/profile/:userId' component={Profile} />
+              <Route exact path='/profile/:userId' component={Profile} />
               <Route path='/tip' component={TipDashboard} />
               <Route path='/post-tip/countries' component={PostTip} />
               <Route
@@ -67,6 +68,7 @@ ReactDOM.render(
               <Route path='/offers' render={() => <Offers />} />
               <Route path='/bookmakers' render={() => <Bookmakers /> } />
               <Route
+                exact
                 path='/value-accumulators/:accumulationId'
                 render={() => <AccumulationView />}
               />
@@ -86,6 +88,9 @@ ReactDOM.render(
                 exact path='/bet-generator'
                 render={() => <BetGenerator />}
               />
+              <Route path="*">
+                <NoMatch />
+              </Route>
             </Layout>
           </Switch>
         </Router>

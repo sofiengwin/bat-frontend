@@ -26,7 +26,7 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
   const {foster, reset} = useFoster();
   const {setAppLoading, addUser} = useAppContext()
   const onError = (_error: ApolloError) => {
-    foster(() => <ErrorModal onCancel={reset} onOk={reset}/>)
+    foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
     handleCancel()
   };
   const onCompleted = (data: Response) => {

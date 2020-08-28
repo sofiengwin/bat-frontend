@@ -4,12 +4,13 @@ import { Modal, Result, Button } from 'antd';
 interface Props {
   onOk: () => void;
   onCancel: () => void;
+  show: boolean;
 }
 
-const ErrorModal: React.FC<Props> = ({onCancel, onOk}) => {
+const ErrorModal: React.FC<Props> = ({onCancel, onOk, show}) => {
   return (
     <Modal
-      visible={true}
+      visible={show}
       onOk={onOk}
       onCancel={onCancel}
       footer={null}

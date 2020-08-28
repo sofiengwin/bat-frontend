@@ -4,7 +4,7 @@ import {IUser} from '../models/User';
 import { useQuery } from '@apollo/react-hooks';
 import meQuery from '../data/graphql/me';
 import { gql, ApolloError } from 'apollo-boost';
-import AppLoadingMoadl from './ui/AppLoadingModal';
+import AppLoadingModal from './ui/AppLoadingModal';
 
 interface IAppContext {
   user: IUser | null;
@@ -40,7 +40,7 @@ const App: React.FC<{children: React.ReactNode}> = ({children}) => {
 
   return (
     <AppContext.Provider value={{user, addUser, removeUser, appLoading, setAppLoading}}>
-      <AppLoadingMoadl visible={appLoading || loading} />
+      <AppLoadingModal visible={appLoading || loading} />
       {children}
     </AppContext.Provider>
   );

@@ -43,12 +43,9 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
           mode='horizontal'
           style={{ lineHeight: "64px" }}
         >
-          <Menu.Item key='5'>
-            <Link to='/post-tip/countries'>Post</Link>
-          </Menu.Item>
           <Menu.Item key='6'>
-            <Link to='/profile'>
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={'large'} />
+            <Link to={`/profile/${user.id}`}>
+              <Avatar src={user.avatarUrl} size={'large'} />
             </Link>
           </Menu.Item>
         </Menu>
