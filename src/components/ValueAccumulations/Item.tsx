@@ -19,17 +19,15 @@ const Item: React.FC<Props> = ({leagueTips, loading}) => {
           {tips.map((tip) => (
             <TipDetails>
               <MatchName>
-                Home vs Away
+                {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>
-              <div>
-                10.0
+              <div>{tip.bet}</div>
+              {/* <div>
+                {tip.odd}
               </div>
               <div>
-                89%
-              </div>
-              <div>
-                BTTS
-              </div>
+                80%
+              </div> */}
               <div>
                 <OutcomeIcon outcome={tip.outcome} fontSize='16px' />
               </div>

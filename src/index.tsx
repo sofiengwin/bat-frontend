@@ -88,9 +88,9 @@ ReactDOM.render(
                 exact path='/bet-generator'
                 render={() => <BetGenerator />}
               />
-              <Route path="*">
+              {/* <Route path="*">
                 <NoMatch />
-              </Route>
+              </Route> */}
             </Layout>
           </Switch>
         </Router>

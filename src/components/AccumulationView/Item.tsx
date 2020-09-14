@@ -28,7 +28,7 @@ const Item: React.FC<Props> = (props) => {
                 {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>
               <div>{tip.bet}</div>
-              <div>{1.55}</div>
+              {/* <div>{1.55}</div> */}
               <div>{props.render(tip)}</div>
             </TipDetails>
           ))}

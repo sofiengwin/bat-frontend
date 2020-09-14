@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import meQuery from '../data/graphql/me';
 import { gql, ApolloError } from 'apollo-boost';
 import AppLoadingModal from './ui/AppLoadingModal';
+import usePageViews from '../lib/usePageTracking';
 
 interface IAppContext {
   user: IUser | null;
@@ -36,7 +37,7 @@ const App: React.FC<{children: React.ReactNode}> = ({children}) => {
       console.log({error}, 'appolo error')
     }
   })
-  // console.log({loading, error, data})
+  // usePageViews();
 
   return (
     <AppContext.Provider value={{user, addUser, removeUser, appLoading, setAppLoading}}>
