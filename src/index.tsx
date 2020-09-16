@@ -14,7 +14,7 @@ import Trending from './components/Trending';
 import BetGenerator from './components/BetGenerator';
 import Points from './components/Points';
 import Bookmakers from './components/Bookmakers';
-import NoMatch from './components/NoMatch';
+//import NoMatch from './components/NoMatch';
 
 import * as serviceWorker from "./serviceWorker";
 
