@@ -23,6 +23,7 @@ const View: React.FC<Props> = (props) => {
 
   React.useEffect(() => {
     setAvailableTips(props.availableTips);
+    // eslint-disable-next-line
   }, [props.availableTips.length]);
 
   const resetAcummulation = () => {

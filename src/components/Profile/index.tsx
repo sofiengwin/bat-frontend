@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Row} from 'antd';
-import ValueAccumulations from '../ValueAccumulations'
 import ProfileHeader from './ProfileHeader';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';

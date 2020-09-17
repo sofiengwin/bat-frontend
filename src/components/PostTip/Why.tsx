@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Form, Select, Input, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import { FormProps } from "antd/lib/form";
 
 const { TextArea } = Input;

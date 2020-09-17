@@ -19,6 +19,7 @@ export const MatchName = styled.div`
 
 export const BetName = styled.div`
   display: flex;
+  text-align: center;
   @media only screen and (max-device-width: 320px) {
     max-width: 170px;
   }

@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import meQuery from '../data/graphql/me';
 import { gql, ApolloError } from 'apollo-boost';
 import AppLoadingModal from './ui/AppLoadingModal';
-import usePageViews from '../lib/usePageTracking';
+// import usePageViews from '../lib/usePageTracking';
 
 interface IAppContext {
   user: IUser | null;

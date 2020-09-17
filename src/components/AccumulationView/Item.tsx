@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Checkbox, Skeleton } from 'antd';
 import { ITip } from '../../models/Tip';
 import {TipDetails, MatchName, LeagueCountryName, LeagueTipsWrapper, BetName} from '../ui/ItemHelpers';
-import Tip from '../Tips/Tip';
 
 interface Props {
   leagueTips: [string, ITip[]];

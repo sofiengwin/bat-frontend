@@ -10,7 +10,6 @@ import { gql } from "apollo-boost";
 import { createAccumulationQuery, Response } from "../../data/graphql/createAccumulation";
 import AppLoadingModal from "../ui/AppLoadingModal";
 import { useAppContext } from "../App";
-import { useFoster } from "../Fosterage";
 import LoginModal from "../Layout/Login";
 import { useHistory } from "react-router-dom";
 import openNotification from '../../lib/notification';

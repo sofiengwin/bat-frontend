@@ -79,7 +79,7 @@ const Fixtures = () => {
         return <StyledCard key={index}>
           <Link to={`/post-tip/countries/${index}/leagues/${index}/matches/${match}`}>
             <Flex style={{flexDirection: 'column'}}>
-                <Sub><Logo><img src={match.homeTeam.logo} /></Logo> <p>{match.homeTeam.team_name} vs {match.awayTeam.team_name}</p> <Logo><img src={match.awayTeam.logo} /></Logo></Sub>
+                <Sub><Logo><img src={match.homeTeam.logo} alt='logo'/></Logo> <p>{match.homeTeam.team_name} vs {match.awayTeam.team_name}</p> <Logo><img src={match.awayTeam.logo} alt='logo' /></Logo></Sub>
                 <StyledSpan>{match.event_date}</StyledSpan>
             </Flex>
           </Link>

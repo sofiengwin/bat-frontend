@@ -28,13 +28,13 @@ const england = [
   "EFL",
 ];
 
-const france = ["Ligue 1", "Ligue 2", "National"];
+// const france = ["Ligue 1", "Ligue 2", "National"];
 
-const spain = ["La Liga", "La Liga 2", "Second Division B"];
+// const spain = ["La Liga", "La Liga 2", "Second Division B"];
 
-const germany = ["Bundesliga", "2nd Bundesliga", "3nd Bundesliga"];
+// const germany = ["Bundesliga", "2nd Bundesliga", "3nd Bundesliga"];
 
-const italy = ["Seria A", "Seria B"];
+// const italy = ["Seria A", "Seria B"];
 
 class Leagues extends React.Component {
   render() {
