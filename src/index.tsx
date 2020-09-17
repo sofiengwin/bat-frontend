@@ -1,29 +1,28 @@
+import {ApolloProvider} from '@apollo/react-hooks';
+import ApolloClient, {InMemoryCache} from 'apollo-boost';
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ApolloClient, {InMemoryCache} from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
-import Layout from "./components/Layout";
-import HomePage from "./components/HomePage";
-import Profile from "./components/Profile";
-import PostTip from "./components/PostTip";
-import TipsAndHistory from "./components/TipsAndHistory";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import AccumulationView from "./components/AccumulationView";
-import ValueAccumulations from "./components/ValueAccumulations";
-import Trending from './components/Trending';
-import BetGenerator from './components/BetGenerator';
-import Points from './components/Points';
-import Bookmakers from './components/Bookmakers';
-//import NoMatch from './components/NoMatch';
-
-import * as serviceWorker from "./serviceWorker";
-
-import "./styles/main.css";
-import Match from "./components/Match/";
-import Offers from "./components/Offers/index";
-import TipDashboard from "./components/TipDashboard/TipDashboard";
-import Fosterage from "./components/Fosterage";
 import App from "./components/App";
+import BetGenerator from './components/BetGenerator';
+import Bookmakers from './components/Bookmakers';
+import Fosterage from "./components/Fosterage";
+import HomePage from "./components/HomePage";
+import Layout from "./components/Layout";
+// import Match from "./components/Match/";
+import Offers from "./components/Offers/index";
+import Points from './components/Points';
+import PostTip from "./components/PostTip";
+import Profile from "./components/Profile";
+import TipDashboard from "./components/TipDashboard/TipDashboard";
+import TipsAndHistory from "./components/TipsAndHistory";
+import Trending from './components/Trending';
+import ValueAccumulations from "./components/ValueAccumulations";
+//import NoMatch from './components/NoMatch';
+import * as serviceWorker from "./serviceWorker";
+import "./styles/main.css";
+
 
 const cache = new InMemoryCache();
 
@@ -58,7 +57,7 @@ ReactDOM.render(
                   <TipsAndHistory loadTips={() => console.log("loading more")} />
                 )}
               />
-              <Route path='/matches/:matchId' render={() => <Match />} />
+              {/* <Route path='/matches/:matchId' render={() => <Match />} /> */}
               <Route
                 path='/leagues/:leagueId'
                 render={() => (

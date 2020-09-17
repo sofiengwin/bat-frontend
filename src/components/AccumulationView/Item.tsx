@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Checkbox, Skeleton } from 'antd';
 import { ITip } from '../../models/Tip';
-import {TipDetails, MatchName, LeagueCountryName, LeagueTipsWrapper} from '../ui/ItemHelpers';
+import {TipDetails, MatchName, LeagueCountryName, LeagueTipsWrapper, BetName} from '../ui/ItemHelpers';
 import Tip from '../Tips/Tip';
 
 interface Props {
@@ -27,7 +27,7 @@ const Item: React.FC<Props> = (props) => {
                 <Checkbox onChange={props.onSelect} value={tip.id}  style={{marginRight: '10px'}}/>
                 {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>
-              <div>{tip.bet}</div>
+              <BetName>{tip.bet}</BetName>
               {/* <div>{1.55}</div> */}
               <div>{props.render(tip)}</div>
             </TipDetails>

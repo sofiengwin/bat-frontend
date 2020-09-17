@@ -30,8 +30,8 @@ const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick}) => {
   return (
     <>
       <Flex>
-        <h2 style={{color: 'white'}}>Name</h2>
-        <MenuFoldOutlined style={{fontSize: '64px', color: 'white'}} onClick={onClick}/>
+        <h2 style={{color: 'white'}}>My Bet Haven</h2>
+        <MenuFoldOutlined style={{fontSize: '40px', color: 'white', marginRight: '10px'}} onClick={onClick}/>
       </Flex>
       <Drawer
         placement={'left'}

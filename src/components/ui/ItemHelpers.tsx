@@ -11,6 +11,14 @@ export const TipDetails = styled.div`
 
 export const MatchName = styled.div`
   display: flex;
+  width: 200px;
+  @media only screen and (max-device-width: 320px) {
+    max-width: 170px;
+  }
+`;
+
+export const BetName = styled.div`
+  display: flex;
   @media only screen and (max-device-width: 320px) {
     max-width: 170px;
   }
