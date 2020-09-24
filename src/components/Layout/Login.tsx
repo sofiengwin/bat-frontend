@@ -30,7 +30,6 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
     handleCancel()
   };
   const onCompleted = (data: Response) => {
-    console.log({data});
     localStorage.setItem('session', data.createUser.userDetails.accessToken);
     addUser(data.createUser.userDetails.user);
     handleCancel();

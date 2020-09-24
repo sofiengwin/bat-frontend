@@ -28,8 +28,8 @@ const Facebook: React.FC<Props> = ({callback}) => {
           email: response.email,
           accessToken: response.accessToken,
           tokenId: response.signedRequest,
-          providerId: response.userId,
-          avatarUrl: response.picture.url,
+          providerId: response.id,
+          avatarUrl: response.picture.data.url,
         }})
       }}
       onClick={() => undefined}
