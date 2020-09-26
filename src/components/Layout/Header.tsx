@@ -27,7 +27,12 @@ const Header = () => {
           {isDesktopOrLaptop ? (
             <DeskstopMenu showLogin={() => setShowLogin(true) } />
           ) : (
-            <MobileMenu onClose={() =>setShowDrawer(false)} showDrawer={showDrawer} onClick={() => setShowDrawer(true) }/>
+            <MobileMenu
+              onClose={() =>setShowDrawer(false)}
+              showDrawer={showDrawer}
+              onClick={() => setShowDrawer(true) }
+              showLogin={() => setShowLogin(true)}
+            />
           )}
         </Layout.Header>
       </Layout>

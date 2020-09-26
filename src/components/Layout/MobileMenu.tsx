@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from '../../styles';
 import { MenuFoldOutlined } from '@ant-design/icons/lib/icons';
 import { Drawer } from 'antd';
+import { useAppContext } from '../App';
 
 const Flex = styled.div`
   display: flex;
@@ -19,6 +20,7 @@ interface Props {
   showDrawer: boolean;
   onClose: () => void;
   onClick: () => void;
+  showLogin: () => void;
 }
 const MenuItem = styled.div`
   text-decoration: none;
@@ -26,7 +28,8 @@ const MenuItem = styled.div`
   padding: 16px 0;
   font-size: 20px;
 `;
-const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick}) => {
+const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick, showLogin}) => {
+  const {user} = useAppContext();
   return (
     <>
       <Flex>
@@ -40,11 +43,20 @@ const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick}) => {
         visible={showDrawer}
       >
         <MenuItem onClick={onClose}><Link to='/'>Home</Link></MenuItem>
-        <MenuItem onClick={onClose}><Link to='/profile'>Profile</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/offers'>Offers</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/bet-generator'>Bet Generator</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/user-ranking'>Users Ranking</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/trending-bets'>Trending Bets</Link></MenuItem>
+        {user ? (
+          <MenuItem onClick={onClose}><Link to='/profile'>Profile</Link></MenuItem>
+        ) : (
+          <MenuItem onClick={() => {
+            onClose();
+            showLogin();
+          }}>
+            <p>Login</p>
+          </MenuItem>
+        )}
       </Drawer>
     </>
   )
