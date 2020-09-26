@@ -22,10 +22,10 @@ const Item: React.FC<Props> = ({leagueTips, loading}) => {
                 {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>
               <div>{tip.bet}</div>
-              {/* <div>
+              <div>
                 {tip.odd}
               </div>
-              <div>
+              {/* <div>
                 80%
               </div> */}
               <div>
