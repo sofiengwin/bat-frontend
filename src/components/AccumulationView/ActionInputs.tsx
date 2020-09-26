@@ -21,9 +21,9 @@ interface Props {
 const ActionInputs: React.FC<Props> = ({odds, winnings, stake, setStake}) => {
   return (
     <Flex>
-      <TextInput value={Math.round(odds)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Odds'}/>
+      <TextInput value={odds.toFixed(2)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Odds'}/>
       <TextInput value={stake}  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStake(Number(e.target.value))} addonBefore={'Stake'} />
-      <TextInput value={Math.round(winnings)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Winnings'} />
+      <TextInput value={winnings.toFixed(2)}  onChange={(_: React.ChangeEvent<HTMLInputElement>) => null} addonBefore={'Winnings'} />
     </Flex>
   );
 }
