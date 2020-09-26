@@ -4,14 +4,26 @@ import ProfileHeader from './ProfileHeader';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { profileQuery, Response } from '../../data/graphql/profile';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import AppLoadingModal from '../ui/AppLoadingModal';
 import ProfileDetails from './ProfileDetails';
 
 const Profile = () => {
-  const {userId} = useParams();
-  const {data, loading} = useQuery<Response, {}>(gql(profileQuery), {variables: {userId: userId}});
+  const {userId} = useParams<{userId: string}>();
+  const location = useLocation<{savedAccumulation: boolean}>();
+  const {data, loading, refetch} = useQuery<Response, {}>(gql(profileQuery), {variables: {userId: userId}});
 
+  const savedAccumulation = location.state && location.state.savedAccumulation;
+  console.log({savedAccumulation});
+  React.useEffect(() => {
+    if (savedAccumulation) {
+      console.log('refetching');
+      refetch({userId: userId});
+    }
+    // eslint-disable-next-line
+  }, [savedAccumulation])
+
+  console.log({data})
   return (
     <>
       {data ? (
