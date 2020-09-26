@@ -5,6 +5,10 @@ const openNotification = (title: string, description: string) => {
     message: title,
     description: description,
     duration: 1000,
+    top: 100,
+    style: {
+      background: '#00801c99',
+    }
   });
 };
 
