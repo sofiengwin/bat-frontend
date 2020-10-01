@@ -37,7 +37,7 @@ const App: React.FC<{children: React.ReactNode}> = ({children}) => {
       console.log({error}, 'appolo error')
     }
   })
-  // usePageViews();
+  usePageViews();
 
   return (
     <AppContext.Provider value={{user, addUser, removeUser, appLoading, setAppLoading}}>
