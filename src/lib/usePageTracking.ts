@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import React from 'react';
 
-ReactGA.initialize('UA-000000-01');
+ReactGA.initialize('UA-49560931-1');
 
 export default function usePageViews() {
   let location = useLocation();
