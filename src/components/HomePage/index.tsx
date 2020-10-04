@@ -7,7 +7,6 @@ import CustomList from '../CustomList';
 import Item from '../ValueAccumulations/Item';
 import { ITip } from '../../models/Tip';
 
-
 const HomePage = () => {
   const {loading, data, error} = useQuery<Response, {}>(gql(fetchTipQuery), {variables: {currentTips: []}});
   console.log({loading, data, error})

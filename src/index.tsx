@@ -20,6 +20,7 @@ import TipsAndHistory from "./components/TipsAndHistory";
 import Trending from './components/Trending';
 import ValueAccumulations from "./components/ValueAccumulations";
 //import NoMatch from './components/NoMatch';
+import TrackPageView from './components/PageTracking';
 import * as serviceWorker from "./serviceWorker";
 import "./styles/main.css";
 
@@ -41,7 +42,7 @@ ReactDOM.render(
         <Router>
           <Switch>
             <Layout>
-              <Route exact path='/' component={HomePage} />
+              <Route path="/" component={TrackPageView} />
               <Route exact path='/profile/:userId' component={Profile} />
               <Route path='/tip' component={TipDashboard} />
               <Route path='/post-tip/countries' component={PostTip} />
@@ -67,26 +68,26 @@ ReactDOM.render(
               <Route path='/offers' render={() => <Offers />} />
               <Route path='/bookmakers' render={() => <Bookmakers /> } />
               <Route
-                exact
                 path='/value-accumulators/:accumulationId'
                 render={() => <AccumulationView />}
               />
               <Route
-                exact path='/value-accumulators'
+                path='/value-accumulators'
                 render={() => <ValueAccumulations />}
               />
               <Route
-                exact path='/trending-bets'
+                path='/trending-bets'
                 render={() => <Trending />}
               />
               <Route
-                exact path='/user-ranking'
+                path='/user-ranking'
                 render={() => <Points />}
               />
               <Route
-                exact path='/bet-generator'
+                path='/bet-generator'
                 render={() => <BetGenerator />}
               />
+              <Route exact path='/' component={HomePage} />
               {/* <Route path="*">
                 <NoMatch />
               </Route> */}

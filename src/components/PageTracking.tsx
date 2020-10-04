@@ -4,9 +4,18 @@ import React from 'react';
 
 ReactGA.initialize('UA-49560931-1');
 
-export default function usePageViews() {
+function usePageViews() {
   let location = useLocation();
+  console.log({location}, location.pathname);
   React.useEffect(() => {
     ReactGA.pageview(location.pathname);
   }, [location]);
 }
+
+const TrackPageView = () => {
+  usePageViews();
+  return null;
+}
+
+export default TrackPageView;
+
