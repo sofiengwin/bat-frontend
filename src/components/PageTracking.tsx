@@ -11,6 +11,14 @@ function usePageViews() {
   }, [location]);
 }
 
+export function gaEvent(name: string, action: string) {
+  ReactGA.event({
+    category: name,
+    action: action,
+    label: name,
+  });
+}
+
 const TrackPageView = () => {
   usePageViews();
   return null;
