@@ -6,6 +6,8 @@ import OutcomeIcon from './OutcomeIcon';
 import {IAccumulation} from '../../models/Accumulation';
 import {IOUTCOME} from '../../models/Tip';
 import CustomList from '../CustomList';
+import { Button } from 'antd';
+import {gaEvent} from '../PageTracking';
 
 const Flex = styled.div`
   display: flex;
@@ -46,10 +48,14 @@ const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
     }
   };
 
+  const onPersonalize = () => {
+    gaEvent('Personalize Accumulation', `/value-accumulators/${accumulation.id}`);
+  }
+
   const header = (
     <Flex>
       <h3><Link to={`/value-accumulators/${accumulation.id}`}><h3>Value Bets By {accumulation.userName} for {accumulation.day} </h3></Link> </h3>
-      <OutcomeIcon outcome={outcome()} fontSize={'25px'} />
+      {outcome() === 'PENDING' ? (<Button type="primary" shape="round" onClick={onPersonalize}><Link to={`/value-accumulators/${accumulation.id}`}>Personalize</Link></Button>) : (<OutcomeIcon outcome={outcome()} fontSize={'25px'} />) }
     </Flex>
   );
   return (
