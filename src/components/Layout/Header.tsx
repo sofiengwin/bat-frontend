@@ -21,6 +21,7 @@ const Header = () => {
       <LoginModal
         visible={showLogin}
         handleCancel={() => setShowLogin(false) }
+        handleSuccess={() => setShowLogin(false) }
       />
       <Layout>
         <Layout.Header>

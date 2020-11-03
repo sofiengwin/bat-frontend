@@ -13,6 +13,7 @@ import { useAppContext } from '../App';
 interface Props {
   visible: boolean;
   handleCancel: () => void;
+  handleSuccess: () => void;
 }
 
 const SocialButtons = styled.div`
@@ -22,7 +23,7 @@ const SocialButtons = styled.div`
   margin: 20px 0;
 `;
 
-const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
+const LoginModal:React.FC<Props> = ({visible, handleCancel, handleSuccess}) => {
   const {foster, reset} = useFoster();
   const {setAppLoading, addUser} = useAppContext()
   const onError = (_error: ApolloError) => {
@@ -32,7 +33,7 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, }) => {
   const onCompleted = (data: Response) => {
     localStorage.setItem('session', data.createUser.userDetails.accessToken);
     addUser(data.createUser.userDetails.user);
-    handleCancel();
+    handleSuccess();
   };
 
   const [findOrCreateUser, { loading }] = useMutation<Response, IFindOrCreate>(gql(createOrFindUserQuery), {onError, onCompleted });

@@ -58,9 +58,10 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
       <AppLoadingModal visible={loading} />
       <LoginModal 
         visible={showLogin}
-        handleCancel={() => {
+        handleSuccess={() => {
           createAccumulationSuccess();
         }}
+        handleCancel={() => null}
       />
       <CustomList
         loading={loading}
@@ -80,7 +81,11 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
         )}
       </CustomList>
       <ActionButtons resetAcummulation={resetAcummulation} onSave={() => {
-        createAccumulationSuccess();
+        if (user) {
+          createAccumulationSuccess();
+        } else {
+          setShowLogin(true);
+        }
       }}/>
     </>
   );
