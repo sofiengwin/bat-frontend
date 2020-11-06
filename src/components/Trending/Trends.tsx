@@ -24,7 +24,7 @@ const Trends: React.FC<Props> = ({trends, loading}) => {
       loading={loading}
       renderItem={(item: ITrend) => (
         <List.Item>
-          <Link to={`/value-accumulators`}>
+          <Link to={`/matches/${item.matchId}`}>
             <Trend {...item} />
           </Link>
         </List.Item>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../styles'
-// import 
 
 const SmallText = styled.div`
   font-size: 12px;
