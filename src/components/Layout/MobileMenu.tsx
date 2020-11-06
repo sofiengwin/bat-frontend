@@ -43,6 +43,7 @@ const MobileMenu: React.FC<Props> = ({onClose, showDrawer, onClick, showLogin}) 
         visible={showDrawer}
       >
         <MenuItem onClick={onClose}><Link to='/'>Home</Link></MenuItem>
+        <Link to='/value-accumulators'>Accumulations</Link>
         <MenuItem onClick={onClose}><Link to='/offers'>Offers</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/bet-generator'>Bet Generator</Link></MenuItem>
         <MenuItem onClick={onClose}><Link to='/user-ranking'>Users Ranking</Link></MenuItem>
