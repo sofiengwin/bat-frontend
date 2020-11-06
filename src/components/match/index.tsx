@@ -1,43 +1,36 @@
-import * as React from "react";
-import { Container, CardGrid } from "./style";
-import DisplayCard from "./Cards";
-import LongCard from "./Longcards";
-import OneWayComparison from "./OneWayComparison";
-import TwoWayComparison from "./TwoWayComparison";
-import MatchThough from "./MatchThough";
+import * as React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { fetchTipQuery, FilterOptions, Response } from '../../data/graphql/fetchTips';
+import AppLooadingModal from '../ui/AppLoadingModal'
+import CustomList from '../CustomList';
+import Item from '../ValueAccumulations/Item';
+import { ITip } from '../../models/Tip';
+import { IMatch } from '../../models/Match';
+import { useParams } from 'react-router-dom';
 
-export default class Match extends React.Component {
-  render() {
-    return (
-      <Container>
-        <CardGrid>
-          {/* Home draw away */}
-          <OneWayComparison />
-
-          {/* Double chance*/}
-          <TwoWayComparison title='DOUBLE CHANCE' gtc='70% 30%' />
-
-          {/*  BTS */}
-          <TwoWayComparison title='BOTH TEAMS TO SCORE' gtc='44% 56%' />
-
-          {/* Over/under 1.5 */}
-          <TwoWayComparison title='OVER / UNDER 1.5' gtc='25% 75%' />
-
-          {/* Over/under 2.5 */}
-          <TwoWayComparison title='OVER / UNDER 2.5' gtc='65% 35%' />
-
-          {/* Over/under 3.5 */}
-          <TwoWayComparison title='OVER / UNDER 3.5' gtc='40% 60%' />
-        </CardGrid>
-
-        <LongCard>
-          {Array(10)
-            .fill("Baddest Guy")
-            .map((name: string, i: number) => (
-              <MatchThough key={i} name={name} />
-            ))}
-        </LongCard>
-      </Container>
-    );
-  }
+const Match = () => {
+  const {matchId} = useParams<{matchId: string}>();
+  const {loading, data, error} = useQuery<Response, FilterOptions>(gql(fetchTipQuery), {variables: {matchId, currentTips: []}});
+  console.log({loading, data, error})
+  const tips: ITip[] = data ? data.fetchTips : [];
+  const match: IMatch | null = tips.length > 0 ? tips[0].match : null;
+  return (
+    <>
+      {loading ? (
+        <AppLooadingModal visible={loading} />
+      ) : (
+        <CustomList
+          tips={tips}
+          header={match && <h3>{match.homeTeamName} vs {match.awayTeamName} Tips</h3>}
+        >
+          {(leagueTips) => (
+            <Item leagueTips={leagueTips} loading={loading} />
+          )}
+        </CustomList>
+      )}
+    </>
+  );
 }
+
+export default Match;

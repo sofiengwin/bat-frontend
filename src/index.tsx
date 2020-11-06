@@ -10,7 +10,7 @@ import Bookmakers from './components/Bookmakers';
 import Fosterage from "./components/Fosterage";
 import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
-// import Match from "./components/Match/";
+import Match from "./components/Match/";
 import Offers from "./components/Offers/index";
 import Points from './components/Points';
 import PostTip from "./components/PostTip";
@@ -67,6 +67,10 @@ ReactDOM.render(
               />
               <Route path='/offers' render={() => <Offers />} />
               <Route path='/bookmakers' render={() => <Bookmakers /> } />
+              <Route
+                path='/matches/:matchId'
+                render={() => <Match />}
+              />
               <Route
                 path='/value-accumulators/:accumulationId'
                 render={() => <AccumulationView />}

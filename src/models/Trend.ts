@@ -4,6 +4,7 @@ export const trendFields = `
   league
   country
   tipCount
+  matchId
 `;
 
 export interface ITrend {
@@ -12,4 +13,5 @@ export interface ITrend {
   league: string;
   country: string;
   tipCount: number;
+  matchId: string;
 }

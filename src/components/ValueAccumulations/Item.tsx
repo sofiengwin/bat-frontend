@@ -17,7 +17,7 @@ const Item: React.FC<Props> = ({leagueTips, loading}) => {
         <LeagueCountryName>{tips[0].match.country} - {league}</LeagueCountryName>
         <>
           {tips.map((tip) => (
-            <TipDetails>
+            <TipDetails key={tip.id}>
               <MatchName>
                 {tip.match.homeTeamName} vs {tip.match.awayTeamName}
               </MatchName>

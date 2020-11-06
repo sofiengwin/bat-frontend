@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import AppLoadingModal from '../ui/AppLoadingModal';
 
 const AccumulationView = () => {
-  const {accumulationId} = useParams();
+  const {accumulationId} = useParams<{accumulationId: string}>();
   const {loading, data, error} = useQuery<Response, {accumulationId: string | undefined}>(gql(viewAccumulationQuery), {variables: {accumulationId}});
 
   console.log({data, accumulationId, error});

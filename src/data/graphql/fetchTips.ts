@@ -22,4 +22,5 @@ export interface FilterOptions {
   maxOdd?: number;
   minOdd?: number;
   currentTips?: string[];
+  matchId?: string;
 }
