@@ -11,8 +11,8 @@ import { useParams } from 'react-router-dom';
 
 const Match = () => {
   const {matchId} = useParams<{matchId: string}>();
-  const {loading, data, error} = useQuery<Response, FilterOptions>(gql(fetchTipQuery), {variables: {matchId, currentTips: []}});
-  console.log({loading, data, error})
+  const {loading, data, error} = useQuery<Response, FilterOptions>(gql(fetchTipQuery), {variables: {matchId: matchId, currentTips: []}});
+  console.log({loading, data, error, matchId})
   const tips: ITip[] = data ? data.fetchTips : [];
   const match: IMatch | null = tips.length > 0 ? tips[0].match : null;
   return (

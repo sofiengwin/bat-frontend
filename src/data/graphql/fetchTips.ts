@@ -2,8 +2,8 @@ import {tipFields, ITip} from '../../models/Tip';
 import {matchFields} from '../../models/Match';
 
 export const fetchTipQuery = `
-  query fetchTips($betType: String, $country: String, $maxOdd: Float, $minOdd: Float, $currentTips: [ID!]!) {
-    fetchTips(betType: $betType, country: $country, maxOdd: $maxOdd, minOdd: $minOdd, currentTips: $currentTips) {
+  query fetchTips($betType: String, $country: String, $maxOdd: Float, $minOdd: Float, $currentTips: [ID!]!, $matchId: ID) {
+    fetchTips(betType: $betType, country: $country, maxOdd: $maxOdd, minOdd: $minOdd, currentTips: $currentTips, matchId: $matchId) {
       ${tipFields}
       match {
         ${matchFields}
