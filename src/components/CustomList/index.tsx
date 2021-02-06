@@ -20,6 +20,7 @@ interface Props {
 }
 const CustomList: React.FC<Props> = ({children, tips, header, footer, loading}) => {
   const groupedTips: Dict<ITip[]> = groupTips(tips);
+
   return (
     <List
       header={header}
