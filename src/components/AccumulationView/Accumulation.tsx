@@ -47,6 +47,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const createAccumulationSuccess = async () => {
     await createAccumulation();
     setShowLogin(false);
+
     if (user) {
       openNotification('Accumulation Created Successfully', 'Thank you for saving your accumulation! Remember to share with your friends');
       history.push(`/profile/${user.id}`, {savedAccumulation: true})
