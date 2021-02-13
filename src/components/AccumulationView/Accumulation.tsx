@@ -46,6 +46,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
   const createAccumulationSuccess = async () => {
     await createAccumulation();
+    
     setShowLogin(false);
 
     if (user) {
