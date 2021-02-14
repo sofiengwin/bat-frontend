@@ -34,6 +34,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
   React.useEffect(() => {
     const totalOdds = tips.length > 0 ? tips.map((tip) => tip.odd).reduce((total, current) => total *= current) : 1;
+
     setOdd(totalOdds);
     setWinning(odd * stake)
   }, [tips, stake, odd])
@@ -46,7 +47,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
   const createAccumulationSuccess = async () => {
     await createAccumulation();
-    
+
     setShowLogin(false);
 
     if (user) {
