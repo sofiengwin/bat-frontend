@@ -7,20 +7,6 @@ import CustomList from '../CustomList';
 import { ITip } from "../../models/Tip";
 import FilterTips, {IFilterTipsFunctions} from './FilterTips';
 
-// const Filter = styled.div`
-//   display: grid;
-//   grid-template-columns: 2fr 2fr 2fr 1fr;
-//   grid-gap: 10px;
-//   margin: 10px;
-
-//   @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
-//     grid-template-columns: 0.9fr;
-//     grid-gap: 10px;
-//     justify-content: center;
-//     margin-bottom: 20px;
-//   }
-// `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
