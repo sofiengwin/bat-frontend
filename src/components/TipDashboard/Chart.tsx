@@ -19,6 +19,7 @@ const Charted = () => {
       },
     ],
   });
+  console.log({chartData})
 
   return (
     <div

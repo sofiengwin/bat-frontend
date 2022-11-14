@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Menu, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Menu } from "antd";
 import styled from '../../styles';
 import { useAppContext } from '../App';
 

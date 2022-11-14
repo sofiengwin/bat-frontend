@@ -12,7 +12,7 @@ const StyledLink = styled.p`
 `
 
 
-export default () => {
+const HashTags = () => {
   return (
     <Flex>
       <StyledLink><Link to='/matches/hello'>#Hello vs Hello</Link></StyledLink>
@@ -22,3 +22,5 @@ export default () => {
     </Flex>
   );
 }
+
+export default HashTags;

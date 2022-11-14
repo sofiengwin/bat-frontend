@@ -9,7 +9,7 @@ const Flex = styled.div`
   display: flex;
 `;
 
-export default () => {
+const Result = () => {
   return (
     <Flex>
       {Array(10)
@@ -29,3 +29,5 @@ export default () => {
     </Flex>
   );
 };
+
+export default Result;

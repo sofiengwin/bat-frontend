@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {TwitterOutlined, GoogleOutlined, FacebookOutlined, InstagramOutlined} from '@ant-design/icons';
+// import {TwitterOutlined, GoogleOutlined, FacebookOutlined, InstagramOutlined} from '@ant-design/icons';
 import {Space} from 'antd';
 
-import styled from '../../../styles';
+// import styled from '../../../styles';
 
-export default () => {
+const TipActions = () => {
   return (
     <Space>
       {/* <TwitterOutlined />
@@ -14,3 +14,5 @@ export default () => {
     </Space>
   );
 }
+
+export default TipActions;

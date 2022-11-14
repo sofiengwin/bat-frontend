@@ -5,9 +5,9 @@ import LoginModal from "./Login";
 import DeskstopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu'
 
-interface State {
-  showLogin: boolean;
-}
+// interface State {
+//   showLogin: boolean;
+// }
 
 const Header = () => {
   const [showLogin, setShowLogin] = React.useState<boolean>(false);

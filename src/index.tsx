@@ -18,7 +18,7 @@ import TipsAndHistory from "./components/TipsAndHistory";
 import Trending from './components/Trending';
 import ValueAccumulations from "./components/ValueAccumulations";
 //import NoMatch from './components/NoMatch';
-import TrackPageView from './components/PageTracking';
+// import TrackPageView from './components/PageTracking';
 import * as serviceWorker from "./serviceWorker";
 import "./styles/main.css";
 
