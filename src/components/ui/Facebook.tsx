@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Button } from 'antd';
 import { IFindOrCreate } from '../../data/graphql/findOrCreateUser';
-// @ts-ignore
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 interface Props {
   callback: ({variables}: {variables: IFindOrCreate}) => void;
@@ -18,30 +16,12 @@ const buttonStyle = {
 
 const Facebook: React.FC<Props> = ({callback}) => {
   return (
-    <FacebookLogin
-      appId={process.env.REACT_APP_FB_APP_ID}
-      autoLoad={false}
-      fields="name,email,picture"
-      callback={(response: any) => {
-        callback({variables: {
-          name: response.name,
-          email: response.email,
-          accessToken: response.accessToken,
-          tokenId: response.signedRequest,
-          providerId: response.id,
-          avatarUrl: response.picture.data.url,
-        }})
-      }}
-      onClick={() => undefined}
-      render={(renderProps: any) => (
-        <Button
-          style={{background: '#4267b2', ...buttonStyle}} icon="facebook"
-          onClick={renderProps.onClick}
-        >
-          Login With Facebook
-        </Button>
-      )}
-    />
+    <Button
+    style={{background: '#4267b2', ...buttonStyle}} icon="facebook"
+    // onClick={renderProps.onClick}
+  >
+    Login With Facebook
+  </Button>
   );
 };
 

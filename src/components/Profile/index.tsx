@@ -1,16 +1,15 @@
 import * as React from 'react';
 import {Row} from 'antd';
 import ProfileHeader from './ProfileHeader';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { gql,useQuery } from '@apollo/client';
 import { profileQuery, Response } from '../../data/graphql/profile';
 import { useLocation, useParams } from 'react-router-dom';
 import AppLoadingModal from '../ui/AppLoadingModal';
 import ProfileDetails from './ProfileDetails';
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const {userId} = useParams<{userId: string}>();
-  const location = useLocation<{savedAccumulation: boolean}>();
+  const location = useLocation();
   const {data, loading, refetch} = useQuery<Response, {}>(gql(profileQuery), {variables: {userId: userId}});
 
   const savedAccumulation = location.state && location.state.savedAccumulation;

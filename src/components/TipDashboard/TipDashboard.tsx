@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "semantic-ui-react";
 import styled from "styled-components";
 import EachTips from "./EachTips";
 import Charted from "./Chart";
@@ -9,7 +8,7 @@ const TipDashboard = () => {
     <Container>
       <H1>G-Baddest STATS</H1>
       <Charted />
-      <Table basic='very'>
+      {/* <Table basic='very'>
         <Table.Header
           style={{ background: "#fafafa", padding: "0.8em !important" }}
         >
@@ -41,7 +40,7 @@ const TipDashboard = () => {
             <Table.Cell>18.3</Table.Cell>
           </Table.Row>
         </Table.Body>
-      </Table>
+      </Table> */}
 
       <EachTips />
     </Container>

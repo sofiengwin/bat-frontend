@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card, Statistic, Icon} from 'antd'
+import {Card, Statistic} from 'antd'
 
 import styled from '../../../styles';
 
@@ -21,7 +21,7 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins
           title="Total Tips"
           value={totalTips}
           valueStyle={{ color: '#3f8600' }}
-          prefix={<Icon type="arrow-up" />}
+          // prefix= type="arrow-up" />}
         />
       </Card>
       <Card>
@@ -30,7 +30,7 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins
           value={totalWins}
           precision={2}
           valueStyle={{ color: '#3f8600' }}
-          prefix={<Icon type="arrow-up" />}
+          // prefix= type="arrow-up" />}
         />
       </Card>
       <Card>
@@ -39,7 +39,7 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({totalTips, totalWins
           value={totalPoints}
           precision={2}
           valueStyle={{ color: '#3f8600' }}
-          prefix={<Icon type="arrow-up" />}
+          // prefix={<Icon type="arrow-up" />}
         />
       </Card>
     </Grid>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExclamationCircleFilled, CheckCircleFilled, ClockCircleFilled } from '@ant-design/icons/lib/icons';
+import { ExclamationCircleFilled, CheckCircleFilled, ClockCircleOutlined } from '@ant-design/icons';
 import {IOUTCOME} from '../../models/Tip';
 
 interface Props {
@@ -10,11 +10,11 @@ interface Props {
 const OutcomeIcon: React.FC<Props> = ({outcome, fontSize}) => {
   switch(outcome) {
     case 'LOST':
-      return <ExclamationCircleFilled style={{ fontSize, color: '#E66D52' }} />;
+      return <ExclamationCircleFilled />;
     case 'WON':
-      return <CheckCircleFilled style={{ fontSize, color: '#77CDC6' }} />;
+      return <CheckCircleFilled />;
     default:
-      return <ClockCircleFilled style={{ fontSize }} />
+      return <ClockCircleOutlined />
   }
 }
 

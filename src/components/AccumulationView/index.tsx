@@ -1,8 +1,8 @@
 import * as React from 'react';
 import View from './View';
-import { useQuery } from '@apollo/react-hooks';
 import { viewAccumulationQuery, Response } from '../../data/graphql/viewAccumulation';
-import { gql } from 'apollo-boost';
+import { gql, useQuery } from "@apollo/client";
+
 import { useParams } from 'react-router-dom';
 import AppLoadingModal from '../ui/AppLoadingModal';
 

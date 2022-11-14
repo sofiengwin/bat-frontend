@@ -33,7 +33,8 @@ const Flex = styled.div`
   display: flex;
 `
 
-const PostContainer = styled(Flex)`
+const PostContainer = styled.div`
+  display: flex;
   flex-direction: column;
   padding: 0 10px;
 `;
@@ -42,7 +43,8 @@ const PostHeading = styled.h5`
   margin: 0;
 `;
 
-const Header = styled(Flex)`
+const Header = styled.div`
+  display: flex;
   justify-content: space-between;
 `;
 

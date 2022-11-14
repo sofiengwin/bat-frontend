@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import OfferCard from "./OfferCard";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { gql, useQuery } from "@apollo/client";
+
 import { fetchOffersQuery, Response } from "../../data/graphql/fetchOffers";
 import { IOffer } from "../../models/Offer";
 import AppLoadingModal from "../ui/AppLoadingModal";
@@ -42,5 +42,5 @@ export default Offers;
 const Flex = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 `;

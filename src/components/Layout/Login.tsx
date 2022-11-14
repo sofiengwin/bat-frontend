@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Modal} from 'antd';
 import styled from '../../styles';
-import { useMutation } from '@apollo/react-hooks';
 import {QUERY as createOrFindUserQuery, IFindOrCreate, Response} from '../../data/graphql/findOrCreateUser';
-import { gql, ApolloError } from 'apollo-boost';
+import { gql, useMutation } from "@apollo/client";
+
 import FacebookLogin from '../ui/Facebook';
 import GoogleLogin from '../ui/Google';
 import ErrorModal from '../ui/ErrorModal';
@@ -26,7 +26,7 @@ const SocialButtons = styled.div`
 const LoginModal:React.FC<Props> = ({visible, handleCancel, handleSuccess}) => {
   const {foster, reset} = useFoster();
   const {setAppLoading, addUser} = useAppContext()
-  const onError = (_error: ApolloError) => {
+  const onError = (_error: any) => {
     foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
     handleCancel()
   };
@@ -41,7 +41,7 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, handleSuccess}) => {
 
   return (
     <Modal
-      visible={visible}
+      open={visible}
       onOk={() => undefined}
       onCancel={handleCancel}
       footer={[]}

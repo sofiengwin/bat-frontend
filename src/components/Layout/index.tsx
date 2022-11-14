@@ -11,7 +11,7 @@ const MainContainer = styled(Row)`
   margin-top: 20px;
 `;
 
-const Layout: React.SFC = ({children}) => {
+const Layout: React.FC<{children?: React.ReactNode}> = ({children}) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
   })

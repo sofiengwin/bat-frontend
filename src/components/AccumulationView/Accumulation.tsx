@@ -5,13 +5,12 @@ import ActionInputs from "./ActionInputs";
 import Item from './Item';
 import { IAccumulation } from "../../models/Accumulation";
 import CustomList from "../CustomList";
-import { useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { gql, useMutation } from "@apollo/client";
 import { createAccumulationQuery, Response } from "../../data/graphql/createAccumulation";
 import AppLoadingModal from "../ui/AppLoadingModal";
 import { useAppContext } from "../App";
 import LoginModal from "../Layout/Login";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import openNotification from '../../lib/notification';
 
 interface Props {
@@ -30,7 +29,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
   const {tips} = accumulation;
 
   const {user} = useAppContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const totalOdds = tips.length > 0 ? tips.map((tip) => tip.odd).reduce((total, current) => total *= current) : 1;
@@ -41,7 +40,7 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
 
   const [
-    createAccumulation, 
+    createAccumulation,
     {loading}
   ] = useMutation<Response, {tips: string[]}>(gql(createAccumulationQuery), {variables: {tips: tips.map(t => t.id)}});
 
@@ -52,14 +51,14 @@ const Accumulation: React.FC<Props> = ({ accumulation, resetAcummulation, remove
 
     if (user) {
       openNotification('Accumulation Created Successfully', 'Thank you for saving your accumulation! Remember to share with your friends');
-      history.push(`/profile/${user.id}`, {savedAccumulation: true})
+      navigate(`/profile/${user.id}`, {state: {savedAccumulation: true}})
     }
   }
 
   return (
     <>
       <AppLoadingModal visible={loading} />
-      <LoginModal 
+      <LoginModal
         visible={showLogin}
         handleSuccess={() => {
           createAccumulationSuccess();

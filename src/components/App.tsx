@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {createContext, useContext, useState} from 'react';
 import {IUser} from '../models/User';
-import { useQuery } from '@apollo/react-hooks';
 import meQuery from '../data/graphql/me';
-import { gql, ApolloError } from 'apollo-boost';
+import { gql, useQuery } from "@apollo/client";
+
 import AppLoadingModal from './ui/AppLoadingModal';
 
 interface IAppContext {
@@ -22,7 +22,7 @@ const AppContext = createContext<IAppContext>({
   setAppLoading: () => null
 });
 
-const App: React.FC<{children: React.ReactNode}> = ({children}) => {
+const App: React.FC<{children?: React.ReactNode}> = ({children}) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [appLoading, setAppLoading] = useState<boolean>(false);
   const addUser = (user: IUser) => setUser(user);
@@ -32,7 +32,7 @@ const App: React.FC<{children: React.ReactNode}> = ({children}) => {
     onCompleted: (data: {me: IUser}) => {
       setUser(data.me);
     },
-    onError: (error: ApolloError) => {
+    onError: (error: any) => {
       console.log({error}, 'appolo error')
     }
   })

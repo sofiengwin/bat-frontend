@@ -4,8 +4,8 @@ import AvailableGames from './AvailableMatches';
 import { Divider } from "antd";
 import { IAccumulation } from "../../models/Accumulation";
 import { ITip } from "../../models/Tip";
-import { useLazyQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { gql, useLazyQuery } from "@apollo/client";
+
 import { fetchTipQuery, Response as FilterResponse,  FilterOptions} from '../../data/graphql/fetchTips';
 
 interface Props {

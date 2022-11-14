@@ -3,8 +3,8 @@ import BetGeneratorForm from './Form';
 import GeneratedBet from './GeneratedBet'
 import {betGeneratorQuery, GeneratorOptions ,Response as BetGeneratorResponse} from '../../data/graphql/betGenerator';
 import { fetchTipQuery, Response, FilterOptions } from '../../data/graphql/fetchTips';
-import { useLazyQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { gql, useLazyQuery } from "@apollo/client";
+
 import AppLoadingModal from '../ui/AppLoadingModal';
 
 

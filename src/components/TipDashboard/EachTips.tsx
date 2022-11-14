@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "semantic-ui-react";
 import { Container } from "./TipDashboard";
 
 const predictions = [
@@ -53,7 +52,7 @@ const predictions = [
 const EachTips = () => (
   <Container>
     <h1>G-Baddest Daily pick</h1>
-    <Table striped>
+    {/* <Table striped>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Day</Table.HeaderCell>
@@ -79,7 +78,7 @@ const EachTips = () => (
           </Table.Row>
         ))}
       </Table.Body>
-    </Table>
+    </Table> */}
   </Container>
 );
 

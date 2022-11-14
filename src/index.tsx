@@ -1,8 +1,7 @@
-import {ApolloProvider} from '@apollo/react-hooks';
-import ApolloClient, {InMemoryCache} from 'apollo-boost';
+import { ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AccumulationView from "./components/AccumulationView";
 import App from "./components/App";
 import BetGenerator from './components/BetGenerator';
@@ -13,7 +12,6 @@ import Layout from "./components/Layout";
 import Match from "./components/Match";
 import Offers from "./components/Offers/index";
 import Points from './components/Points';
-import PostTip from "./components/PostTip";
 import Profile from "./components/Profile";
 import TipDashboard from "./components/TipDashboard/TipDashboard";
 import TipsAndHistory from "./components/TipsAndHistory";
@@ -30,7 +28,7 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_HOST,
   headers: {
-    authorization: localStorage.getItem('session') || null
+    authorization: localStorage.getItem('session') || ''
   },
   cache,
 });
@@ -39,64 +37,76 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <Fosterage>
       <App>
+        <Layout>
         <Router>
-          <Switch>
-            <Layout>
-              <Route path="/" component={TrackPageView} />
-              <Route exact path='/profile/:userId' component={Profile} />
-              <Route path='/tip' component={TipDashboard} />
-              <Route path='/post-tip/countries' component={PostTip} />
+          <Routes>
+              <Route path='/profile/:userId' element={<Profile />}>
+              </Route>
+              <Route path='/tip' element={<TipDashboard />}>
+
+              </Route>
               <Route
                 path='/countries/:countryId'
-                render={() => (
-                  <TipsAndHistory loadTips={() => console.log("loading more")} />
-                )}
-              />
+                element={<TipsAndHistory loadTips={() => console.log("loading more")} />}
+              >
+
+              </Route>
               <Route
                 path='/bets/:betId'
-                render={() => (
-                  <TipsAndHistory loadTips={() => console.log("loading more")} />
-                )}
-              />
+                element={<TipsAndHistory loadTips={() => console.log("loading more")} />}
+              >
+
+              </Route>
               <Route
                 path='/leagues/:leagueId'
-                render={() => (
-                  <TipsAndHistory loadTips={() => console.log("loading more")} />
-                )}
-              />
-              <Route path='/offers' render={() => <Offers />} />
-              <Route path='/bookmakers' render={() => <Bookmakers /> } />
+                element={<TipsAndHistory loadTips={() => console.log("loading more")} />}
+              >
+
+              </Route>
+
+              <Route path='/offers' element={<Offers />}>
+
+              </Route>
+              <Route path='/bookmakers' element={<Bookmakers />}>
+
+              </Route>
               <Route
                 path='/matches/:matchId'
-                render={() => <Match />}
-              />
+                element={<Match />}
+              >
+
+              </Route>
               <Route
                 path='/value-accumulators/:accumulationId'
-                render={() => <AccumulationView />}
+                element={<AccumulationView />}
               />
               <Route
                 path='/value-accumulators'
-                render={() => <ValueAccumulations />}
+                element={<ValueAccumulations />}
               />
               <Route
                 path='/trending-bets'
-                render={() => <Trending />}
+                element={<Trending />}
               />
               <Route
                 path='/user-ranking'
-                render={() => <Points />}
+                element={<Points />}
               />
               <Route
                 path='/bet-generator'
-                render={() => <BetGenerator />}
-              />
-              <Route exact path='/' component={HomePage} />
+                element={<BetGenerator />}
+              >
+
+              </Route>
+              <Route path='/' element={<HomePage />}>
+
+              </Route>
               {/* <Route path="*">
                 <NoMatch />
               </Route> */}
-            </Layout>
-          </Switch>
+          </Routes>
         </Router>
+        </Layout>
       </App>
     </Fosterage>
   </ApolloProvider>,

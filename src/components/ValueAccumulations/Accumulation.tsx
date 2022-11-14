@@ -7,7 +7,6 @@ import {IAccumulation} from '../../models/Accumulation';
 import {IOUTCOME} from '../../models/Tip';
 import CustomList from '../CustomList';
 import { Button } from 'antd';
-import {gaEvent} from '../PageTracking';
 
 const Flex = styled.div`
   display: flex;
@@ -49,7 +48,6 @@ const Accumulation: React.FC<Props> = ({ accumulation, loading }) => {
   };
 
   const onPersonalize = () => {
-    gaEvent('Personalize Accumulation', `/value-accumulators/${accumulation.id}`);
   }
 
   const header = (

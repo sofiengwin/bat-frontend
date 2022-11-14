@@ -10,7 +10,7 @@ interface Props {
 const ErrorModal: React.FC<Props> = ({onCancel, onOk, show}) => {
   return (
     <Modal
-      visible={show}
+      open={show}
       onOk={onOk}
       onCancel={onCancel}
       footer={null}

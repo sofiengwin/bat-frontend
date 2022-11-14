@@ -9,7 +9,7 @@ interface IFoster {
 const FosterContext = React.createContext<IFoster>({foster: () => null, reset: () => null});
 
 interface Props {
-  children: React.ReactNode
+  children?: any;
 }
 
 const Fosterage: React.FC<Props> = ({children}) => {

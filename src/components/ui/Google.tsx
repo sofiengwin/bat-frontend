@@ -1,5 +1,4 @@
 import * as React from 'react';
-import GoogleLogin from 'react-google-login';
 import { Button } from 'antd';
 import { IFindOrCreate } from '../../data/graphql/findOrCreateUser';
 
@@ -17,35 +16,14 @@ interface Props {
 
 const Google: React.FC<Props> = ({callback}) => {
   return (
-    <GoogleLogin
-      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
-      onSuccess={(res) => {
-        console.log({res})
-        const {profileObj, tokenId, accessToken}: any = res;
-        console.log({profileObj, tokenId, accessToken})
-        callback({
-          variables: {
-            name: profileObj.name,
-            email: profileObj.email,
-            accessToken: accessToken,
-            tokenId: tokenId,
-            providerId: profileObj.googleId,
-            avatarUrl: profileObj.imageUrl,
-          },
-        })
-      }}
-      onFailure={(err) => console.log({err})}
-      render={renderProps => (
-        <Button
-          style={{background: '#DB4437', ...buttonStyle}}
-          icon="google"
-          onClick={renderProps.onClick}
-          // disabled={renderProps.disabled}
-        >
-          Login With Google
-        </Button>
-      )}
-    />
+    <Button
+      style={{background: '#DB4437', ...buttonStyle}}
+      icon="google"
+      // onClick={}
+      // disabled={renderProps.disabled}
+    >
+      Login With Google
+    </Button>
   );
 };
 

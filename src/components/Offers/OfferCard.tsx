@@ -23,7 +23,7 @@ const OfferCard: React.FC<IOffer> = ({title, link, description, imageUrl}) => {
      <Content>
         <H2>{title}</H2>
         <P>{description}</P>
-        <Button type="danger" href={link}>Claim Offer</Button>
+        <Button type="primary" href={link}>Claim Offer</Button>
      </Content>
     </StyledCard>
   );

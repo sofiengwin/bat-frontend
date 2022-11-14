@@ -9,7 +9,7 @@ interface Props {
 const AppLoadingModal: React.FC<Props> = ({visible }) => {
   return (
     <Modal
-      visible={visible}
+      open={visible}
       footer={null}
       mask={true}
       destroyOnClose={true}
@@ -23,4 +23,4 @@ const AppLoadingModal: React.FC<Props> = ({visible }) => {
   );
 }
 
-export default AppLoadingModal; 
+export default AppLoadingModal;

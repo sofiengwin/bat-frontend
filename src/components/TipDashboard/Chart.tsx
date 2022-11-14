@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
 
 const Charted = () => {
   const [chartData] = useState({
@@ -32,7 +31,8 @@ const Charted = () => {
         marginBottom: "5em",
       }}
     >
-      <Bar
+      1
+      {/* <Bar
         data={chartData}
         options={{
           maintainAspectRatio: false,
@@ -55,7 +55,7 @@ const Charted = () => {
             ],
           },
         }}
-      ></Bar>
+      ></Bar> */}
     </div>
   );
 };

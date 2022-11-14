@@ -3,7 +3,6 @@ import {Slider, Card, Button, Form} from 'antd';
 import TextInput from '../ui/TextInput';
 import { GeneratorOptions } from '../../data/graphql/betGenerator';
 import styled from '../../styles';
-import {gaEvent} from '../PageTracking';
 
 const SliderContainer = styled.div`
   display: flex;
@@ -44,7 +43,7 @@ const BetGeneratorForm: React.FC<Props> = ({onGenerate, oddRange, onChangeOdd}) 
               defaultValue={oddRange}
               tooltipPlacement="bottom"
               max={4.1}
-              min={1.1} 
+              min={1.1}
               tooltipVisible
               step={0.1}
               onChange={onChangeOdd}
@@ -71,22 +70,20 @@ const BetGeneratorForm: React.FC<Props> = ({onGenerate, oddRange, onChangeOdd}) 
           onChange={onChangeStake}
           addonBefore={'Stake'}
         />
-        
+
         <TextInput
           value={winning}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWinning(e.target.value)}
           disabled={true}
           addonBefore={'Amount to win'}
         />
-        
+
         <Button type="primary" block onClick={() => {
           onGenerate({variables: {
             minOdd: oddRange[0],
             maxOdd: oddRange[1],
             totalodds: totalOdds,
           }})
-
-          gaEvent('Bet Generator', 'Generate Accumulation');
         }}>
           Generate
         </Button>

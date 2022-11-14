@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { gql, useQuery } from "@apollo/client";
+
 import { fetchTipQuery, Response } from '../../data/graphql/fetchTips';
 import AppLooadingModal from '../ui/AppLoadingModal'
 import CustomList from '../CustomList';

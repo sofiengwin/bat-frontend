@@ -1,12 +1,12 @@
 import * as React from 'react';
 import ErrorModal from './ui/ErrorModal';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NoMatch: React.FC = () => {
   const [showError, setShowError] = React.useState(true);
-  const history = useHistory();
+  const history = useNavigate();
   const backHome = () => {
-    history.push('/');
+    history('/');
     setShowError(false);
   }
   return (

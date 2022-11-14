@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ListAccumulations from './ListAccumulations';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { gql,useQuery } from '@apollo/client';
 import {Response, fetValueAccumulationsQuery} from '../../data/graphql/fetchValueAccumulations';
 import { IAccumulation } from '../../models/Accumulation';
 

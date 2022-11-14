@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const LongCard: React.SFC = ({ children }: any) => {
+const LongCard: React.FC = ({ children }: any) => {
   return <Card>{children}</Card>;
 };
 

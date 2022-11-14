@@ -23,16 +23,16 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         style={{ lineHeight: "64px" }}
       >
         <Menu.Item key='1'>
-          <Link to='/'>Home</Link>
+          {/* <Link to='/'>Home</Link> */}
         </Menu.Item>
         <Menu.Item key='2'>
-          <Link to='/offers'>Offers</Link>
+          {/* <Link to='/offers'>Offers</Link> */}
         </Menu.Item>
         <Menu.Item key='4'>
-          <Link to='/value-accumulators'>Accumulations</Link>
+          {/* <Link to='/value-accumulators'>Accumulations</Link> */}
         </Menu.Item>
         <Menu.Item key='5'>
-          <Link to='/bet-generator'>Bet Generator</Link>
+          {/* <Link to='/bet-generator'>Bet Generator</Link> */}
         </Menu.Item>
       </Menu>
     </Flex>
@@ -44,9 +44,9 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
           style={{ lineHeight: "64px" }}
         >
           <Menu.Item key='6'>
-            <Link to={`/profile/${user.id}`}>
+            {/* <Link to={`/profile/${user.id}`}>
               <Avatar src={user.avatarUrl} size={'large'} />
-            </Link>
+            </Link> */}
           </Menu.Item>
         </Menu>
       ) : (
