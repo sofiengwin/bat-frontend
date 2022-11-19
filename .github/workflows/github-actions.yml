@@ -1,6 +1,9 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
+env:
+  REACT_APP_GRAPHQL_HOST: http://demo-alb-1970167385.us-east-1.elb.amazonaws.com/graphql
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -11,8 +14,6 @@ jobs:
           node-version: '18'
       - run: npm install
       - run: npm run build
-      - run: echo "SECRET:${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-      - run: echo "SECRET:${{ secrets.AWS_ACCESS_KEY_ID }}"
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
