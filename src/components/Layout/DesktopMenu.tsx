@@ -2,6 +2,17 @@ import * as React from 'react';
 import { Menu } from "antd";
 import styled from '../../styles';
 import { useAppContext } from '../App';
+import { Link, useNavigate } from "react-router-dom";
+
+const items = [
+  { label: 'Home', key: 'item-1', title: 'Home' }, // remember to pass the key prop
+  { label: 'item 2', key: 'item-2' }, // which is required
+  {
+    label: 'sub menu',
+    key: 'submenu',
+    children: [{ label: 'item 3', key: 'submenu-item-1' }],
+  },
+];
 
 const Flex = styled.div`
   display: flex;
@@ -11,6 +22,7 @@ interface Props {
 }
 const DesktopMenu: React.FC<Props> = ({showLogin}) => {
   const {user} = useAppContext();
+  // const navigate = useNavigate();
   return (
     <Flex style={{ justifyContent: "space-between" }}>
     <Flex>
@@ -20,19 +32,24 @@ const DesktopMenu: React.FC<Props> = ({showLogin}) => {
         mode='horizontal'
         defaultSelectedKeys={["1"]}
         style={{ lineHeight: "64px" }}
+        items={items}
+        onClick={({ item, key, keyPath, domEvent }) => {
+          console.log({item, key, keyPath, domEvent})
+          // navigate('/')
+        }}
       >
-        <Menu.Item key='1'>
-          {/* <Link to='/'>Home</Link> */}
+        {/* <Menu.Item key='1'>
+          <Link to='/'>Home</Link>
         </Menu.Item>
         <Menu.Item key='2'>
-          {/* <Link to='/offers'>Offers</Link> */}
+          <Link to='/offers'>Offers</Link>
         </Menu.Item>
         <Menu.Item key='4'>
-          {/* <Link to='/value-accumulators'>Accumulations</Link> */}
+          <Link to='/value-accumulators'>Accumulations</Link>
         </Menu.Item>
         <Menu.Item key='5'>
-          {/* <Link to='/bet-generator'>Bet Generator</Link> */}
-        </Menu.Item>
+          <Link to='/bet-generator'>Bet Generator</Link>
+        </Menu.Item> */}
       </Menu>
     </Flex>
 
