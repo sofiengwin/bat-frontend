@@ -6,10 +6,9 @@ import { gql, useQuery } from "@apollo/client";
 import { fetchOffersQuery, Response } from "../../data/graphql/fetchOffers";
 import { IOffer } from "../../models/Offer";
 import AppLoadingModal from "../ui/AppLoadingModal";
-import { PageHeader } from "antd";
 
 const Offers = () => {
-  const {loading, data} = useQuery<Response, {}>(gql(fetchOffersQuery))
+  const { loading, data } = useQuery<Response, {}>(gql(fetchOffersQuery));
   const offers = data ? data.fetchOffers : [];
   return (
     <>
@@ -17,10 +16,7 @@ const Offers = () => {
         <AppLoadingModal visible={loading} />
       ) : (
         <>
-         <PageHeader
-            className="site-page-header"
-            title="Free Bets & Betting Offers"
-          />
+          <div className="site-page-header">Free Bets & Betting Offers</div>
           <Flex>
             {offers.map((offer: IOffer) => (
               <OfferCard
