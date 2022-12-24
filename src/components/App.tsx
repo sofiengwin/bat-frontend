@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {createContext, useContext, useState} from 'react';
 import {IUser} from '../models/User';
 import meQuery from '../data/graphql/me';
@@ -47,6 +46,4 @@ const App: React.FC<{children?: React.ReactNode}> = ({children}) => {
 
 export default App;
 
-export const useAppContext = () => {
-  return useContext<IAppContext>(AppContext);
-}
+export const useAppContext = () => useContext<IAppContext>(AppContext);
