@@ -11,7 +11,7 @@ class PostTip extends React.Component {
     return (
       <div>
         <h1>Hello World</h1>
-
+        <Fixtures />
         <Button type='primary' htmlType='submit'>
           Submit
         </Button>

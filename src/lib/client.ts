@@ -44,7 +44,7 @@ const authHeaders = () => {
   }
 }
 
-const RAPID_API_BASE = 'https://api-football-v1.p.rapidapi.com/v2'
+const RAPID_API_BASE = 'https://api-football-v1.p.rapidapi.com/v3'
 
 export const rapidApiClient = (endpoint: string, options?: Dict<string>) => {
   return fetch(RAPID_API_BASE + endpoint, {
@@ -52,7 +52,7 @@ export const rapidApiClient = (endpoint: string, options?: Dict<string>) => {
     headers: new Headers({
       'Content-Type': 'application/json',
       'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-      'X-RapidAPI-Key': '7850c93c7amshce44d177e4d57e3p18c434jsn758783b07818',
+      'X-RapidAPI-Key': 'VXn6iAlAwImshiy4k4mBsAZKwzM4p1Aq5iUjsnDLHpy8F0jlSf',
     }),
   })
     .then(response => {
@@ -63,8 +63,14 @@ export const rapidApiClient = (endpoint: string, options?: Dict<string>) => {
 
       return response;
     })
-    .then(response => response.json())
-    .then((response => response.api));
+    .then(response => {
+      console.log('2', {response})
+      return response.json()
+    })
+    .then((response => {
+      console.log('3', {response}, Object.keys(response))
+      return response.response
+    }));
 }
 
 export const mockClient = (): FetchQl => {

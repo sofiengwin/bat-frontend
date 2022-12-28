@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { createRoot } from "react-dom/client";
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AccumulationView from "./components/AccumulationView";
 import App from "./components/App";
@@ -16,6 +17,7 @@ import TipDashboard from "./components/TipDashboard/TipDashboard";
 import TipsAndHistory from "./components/TipsAndHistory";
 import Trending from "./components/Trending";
 import ValueAccumulations from "./components/ValueAccumulations";
+import PostTip from './components/PostTip';
 //import NoMatch from './components/NoMatch';
 // import TrackPageView from './components/PageTracking';
 import * as serviceWorker from "./serviceWorker";
@@ -83,6 +85,7 @@ root.render(
               <Route path="/trending-bets" element={<Trending />} />
               <Route path="/user-ranking" element={<Points />} />
               <Route path="/bet-generator" element={<BetGenerator />}></Route>
+              <Route path="/post-tip" element={<PostTip />}></Route>
               <Route path="/" element={<HomePage />}></Route>
               {/* <Route path="*">
                 <NoMatch />

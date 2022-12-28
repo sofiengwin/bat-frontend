@@ -47,37 +47,54 @@ const StyledSpan = styled.span`
 `;
 
 interface RapidActionMatch {
-  event_date: string;
+  eventDate: string;
   homeTeam: {
-    team_name: string;
+    teamName: string;
     logo: string;
   };
   awayTeam: {
-    team_name: string;
+    teamName: string;
     logo: string;
   };
 }
 
+const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtures: any[]) => {
+  return rapidActionFixtures.map((rapidActionFixture) => {
+    const {teams, fixture} = rapidActionFixture;
+
+    return {
+      eventDate: fixture.date,
+      homeTeam: {
+        teamName: teams.home.name,
+        logo: teams.home.logo
+      },
+      awayTeam: {
+        teamName: teams.away.name,
+        logo: teams.away.logo
+      },
+    }
+  })
+}
+
 const Fixtures = () => {
-  const [matches, setMatches] = useState<Partial<RapidActionMatch>[]>([]);
+  const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient('/fixtures/league/524/last/10')
-      .then(({fixtures}) => {
-        console.log({fixtures})
-        setMatches(fixtures);
+    rapidApiClient('/fixtures?date=2022-12-26&league=39&next=10')
+      .then((fixtures) => {
+        console.log({fixtures}, transformFixtures(fixtures))
+        setMatches(transformFixtures(fixtures));
       });
 
   }, []);
 
   return (
     <Flex style={{flexDirection: 'column'}}>
-      {matches.map((match: any, index: number) => {
-        console.log({match})
+      {matches.map((match: RapidActionMatch, index: number) => {
         return <StyledCard key={index}>
           <Flex style={{flexDirection: 'column'}}>
-              <Sub><Logo><img src={match.homeTeam.logo} alt='logo'/></Logo> <p>{match.homeTeam.team_name} vs {match.awayTeam.team_name}</p> <Logo><img src={match.awayTeam.logo} alt='logo' /></Logo></Sub>
-              <StyledSpan>{match.event_date}</StyledSpan>
+            <Sub><Logo><img src={match.homeTeam.logo} alt='logo'/></Logo> <p>{match.homeTeam.teamName} vs {match.awayTeam.teamName}</p> <Logo><img src={match.awayTeam.logo} alt='logo' /></Logo></Sub>
+            <StyledSpan>{match.eventDate}</StyledSpan>
           </Flex>
         </StyledCard>
       })}
