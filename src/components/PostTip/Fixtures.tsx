@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from '../../styles'
 import { useEffect, useState } from 'react';
 import {rapidApiClient} from '../../lib/client';
+import {countries} from './data';
 
 const Flex = styled.div`
   display: flex;
@@ -40,12 +41,6 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const StyledSpan = styled.span`
-  color: gray;
-  font-size: 10px;
-  margin-top: -15px;
-`;
-
 interface RapidActionMatch {
   eventDate: string;
   homeTeam: {
@@ -77,24 +72,33 @@ const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtur
 }
 
 const Fixtures = () => {
+  // '/fixtures?date=2022-12-31&league=39&season=2022'
   const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient('/fixtures?date=2022-12-26&league=39&next=10')
+    rapidApiClient('/fixtures?date=2022-12-31&league=39&season=2022')
       .then((fixtures) => {
-        console.log({fixtures}, transformFixtures(fixtures))
-        setMatches(transformFixtures(fixtures));
+        console.log({fixtures})
+        // setMatches(transformFixtures(fixtures));
       });
 
   }, []);
 
   return (
-    <Flex style={{flexDirection: 'column'}}>
+    <Flex style={{flexDirection: 'column', cursor: 'pointer'}}>
       {matches.map((match: RapidActionMatch, index: number) => {
         return <StyledCard key={index}>
           <Flex style={{flexDirection: 'column'}}>
-            <Sub><Logo><img src={match.homeTeam.logo} alt='logo'/></Logo> <p>{match.homeTeam.teamName} vs {match.awayTeam.teamName}</p> <Logo><img src={match.awayTeam.logo} alt='logo' /></Logo></Sub>
-            <StyledSpan>{match.eventDate}</StyledSpan>
+            <Flex style={{flexDirection: 'column', gap: 5}}>
+              <Flex>
+                <Logo><img src={match.homeTeam.logo} alt='logo'/></Logo>
+                <p>{match.homeTeam.teamName}</p>
+              </Flex>
+              <Flex>
+                <Logo><img src={match.awayTeam.logo} alt='logo' /></Logo>
+                <p>{match.awayTeam.teamName}</p>
+              </Flex>
+            </Flex>
           </Flex>
         </StyledCard>
       })}
