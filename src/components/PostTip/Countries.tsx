@@ -2,6 +2,7 @@ import * as React from "react";
 import { Card } from "antd";
 
 import styled from "../../styles";
+import {IHandleStageSelect, IStage} from './data';
 
 const Flex = styled.div`
   display: flex;
@@ -28,22 +29,26 @@ const COUNTRIES = [
   "International Clubs",
 ];
 
-class Countries extends React.Component {
-  render() {
-    return (
-      <Flex style={{ flexDirection: "column" }}>
-        {COUNTRIES.map((country: any, index: number) => {
-          return (
-            <StyledCard key={index}>
-              <Flex style={{ flexDirection: "column" }}>
-                <p>{country}</p>
-              </Flex>
-            </StyledCard>
-          );
-        })}
-      </Flex>
-    );
-  }
+interface Props {
+  countries: string[];
+  nextStage: IStage;
+  handleStageSelect: IHandleStageSelect;
+}
+
+const Countries = ({countries, handleStageSelect, nextStage}: Props) => {
+  return (
+    <Flex style={{ flexDirection: "column" }}>
+      {countries.map((country: any, index: number) => {
+        return (
+          <StyledCard key={index} onClick={handleStageSelect(nextStage, {country})}>
+            <Flex style={{ flexDirection: "column" }}>
+              <p>{country}</p>
+            </Flex>
+          </StyledCard>
+        );
+      })}
+    </Flex>
+  );
 }
 
 export default Countries;

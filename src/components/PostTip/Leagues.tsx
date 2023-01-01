@@ -2,6 +2,7 @@ import * as React from "react";
 import { Card } from "antd";
 
 import styled from "../../styles";
+import { IHandleStageSelect, IStage, ILeague } from "./data";
 
 const Flex = styled.div`
   display: flex;
@@ -27,22 +28,25 @@ const england = [
   "EFL",
 ];
 
-class Leagues extends React.Component {
-  render() {
-    return (
-      <Flex style={{ flexDirection: "column" }}>
-        {england.map((league: any, index: number) => {
-          return (
-            <StyledCard key={index}>
-              <Flex style={{ flexDirection: "column" }}>
-                <p>{league}</p>
-              </Flex>
-            </StyledCard>
-          );
-        })}
-      </Flex>
-    );
-  }
+interface Props {
+  leagues: ILeague[];
+  nextStage: IStage;
+  handleStageSelect: IHandleStageSelect;
 }
 
+const Leagues = ({leagues, nextStage, handleStageSelect}: Props) => {
+  return (
+    <Flex style={{ flexDirection: "column" }}>
+      {leagues.map(({leagueName, leagueId}: ILeague, index: number) => {
+        return (
+          <StyledCard key={index} onClick={handleStageSelect(nextStage, {leagueId, leagueName})}>
+            <Flex style={{ flexDirection: "column" }}>
+              <p>{leagueName}</p>
+            </Flex>
+          </StyledCard>
+        );
+      })}
+    </Flex>
+  );
+}
 export default Leagues;
