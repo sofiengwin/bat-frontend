@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import styled from '../../styles'
 import { useEffect, useState } from 'react';
 import {rapidApiClient} from '../../lib/client';
-import {countries} from './data';
+import {countries, IHandleStageSelect, IStage} from './data';
+import {dateString, yearString} from '../../lib/time';
 
 const Flex = styled.div`
   display: flex;
@@ -53,6 +54,13 @@ interface RapidActionMatch {
   };
 }
 
+interface Props {
+  nextStage: IStage;
+  handleStageSelect: IHandleStageSelect;
+  leagueName: string;
+  leagueId: number;
+}
+
 const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtures: any[]) => {
   return rapidActionFixtures.map((rapidActionFixture) => {
     const {teams, fixture} = rapidActionFixture;
@@ -71,24 +79,23 @@ const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtur
   })
 }
 
-const Fixtures = () => {
-  // '/fixtures?date=2022-12-31&league=39&season=2022'
+const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) => {
   const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient('/fixtures?date=2022-12-31&league=39&season=2022')
+    rapidApiClient(`/fixtures?date=${dateString()}&league=${leagueId}&season=${yearString()}`)
       .then((fixtures) => {
         console.log({fixtures})
-        // setMatches(transformFixtures(fixtures));
+        setMatches(transformFixtures(fixtures));
       });
 
-  }, []);
+  }, [leagueId]);
 
   return (
     <Flex style={{flexDirection: 'column', cursor: 'pointer'}}>
       {matches.map((match: RapidActionMatch, index: number) => {
         return <StyledCard key={index}>
-          <Flex style={{flexDirection: 'column'}}>
+          <Flex style={{flexDirection: 'column'}} onClick={handleStageSelect(nextStage, {fixtureId: 1})}>
             <Flex style={{flexDirection: 'column', gap: 5}}>
               <Flex>
                 <Logo><img src={match.homeTeam.logo} alt='logo'/></Logo>
