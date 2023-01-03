@@ -28,22 +28,20 @@ const BETS = [
   "Something",
 ];
 
-class Bets extends React.Component {
-  render() {
-    return (
-      <Flex style={{ flexDirection: "column" }}>
-        {BETS.map((bet: any, index: number) => {
-          return (
-            <StyledCard key={index}>
-              <Flex style={{ flexDirection: "column" }}>
-                <p>{bet}</p>
-              </Flex>
-            </StyledCard>
-          );
-        })}
-      </Flex>
-    );
-  }
+const Bets = () => {
+  return (
+    <Flex style={{ flexDirection: "column" }}>
+      {BETS.map((bet: any, index: number) => {
+        return (
+          <StyledCard key={index}>
+            <Flex style={{ flexDirection: "column" }}>
+              <p>{bet}</p>
+            </Flex>
+          </StyledCard>
+        );
+      })}
+    </Flex>
+  );
 }
 
 export default Bets;
