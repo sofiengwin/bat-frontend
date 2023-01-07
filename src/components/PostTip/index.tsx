@@ -22,18 +22,25 @@ const PostTip = () => {
 
   return (
     <div>
-      {stage && <Countries
+      {stage === 'country' && <Countries
         nextStage='league'
         countries={countries}
         handleStageSelect={handleStageSelect}
       />}
-      {stage && <Leagues
-        nextStage='league'
-        leagues={countryLeagueMap[tip.country]}
+      {stage === 'league' && <Leagues
+        nextStage='fixtures'
+        leagues={countryLeagueMap[tip.country ? tip.country : 'England']}
         handleStageSelect={handleStageSelect}
       />}
-      <h1>Hello World</h1>
-      <Fixtures />
+      {stage === 'fixtures' && <Fixtures
+        nextStage='bet'
+        handleStageSelect={handleStageSelect}
+        leagueId={tip.leagueId || 1}
+        leagueName={tip.leagueName}
+      />}
+
+      {stage === 'bet' && <Bets fixtureId={tip.fixtureId}/>}
+
       <Button type='primary' htmlType='submit'>
         Submit
       </Button>

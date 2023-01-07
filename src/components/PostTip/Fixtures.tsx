@@ -43,6 +43,7 @@ const StyledCard = styled(Card)`
 `;
 
 interface RapidActionMatch {
+  id: number;
   eventDate: string;
   homeTeam: {
     teamName: string;
@@ -57,7 +58,7 @@ interface RapidActionMatch {
 interface Props {
   nextStage: IStage;
   handleStageSelect: IHandleStageSelect;
-  leagueName: string;
+  leagueName?: string;
   leagueId: number;
 }
 
@@ -66,6 +67,7 @@ const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtur
     const {teams, fixture} = rapidActionFixture;
 
     return {
+      id: fixture.id,
       eventDate: fixture.date,
       homeTeam: {
         teamName: teams.home.name,
@@ -83,7 +85,7 @@ const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) =
   const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient(`/fixtures?date=${dateString()}&league=${leagueId}&season=${yearString()}`)
+    rapidApiClient(`/fixtures?date=${'2023-01-07'}&league=${leagueId}&season=2022`)
       .then((fixtures) => {
         console.log({fixtures})
         setMatches(transformFixtures(fixtures));
@@ -95,7 +97,7 @@ const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) =
     <Flex style={{flexDirection: 'column', cursor: 'pointer'}}>
       {matches.map((match: RapidActionMatch, index: number) => {
         return <StyledCard key={index}>
-          <Flex style={{flexDirection: 'column'}} onClick={handleStageSelect(nextStage, {fixtureId: 1})}>
+          <Flex style={{flexDirection: 'column'}} onClick={handleStageSelect(nextStage, {fixtureId: match.id})}>
             <Flex style={{flexDirection: 'column', gap: 5}}>
               <Flex>
                 <Logo><img src={match.homeTeam.logo} alt='logo'/></Logo>

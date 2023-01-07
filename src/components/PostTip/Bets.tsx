@@ -1,11 +1,31 @@
 import * as React from "react";
-import { Card } from "antd";
+import { Card, List, Space, Divider } from "antd";
 import { Link } from "react-router-dom";
+import {rapidApiClient} from '../../lib/client';
+
+import {IHandleStageSelect} from './data';
 
 import styled from "../../styles";
 
 const Flex = styled.div`
   display: flex;
+  flex-wrap: wrap;
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: lightblue;
+  padding: 5px 10px;
+  margin-bottom: -12px;
+`;
+
+const StyledList = styled(List)`
+  background: black;
+  .ant-space-item {
+    width: 100%;
+  }
 `;
 
 const StyledCard = styled(Card)`
@@ -28,16 +48,49 @@ const BETS = [
   "Something",
 ];
 
-const Bets = () => {
+interface Props {
+  // handleStageSelect: IHandleStageSelect;
+  fixtureId?: number;
+}
+
+const Bets = ({fixtureId}: Props) => {
+  console.log({fixtureId})
+  const [bets, setBets] = React.useState([])
+  React.useEffect(() => {
+    rapidApiClient(`/odds?bookmaker=1&fixture=${fixtureId}`)
+      .then((result) => {
+        const [bmkResult] = result;
+        const {bookmakers} = bmkResult;
+        const [bmkDetails] = bookmakers;
+        const {bets = []} = bmkDetails
+        console.log({result, bookmakers, bmkResult, bmkDetails, bets})
+        setBets(bets)
+      });
+  }, [fixtureId])
+
   return (
     <Flex style={{ flexDirection: "column" }}>
-      {BETS.map((bet: any, index: number) => {
+      {bets.map((bet: any, index: number) => {
+        console.log({bet})
         return (
-          <StyledCard key={index}>
-            <Flex style={{ flexDirection: "column" }}>
-              <p>{bet}</p>
-            </Flex>
-          </StyledCard>
+          // <Space key={index} style={{background: 'red'}}>
+              <StyledList
+                header={<StyledHeader>{bet.name}</StyledHeader>}
+                dataSource={bet.values}
+                renderItem={(b: any) => (
+                  <Flex key={`${bet.id}-${bet.name}`}>
+                    <div style={{flex: '1 1 30%'}}>
+                      <List.Item >
+                        <Space direction="vertical" style={{background: 'blue'}} >
+                          <p>{b.value}</p>
+                          <p>{b.odd}</p>
+                        </Space>
+                      </List.Item>
+                    </div>
+                  </Flex>
+                )}
+              />
+          // </Space>
         );
       })}
     </Flex>

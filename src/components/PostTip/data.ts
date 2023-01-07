@@ -56,10 +56,10 @@ export const countryLeagueMap: Dict<ILeague[]> = {
 export type IStage = 'country' | 'league' | 'fixtures' | 'bet';
 export type IHandleStageSelect = (nextStage: IStage, value: any) => () => void
 export interface ITip {
-  country: string;
-  leagueName: string;
-  leagueId: number;
-  bet: string;
-  fixtureId: string;
+  country?: string;
+  leagueName?: string;
+  leagueId?: number;
+  bet?: string;
+  fixtureId?: number;
 }
 export type ILeague = {leagueName: string; leagueId: number};

@@ -21,3 +21,13 @@ export const dateString = () => {
   return formatter.format(today);
 }
 
+export const yearString = () => {
+  const today = new Date()
+
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    year: 'numeric'
+  });
+
+  return formatter.format(today);
+}
+
