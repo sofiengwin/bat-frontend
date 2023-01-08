@@ -66,7 +66,7 @@ const DesktopMenu: React.FC<Props> = ({ showLogin }) => {
   return (
     <Flex style={{ justifyContent: "space-between" }}>
       <Flex>
-        <div className="bet-haven">Bet Haven</div>
+        <div className="bet-haven">My Bet Haven</div>
         <Menu
           theme="dark"
           mode="horizontal"
