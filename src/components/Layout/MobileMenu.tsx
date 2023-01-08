@@ -14,7 +14,7 @@ const Flex = styled.div`
   width: 100%;
   height: 64px;
   align-items: center;
-  padding-left: 15px;
+  padding: 0 15px;
 `;
 
 interface Props {
@@ -41,7 +41,7 @@ const MobileMenu: React.FC<Props> = ({
       <Flex>
         <h2 style={{ color: "#ffffff" }}>My Bet Haven</h2>
         <MenuFoldOutlined
-          style={{ fontSize: "40px", color: "white", marginRight: "10px" }}
+          style={{ fontSize: "30px", color: "#ffffff" }}
           onClick={onClick}
         />
       </Flex>
