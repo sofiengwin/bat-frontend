@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, List, Space, Divider } from "antd";
+import { Card, List, Space, Divider, Segmented, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import {rapidApiClient} from '../../lib/client';
 
@@ -9,7 +9,6 @@ import styled from "../../styles";
 
 const Flex = styled.div`
   display: flex;
-  flex-wrap: wrap;
 `;
 
 const StyledHeader = styled.div`
@@ -17,6 +16,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   background: lightblue;
+  font-size: 8PX;
   padding: 5px 10px;
   margin-bottom: -12px;
 `;
@@ -73,22 +73,25 @@ const Bets = ({fixtureId}: Props) => {
       {bets.map((bet: any, index: number) => {
         console.log({bet})
         return (
-          // <Space key={index} style={{background: 'red'}}>
+          // <Space key={index} style={{background: 'green'}}>
               <StyledList
                 header={<StyledHeader>{bet.name}</StyledHeader>}
                 dataSource={bet.values}
-                renderItem={(b: any) => (
-                  <Flex key={`${bet.id}-${bet.name}`}>
-                    <div style={{flex: '1 1 30%'}}>
+                grid={{gutter: 1, column: 3}}
+                renderItem={(b: any) => {
+                  console.log({b}, 'b')
+                  return (
+                  // <Space key={`${bet.id}-${bet.name}`}>
+                    // <Space direction="horizontal" align="center" style={{background: 'red'}} key={`${bet.id}-${bet.name}`}>
                       <List.Item >
-                        <Space direction="vertical" style={{background: 'blue'}} >
-                          <p>{b.value}</p>
-                          <p>{b.odd}</p>
-                        </Space>
+                          <Space direction="vertical" style={{background: 'blue'}}>
+                            <p>{b.value}</p>
+                            <p>{b.odd}</p>
+                          </Space>
                       </List.Item>
-                    </div>
-                  </Flex>
-                )}
+                    // </Space>
+                  // </Space>
+                )}}
               />
           // </Space>
         );
