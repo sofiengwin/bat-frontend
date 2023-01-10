@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Menu } from "antd";
+import { Avatar, Menu, MenuProps } from "antd";
 import styled from "../../styles";
 import { useAppContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import { IUser } from "../../models/User";
 
 const Flex = styled.div`
   display: flex;
@@ -13,46 +15,77 @@ const Flex = styled.div`
 interface Props {
   showLogin: () => void;
 }
+
+const items: MenuProps["items"] = [
+  {
+    label: "Home",
+    key: "/",
+  },
+  {
+    label: "Offers",
+    key: "/offers",
+  },
+  {
+    label: "Accumulations",
+    key: "/value-accumulators",
+  },
+  {
+    label: "Bet Generator",
+    key: "/bet-generator",
+  },
+];
+
+const menus = (
+  user: IUser | null,
+  showLogin?: () => void
+): MenuProps["items"] =>
+  user
+    ? [
+        {
+          label: <Avatar src={user?.avatarUrl} size={"large"} />,
+          key: `/profile/${user?.id}`,
+        },
+      ]
+    : [
+        {
+          label: <div onClick={showLogin}>Login</div>,
+          key: "#",
+        },
+      ];
+
 const DesktopMenu: React.FC<Props> = ({ showLogin }) => {
   const { user } = useAppContext();
+  const navigate = useNavigate();
+
+  const onClick: MenuProps["onClick"] = (e) => {
+    navigate(`${e.key}`);
+  };
+
+  const authenticatedItems = menus(user, showLogin);
+
   return (
     <Flex style={{ justifyContent: "space-between" }}>
       <Flex>
-        <div className="bet-haven">Bet Haven</div>
+        <div className="bet-haven">My Bet Haven</div>
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          style={{ lineHeight: "64px" }}
-        >
-          <Menu.Item key="1">{/* <Link to='/'>Home</Link> */}</Menu.Item>
-          <Menu.Item key="2">
-            {/* <Link to='/offers'>Offers</Link> */}
-          </Menu.Item>
-          <Menu.Item key="4">
-            {/* <Link to='/value-accumulators'>Accumulations</Link> */}
-          </Menu.Item>
-          <Menu.Item key="5">
-            {/* <Link to='/bet-generator'>Bet Generator</Link> */}
-          </Menu.Item>
-        </Menu>
+          defaultSelectedKeys={["3"]}
+          items={items}
+          onClick={onClick}
+        />
       </Flex>
 
-      {user ? (
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: "64px" }}>
-          <Menu.Item key="6">
-            {/* <Link to={`/profile/${user.id}`}>
-              <Avatar src={user.avatarUrl} size={'large'} />
-            </Link> */}
-          </Menu.Item>
-        </Menu>
-      ) : (
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: "64px" }}>
-          <Menu.Item key="7" onClick={showLogin}>
-            Login
-          </Menu.Item>
-        </Menu>
-      )}
+      <Flex>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={["0"]}
+          items={authenticatedItems}
+          onClick={onClick}
+          disabledOverflow={true}
+        />
+      </Flex>
     </Flex>
   );
 };
