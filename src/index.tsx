@@ -1,7 +1,11 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { createRoot } from "react-dom/client";
+<<<<<<< HEAD
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+=======
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+>>>>>>> 1959393e9f5c81d52448565c2961080906b96307
 import AccumulationView from "./components/AccumulationView";
 import App from "./components/App";
 import BetGenerator from "./components/BetGenerator";
@@ -39,10 +43,10 @@ const client = new ApolloClient({
 
 root.render(
   <ApolloProvider client={client}>
-    <Fosterage>
-      <App>
-        <Layout>
-          <Router>
+    <BrowserRouter>
+      <Fosterage>
+        <App>
+          <Layout>
             <Routes>
               <Route path="/profile/:userId" element={<Profile />}></Route>
               <Route path="/tip" element={<TipDashboard />}></Route>
@@ -91,10 +95,10 @@ root.render(
                 <NoMatch />
               </Route> */}
             </Routes>
-          </Router>
-        </Layout>
-      </App>
-    </Fosterage>
+          </Layout>
+        </App>
+      </Fosterage>
+    </BrowserRouter>
   </ApolloProvider>
 );
 
