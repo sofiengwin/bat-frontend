@@ -1,11 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { createRoot } from "react-dom/client";
-<<<<<<< HEAD
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-=======
 import { Routes, Route, BrowserRouter } from "react-router-dom";
->>>>>>> 1959393e9f5c81d52448565c2961080906b96307
 import AccumulationView from "./components/AccumulationView";
 import App from "./components/App";
 import BetGenerator from "./components/BetGenerator";
