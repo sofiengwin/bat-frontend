@@ -16,7 +16,7 @@ import TipDashboard from "./components/TipDashboard/TipDashboard";
 import TipsAndHistory from "./components/TipsAndHistory";
 import Trending from "./components/Trending";
 import ValueAccumulations from "./components/ValueAccumulations";
-import PostTip from './components/PostTip';
+import PostTip from "./components/PostTip";
 //import NoMatch from './components/NoMatch';
 // import TrackPageView from './components/PageTracking';
 import * as serviceWorker from "./serviceWorker";
@@ -84,7 +84,7 @@ root.render(
               <Route path="/trending-bets" element={<Trending />} />
               <Route path="/user-ranking" element={<Points />} />
               <Route path="/bet-generator" element={<BetGenerator />}></Route>
-              <Route path="/post-tip" element={<PostTip />}></Route>
+              <Route path="/post-tip/:stage" element={<PostTip />}></Route>
               <Route path="/" element={<HomePage />}></Route>
               {/* <Route path="*">
                 <NoMatch />
