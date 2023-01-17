@@ -33,6 +33,10 @@ const items: MenuProps["items"] = [
     label: "Bet Generator",
     key: "/bet-generator",
   },
+  {
+    label: "Post Tip",
+    key: "/post-tip/country",
+  },
 ];
 
 const menus = (
@@ -73,6 +77,7 @@ const DesktopMenu: React.FC<Props> = ({ showLogin }) => {
           defaultSelectedKeys={["3"]}
           items={items}
           onClick={onClick}
+          disabledOverflow={true}
         />
       </Flex>
 
