@@ -1,12 +1,11 @@
 import { IUser } from "../../models/User";
 
 export const QUERY = `
-  mutation createUser($name: String, $email: String!, $accessToken: String, $tokenId: String, $providerId: String, $avatarUrl: String) {
-    createUser(input: {name: $name, email: $email, accessToken: $accessToken tokenId: $tokenId, providerId: $providerId avatarUrl: $avatarUrl}) {
+  mutation createUser($name: String, $accessCode: String!, $approvedProviderAt: String) {
+    createUser(input: {name: $name, accessCode: $accessCode approvedProviderAt: $approvedProviderAt}) {
       userDetails {
         accessToken
         user {
-          id
           name
           email
           avatarUrl
@@ -21,12 +20,9 @@ export const QUERY = `
 `;
 
 export interface IFindOrCreate {
-  accessToken: string;
-  tokenId: string; // signedRequest on facebook 
-  providerId: string;
-  name: string;
-  email: string;
-  avatarUrl: string;
+  accessCode?: string;
+  name?: string;
+  approvedProviderAt?: string;
 }
 
 export interface Response {
