@@ -5,6 +5,7 @@ import { Collapse } from "antd";
 import { rapidApiClient } from "../../lib/client";
 
 import styled from "../../styles";
+import { IHandleStageSelect } from "./data";
 
 const { Panel } = Collapse;
 
@@ -32,11 +33,11 @@ const Flex = styled.div`
 `;
 
 interface Props {
-  // handleStageSelect: IHandleStageSelect;
+  handleStageSelect: IHandleStageSelect;
   fixtureId?: number;
 }
 
-const Bets = ({ fixtureId }: Props) => {
+const Bets = ({ fixtureId, handleStageSelect }: Props) => {
   const [bets, setBets] = React.useState([]);
   React.useEffect(() => {
     rapidApiClient(`/odds?bookmaker=1&fixture=${fixtureId}`).then((result) => {
@@ -53,13 +54,32 @@ const Bets = ({ fixtureId }: Props) => {
     console.log(key);
   };
 
+  const onSelectBet = (betCategory: any, selection: any) => {
+    console.log({betCategory, selection})
+    handleStageSelect({
+      nextStage: undefined,
+      value: {
+        betCategory: betCategory.name,
+        bet: selection.value,
+        odd: selection.odd
+      }})
+  }
+
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
       {bets?.map((bet: any) => (
         <Panel header={bet?.name} key={bet?.id.toString()}>
           <Flex>
             {bet?.values?.map((value: any) => (
-              <div className="bet-values">
+              <div
+                className="bet-values"
+                onClick={handleStageSelect({
+                  nextStage: undefined,
+                  value: {
+                    betCategory: bet.name,
+                    bet: value.value,
+                    odd: value.odd
+                  }})}>
                 <p>{value?.value}</p>
                 <p>{value?.odd}</p>
               </div>

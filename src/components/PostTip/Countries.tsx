@@ -40,7 +40,10 @@ const Countries = ({countries, handleStageSelect, nextStage}: Props) => {
     <Flex style={{ flexDirection: "column" }}>
       {countries.map((country: any, index: number) => {
         return (
-          <StyledCard key={index} onClick={handleStageSelect(nextStage, {country})}>
+          <StyledCard
+            key={index}
+            onClick={handleStageSelect({nextStage, value: {country}})}
+          >
             <Flex style={{ flexDirection: "column" }}>
               <p>{country}</p>
             </Flex>

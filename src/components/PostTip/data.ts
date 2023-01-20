@@ -54,12 +54,33 @@ export const countryLeagueMap: Dict<ILeague[]> = {
 }
 
 export type IStage = 'country' | 'league' | 'fixtures' | 'bet';
-export type IHandleStageSelect = (nextStage: IStage, value: any) => () => void
+export type IHandleStageSelect = (params: IHandleStageSelectParams) => () => void
+export interface IHandleStageSelectParams {
+  nextStage?: IStage;
+  value: any
+}
+
 export interface ITip {
+  awayTeamName?: string;
+  homeTeamName?: string;
   country?: string;
-  leagueName?: string;
+  league?: string;
   leagueId?: number;
   bet?: string;
+  betCategory?: string;
   fixtureId?: number;
+  odd?: string;
+  startAt?: number;
 }
+export type IPostTipParams = Omit<ITip, 'leagueId'>
 export type ILeague = {leagueName: string; leagueId: number};
+
+// homeTeamName: 'Manchester United',
+// awayTeamName: 'Chelsea',
+// fixtureId: 7678998,
+// league: 'Premier League',
+// country: 'England',
+// bet: 'Match Winner',
+// betCategory: 'Home Win',
+// odd: '1.55',
+// startAt: start_at.to_i,

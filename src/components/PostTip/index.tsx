@@ -1,7 +1,9 @@
 import * as React from "react";
+
 import styled from "styled-components";
 import { Button } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
+import { gql, useMutation } from "@apollo/client";
 
 import Countries from "./Countries";
 import Leagues from "./Leagues";
@@ -9,12 +11,15 @@ import Fixtures from "./Fixtures";
 import Bets from "./Bets";
 import {
   IStage,
-  IHandleStageSelect,
   ITip,
   countries,
   countryLeagueMap,
+  IHandleStageSelectParams,
+  IPostTipParams
 } from "./data";
-
+import { useAppContext } from "../App";
+import { useFoster } from "../Fosterage";
+import {QUERY as postTipQuery, Response} from '../../data/graphql/postTip'
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -24,14 +29,15 @@ const Flex = styled.div`
 const PostTip = () => {
   const [tip, setTip] = React.useState<ITip>({});
 
-  const navigate = useNavigate();
-
   const { stage } = useParams<{ stage: string }>();
 
-  const handleStageSelect = (nextStage: IStage, value: any) => {
+  const handleStageSelect = ({nextStage, value}: IHandleStageSelectParams) => {
     return () => {
       setTip({ ...tip, ...value });
-      goNext(nextStage);
+      console.log({value, tip})
+      if (nextStage) {
+        goNext(nextStage);
+      }
     };
   };
 
@@ -43,8 +49,49 @@ const PostTip = () => {
     navigate(-1);
   };
 
+  const onSubmitTip = () => {
+    console.log({tip})
+    postTip({
+      variables: {
+        homeTeamName: tip.homeTeamName,
+        awayTeamName: tip.awayTeamName,
+        fixtureId: tip.fixtureId,
+        league: tip.league,
+        country: tip.country,
+        bet: tip.bet,
+        betCategory: tip.betCategory,
+        odd: '1.55',
+        startAt: tip.startAt,
+      }
+    })
+  }
+
   const showSubmitBtn = stage === "bet";
   const showBackBtn = stage === "country";
+
+  const navigate = useNavigate();
+
+  const {foster, reset} = useFoster();
+  const {setAppLoading, addUser} = useAppContext()
+  const onError = (_error: any) => {
+    console.log({_error})
+    // foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
+  };
+
+  const onCompleted = (data: Response) => {
+    console.log({data})
+    // if(data.createUser.errors) {
+    //   foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
+    // }
+
+    // if (data.createUser.userDetails){
+    //   localStorage.setItem('session', data.createUser.userDetails.accessToken);
+    //   addUser(data.createUser.userDetails.user);
+    //   navigate("/dashboard");
+
+    // }
+  };
+  const [postTip, {loading}] = useMutation<Response, IPostTipParams>(gql(postTipQuery), {onCompleted, onError});
 
   return (
     <div>
@@ -67,11 +114,14 @@ const PostTip = () => {
           nextStage="bet"
           handleStageSelect={handleStageSelect}
           leagueId={tip.leagueId || 1}
-          leagueName={tip.leagueName}
+          leagueName={tip.league}
         />
       )}
 
-      {stage === "bet" && <Bets fixtureId={tip.fixtureId} />}
+      {stage === "bet" && <Bets
+        fixtureId={tip.fixtureId}
+        handleStageSelect={handleStageSelect}
+      />}
 
       <Flex>
         {!showBackBtn && (
@@ -81,7 +131,7 @@ const PostTip = () => {
         )}
 
         {showSubmitBtn && (
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={onSubmitTip}>
             Submit
           </Button>
         )}

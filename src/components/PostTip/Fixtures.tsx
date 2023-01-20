@@ -85,7 +85,7 @@ const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) =
   const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient(`/fixtures?date=${'2023-01-07'}&league=${leagueId}&season=2022`)
+    rapidApiClient(`/fixtures?date=${'2023-01-21'}&league=${leagueId}&season=2022`)
       .then((fixtures) => {
         console.log({fixtures})
         setMatches(transformFixtures(fixtures));
@@ -97,7 +97,17 @@ const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) =
     <Flex style={{flexDirection: 'column', cursor: 'pointer'}}>
       {matches.map((match: RapidActionMatch, index: number) => {
         return <StyledCard key={index}>
-          <Flex style={{flexDirection: 'column'}} onClick={handleStageSelect(nextStage, {fixtureId: match.id})}>
+          <Flex
+            style={{flexDirection: 'column'}}
+            onClick={handleStageSelect({
+              nextStage,
+              value: {
+                fixtureId: match.id,
+                homeTeamName: match.homeTeam.teamName,
+                awayTeamName: match.awayTeam.teamName,
+                startAt: match.eventDate
+              }})}
+            >
             <Flex style={{flexDirection: 'column', gap: 5}}>
               <Flex>
                 <Logo><img src={match.homeTeam.logo} alt='logo'/></Logo>

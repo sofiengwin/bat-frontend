@@ -39,7 +39,7 @@ const Leagues = ({leagues, nextStage, handleStageSelect}: Props) => {
     <Flex style={{ flexDirection: "column" }}>
       {leagues.map(({leagueName, leagueId}: ILeague, index: number) => {
         return (
-          <StyledCard key={index} onClick={handleStageSelect(nextStage, {leagueId, leagueName})}>
+          <StyledCard key={index} onClick={handleStageSelect({nextStage, value: {leagueId, league: leagueName}})}>
             <Flex style={{ flexDirection: "column" }}>
               <p>{leagueName}</p>
             </Flex>
