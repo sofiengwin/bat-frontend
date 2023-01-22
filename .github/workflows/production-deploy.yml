@@ -38,8 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Step 2 Step'
-        run: echo "Hello World 2"
-        run: echo "Env = ${{ github.event.inputs.logLevel }}"
-        run: echo "Env = ${{ github.event.inputs.tags }}"
-        run: echo "Env = ${{ github.event.inputs.environment }}"
+        run: |
+          echo "Hello World 2"
+          echo "Env = ${{ github.event.inputs.logLevel }}"
+          echo "Env = ${{ github.event.inputs.tags }}"
+          echo "Env = ${{ github.event.inputs.environment }}"
 
