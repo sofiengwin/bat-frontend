@@ -1,0 +1,6 @@
+name: 'Frontend Production Deploy'
+run-name: ${{}} Deploying
+
+on:
+  workflow_dispatch:
+  push:
