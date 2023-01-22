@@ -52,8 +52,8 @@ const LoginModal:React.FC<Props> = ({visible, handleCancel, handleSuccess}) => {
     >
       <SocialButtons>
         <>
-          <FacebookLogin callback={findOrCreateUser} />
-          <GoogleLogin callback={findOrCreateUser} />
+          <FacebookLogin />
+          <GoogleLogin />
         </>
       </SocialButtons>
     </Modal>

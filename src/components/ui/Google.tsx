@@ -10,17 +10,12 @@ const buttonStyle = {
   fontWeigth: 'bolder'
 }
 
-interface Props {
-  callback: ({variables}: {variables: IFindOrCreate}) => void;
-}
-
-const Google: React.FC<Props> = ({callback}) => {
+const Google = () => {
   return (
     <Button
       style={{background: '#DB4437', ...buttonStyle}}
       icon="google"
-      // onClick={}
-      // disabled={renderProps.disabled}
+      href='https://mila.auth.us-east-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=uant5uiclfaft11m867m7qh08&redirect_uri=http://localhost:3001&identity_provider=Google&scope=openid+profile+aws.cognito.signin.user.admin'
     >
       Login With Google
     </Button>

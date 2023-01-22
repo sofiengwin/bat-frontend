@@ -1,10 +1,5 @@
 import * as React from 'react';
 import { Button } from 'antd';
-import { IFindOrCreate } from '../../data/graphql/findOrCreateUser';
-
-interface Props {
-  callback: ({variables}: {variables: IFindOrCreate}) => void;
-}
 
 const buttonStyle = {
   marginTop: '10px',
@@ -14,14 +9,14 @@ const buttonStyle = {
   fontWeigth: 'bolder'
 }
 
-const Facebook: React.FC<Props> = ({callback}) => {
+const Facebook = () => {
   return (
     <Button
-    style={{background: '#4267b2', ...buttonStyle}} icon="facebook"
-    // onClick={renderProps.onClick}
-  >
-    Login With Facebook
-  </Button>
+      style={{background: '#4267b2', ...buttonStyle}} icon="facebook"
+      href='https://mila.auth.us-east-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=uant5uiclfaft11m867m7qh08&redirect_uri=http://localhost:3001&identity_provider=Facebook&scope=openid+profile+aws.cognito.signin.user.admin'
+    >
+      Login With Facebook
+    </Button>
   );
 };
 
