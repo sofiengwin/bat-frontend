@@ -33,7 +33,6 @@ jobs:
 
       - name: Testing Test
         run: echo "Hello World"
-        run: echo ${{ }}
 
   production_deploy_2:
     runs-on: ubuntu-latest
