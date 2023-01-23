@@ -10,9 +10,9 @@ on:
         default: 'warning'
         type: choice
         options:
-          - info
-          - warning
-          - debug
+        - info
+        - warning
+        - debug
       tags:
         description: 'Test scenario tags'
         required: false
@@ -40,7 +40,7 @@ jobs:
       - name: 'Step 2 Step'
         run: |
           echo "Hello World 2"
-          echo "Env = ${{ github.event.inputs.logLevel }}"
-          echo "Env = ${{ github.event.inputs.tags }}"
-          echo "Env = ${{ github.event.inputs.environment }}"
+          echo "Env = ${{ inputs.logLevel }}"
+          echo "Env = ${{ inputs.tags }}"
+          echo "Env = ${{ inputs.environment }}"
 
