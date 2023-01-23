@@ -1,4 +1,4 @@
-name: 'Frontend Production Deploy Input Manual'
+name: 'Deploy Input Manual'
 # run-name: ${{}} Deploying
 
 on:
