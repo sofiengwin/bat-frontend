@@ -20,15 +20,6 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const COUNTRIES = [
-  "England",
-  "France",
-  "Germany",
-  "Italy",
-  "Spain",
-  "International Clubs",
-];
-
 interface Props {
   countries: string[];
   nextStage: IStage;

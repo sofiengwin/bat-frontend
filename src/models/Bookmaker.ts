@@ -1,4 +1,4 @@
-interface Fields {
+export interface Fields {
   id: string;
   name: string;
   review: string;

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Card, Statistic, Tabs } from "antd";
 
 import styled from "../../../styles";
-import { useCallback, Component } from "react";
+import { useCallback } from "react";
 
 const Grid = styled.div`
   display: grid;
@@ -57,7 +57,7 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({
         </Card>
       </Grid>
     ),
-    []
+    [totalTips,totalWins, totalPoints]
   );
 
   const components: any = {

@@ -5,8 +5,8 @@ import styled from "../../../styles";
 import SingleResult from "../../Trending/ui/SingleResult";
 
 const NUM_OF_STREAK_ROW = 15;
-const STREAK_PADDING = 3;
-const STREAK_MARGIN = 2;
+// const STREAK_PADDING = 3;
+// const STREAK_MARGIN = 2;
 
 const Flex = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ class Streak extends React.Component<{}, State> {
 
   componentDidMount() {
     console.log(this.element);
-    const space = STREAK_MARGIN;
+    // const space = STREAK_MARGIN;
     if (this.element) {
       this.setState({
         width: `${(this.element.clientWidth - 4 * NUM_OF_STREAK_ROW) /

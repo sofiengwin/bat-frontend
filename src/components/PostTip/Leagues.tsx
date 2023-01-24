@@ -19,15 +19,6 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const england = [
-  "Premier League",
-  "Championship",
-  "League One",
-  "League Two",
-  "FA Cup",
-  "EFL",
-];
-
 interface Props {
   leagues: ILeague[];
   nextStage: IStage;

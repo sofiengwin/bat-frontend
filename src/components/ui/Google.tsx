@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button } from 'antd';
-import { IFindOrCreate } from '../../data/graphql/findOrCreateUser';
 
 const buttonStyle = {
   marginTop: '10px',

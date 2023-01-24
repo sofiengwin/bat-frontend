@@ -1,12 +1,11 @@
 import * as React from "react";
 import { Card } from "antd";
-import { Link } from "react-router-dom";
 
 import styled from '../../styles'
 import { useEffect, useState } from 'react';
 import {rapidApiClient} from '../../lib/client';
-import {countries, IHandleStageSelect, IStage} from './data';
-import {dateString, yearString} from '../../lib/time';
+import {IHandleStageSelect, IStage} from './data';
+// import {dateString, yearString} from '../../lib/time';
 
 const Flex = styled.div`
   display: flex;
@@ -25,11 +24,11 @@ const Logo = styled.div`
   }
 `;
 
-const Sub = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1em;
-`
+// const Sub = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 1em;
+// `
 
 const StyledCard = styled(Card)`
   margin: 0.4em 0;

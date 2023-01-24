@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Card, List } from "antd";
 import { Collapse } from "antd";
 
 import { rapidApiClient } from "../../lib/client";
@@ -53,17 +52,6 @@ const Bets = ({ fixtureId, handleStageSelect }: Props) => {
   const onChange = (key: string | string[]) => {
     console.log(key);
   };
-
-  const onSelectBet = (betCategory: any, selection: any) => {
-    console.log({betCategory, selection})
-    handleStageSelect({
-      nextStage: undefined,
-      value: {
-        betCategory: betCategory.name,
-        bet: selection.value,
-        odd: selection.odd
-      }})
-  }
 
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>

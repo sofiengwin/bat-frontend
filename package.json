@@ -30,7 +30,7 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "format": "prettier \"src/**/*.{js,html}\" --write",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "eslintConfig": {
     "extends": "react-app"

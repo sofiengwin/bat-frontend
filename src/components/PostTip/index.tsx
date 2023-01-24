@@ -10,15 +10,14 @@ import Leagues from "./Leagues";
 import Fixtures from "./Fixtures";
 import Bets from "./Bets";
 import {
-  IStage,
   ITip,
   countries,
   countryLeagueMap,
   IHandleStageSelectParams,
   IPostTipParams
 } from "./data";
-import { useAppContext } from "../App";
-import { useFoster } from "../Fosterage";
+// import { useAppContext } from "../App";
+// import { useFoster } from "../Fosterage";
 import {QUERY as postTipQuery, Response} from '../../data/graphql/postTip'
 const Flex = styled.div`
   display: flex;
@@ -71,8 +70,8 @@ const PostTip = () => {
 
   const navigate = useNavigate();
 
-  const {foster, reset} = useFoster();
-  const {setAppLoading, addUser} = useAppContext()
+  // const {foster, reset} = useFoster();
+  // const {setAppLoading, addUser} = useAppContext()
   const onError = (_error: any) => {
     console.log({_error})
     // foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
@@ -92,6 +91,7 @@ const PostTip = () => {
     // }
   };
   const [postTip, {loading}] = useMutation<Response, IPostTipParams>(gql(postTipQuery), {onCompleted, onError});
+  console.log({loading})
 
   return (
     <div>
