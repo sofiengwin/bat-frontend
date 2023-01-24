@@ -40,4 +40,6 @@ jobs:
           echo "Hello World 2"
           echo "Env = ${{ inputs.logLevel }}"
           echo "Env = ${{ inputs.tags }}"
-          echo "Env = ${{ inputs.environment }}"
+          echo "sha = ${{ github.sha }}"
+          echo "actor = ${{ github.triggering_actor }}"
+          echo "GITHUB_SHA = ${{ GITHUB_SHA }}"
