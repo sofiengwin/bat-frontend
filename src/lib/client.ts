@@ -82,9 +82,4 @@ export const mockClient = (): FetchQl => {
   }
 }
 
-function queryName(query: string): string {
-  let message = query.split('{').map((s) => s.split('(')[0].replace(/\s+/, ''));
-  return `${message[1]}`;
-}
-
 export default clientFactory;
