@@ -1,5 +1,3 @@
-import mockData from '../mock';
-
 export interface FetchQl {
   (query: string, variables?: JSONSerializable, opts?: Dict<any>): Promise<any>;
 }
@@ -79,7 +77,7 @@ export const mockClient = (): FetchQl => {
 
     return new Promise((resolve, _reject) => {
       // @ts-ignore
-      resolve(mockData[queryName(query)]);
+      resolve([]);
     })
   }
 }
