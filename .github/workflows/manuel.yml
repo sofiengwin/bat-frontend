@@ -42,4 +42,4 @@ jobs:
           echo "Env = ${{ inputs.tags }}"
           echo "sha = ${{ github.sha }}"
           echo "actor = ${{ github.triggering_actor }}"
-          echo "RC-TAG = $(date '+RC-%Y%m%d:%H%M')"
+          echo "RC-TAG = $(date '+RC-%Y%m%d-%H%M')"
