@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set env
-        run: export REACT_APP_RC_TAG=$(date '+RC-%Y%m%d-%H%M')
+        run: |
+          export REACT_APP_RC_TAG=$(date '+RC-%Y%m%d-%H%M')
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -28,4 +29,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - run: aws s3 sync build s3://test.bat.com --acl public-read --metadata RC_TAG=${{ env.REACT_APP_RC_TAG}}
+      - name: Deploying $REACT_APP_RC_TAG Release
+        run: aws s3 sync build s3://test.bat.com --acl public-read --metadata RC_TAG=$REACT_APP_RC_TAG
