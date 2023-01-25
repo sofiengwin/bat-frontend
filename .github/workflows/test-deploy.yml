@@ -6,7 +6,6 @@ on:
       - master
 env:
   REACT_APP_GRAPHQL_HOST: http://demo-alb-45250330.us-east-1.elb.amazonaws.com/graphql
-  REACT_APP_RC_TAG: "$(date '+RC-%Y%m%d-%H%M')"
 
 run-name: "Deploying $REACT_APP_RC_TAG Release"
 
