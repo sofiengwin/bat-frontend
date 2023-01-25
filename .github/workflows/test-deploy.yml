@@ -16,6 +16,8 @@ jobs:
       - name: set env
         run: |
           export REACT_APP_RC_TAG=$(date '+RC-%Y%m%d-%H%M')
+          echo "REACT_APP_RC_TAG : $REACT_APP_RC_TAG"
+          echo $REACT_APP_RC_TAG
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
