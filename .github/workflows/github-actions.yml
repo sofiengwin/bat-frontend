@@ -1,9 +1,9 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 env:
   REACT_APP_GRAPHQL_HOST: http://demo-alb-45250330.us-east-1.elb.amazonaws.com/graphql
 
