@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set env
-        run: echo "::set-env name=REACT_APP_RC_TAG::$(date '+RC-%Y%m%d-%H%M')"
+        run: export REACT_APP_RC_TAG=$(date '+RC-%Y%m%d-%H%M')
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
