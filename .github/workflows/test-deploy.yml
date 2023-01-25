@@ -16,8 +16,10 @@ jobs:
       - name: set env
         run: |
           echo "REACT_APP_RC_TAG=$(date '+RC-%Y%m%d-%H%M')" >> $GITHUB_ENV
-          echo "REACT_APP_RC_TAG : ${{ env.REACT_APP_RC_TAG}}"
-          echo ${{env.REACT_APP_RC_TAG}}
+          echo "hello=World" >> $GITHUB_ENV
+          echo "REACT_APP_RC_TAG : ${{ env.REACT_APP_RC_TAG }}"
+          echo "${{ env.REACT_APP_RC_TAG }}"
+          echo "${{ env.hello }}"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -30,5 +32,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Deploying ${{env.REACT_APP_RC_TAG }} Release
+      - name: "Deploying ${{ env.REACT_APP_RC_TAG }} Release ${{ env.hello }}"
         run: aws s3 sync build s3://test.bat.com --acl public-read --metadata RC_TAG=${{env.REACT_APP_RC_TAG }}
