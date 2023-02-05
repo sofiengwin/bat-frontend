@@ -20,13 +20,14 @@ const Authentication = () => {
   const onCompleted = (data: Response) => {
     if(data.createUser.errors) {
       foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
+      setAppLoading(false)
     }
 
     if (data.createUser.userDetails){
       localStorage.setItem('session', data.createUser.userDetails.accessToken);
       addUser(data.createUser.userDetails.user);
       navigate("/dashboard");
-
+      setAppLoading(false)
     }
   };
   const [findOrCreateUser, {loading}] = useMutation<Response, IFindOrCreate>(gql(createOrFindUserQuery), {onCompleted, onError});
