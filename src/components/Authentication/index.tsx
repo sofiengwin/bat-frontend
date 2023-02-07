@@ -19,7 +19,11 @@ const Authentication = () => {
 
   const onCompleted = (data: Response) => {
     if(data.createUser.errors) {
-      foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
+      foster(() => <ErrorModal
+        onCancel={reset}
+        onOk={reset}
+        show={true}
+        />)
       setAppLoading(false)
     }
 

@@ -5,9 +5,11 @@ interface Props {
   onOk: () => void;
   onCancel: () => void;
   show: boolean;
+  message?: string;
+  actionButtonText?: string;
 }
 
-const ErrorModal: React.FC<Props> = ({onCancel, onOk, show}) => {
+const ErrorModal: React.FC<Props> = ({onCancel, onOk, show, message, actionButtonText}) => {
   return (
     <Modal
       open={show}
@@ -18,10 +20,10 @@ const ErrorModal: React.FC<Props> = ({onCancel, onOk, show}) => {
     >
       <Result
         status="warning"
-        title="There are some problems with your operation."
+        title={message || "There are some problems with your operation."}
         extra={
           <Button type="primary" key="console" onClick={onOk}>
-            Go Console
+            {actionButtonText || 'Close'}
           </Button>
         }
       />
