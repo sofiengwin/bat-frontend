@@ -2,7 +2,7 @@ import * as React from "react";
 import { Avatar, Menu, MenuProps } from "antd";
 import styled from "../../styles";
 import { useAppContext } from "../App";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { IUser } from "../../models/User";
 
 const Flex = styled.div`
@@ -41,13 +41,22 @@ const items: MenuProps["items"] = [
 
 const menus = (
   user: IUser | null,
-  showLogin?: () => void
+  logOut: () => void,
+  navigate: NavigateFunction,
+  showLogin?: () => void,
 ): MenuProps["items"] =>
   user
     ? [
         {
-          label: <Avatar src={user?.avatarUrl} size={"large"} />,
+          label: <Avatar src={user?.avatarUrl} size={"large"} onClick={() => navigate(`/profile/${user?.id}`)}/>,
           key: `/profile/${user?.id}`,
+          children: [
+            {
+              type: 'group',
+              label: <div onClick={logOut}>Logout</div>,
+              key: '#'
+            }
+          ]
         },
       ]
     : [
@@ -58,14 +67,16 @@ const menus = (
       ];
 
 const DesktopMenu: React.FC<Props> = ({ showLogin }) => {
-  const { user } = useAppContext();
+  const { user, logOut } = useAppContext();
+  console.log({user});
   const navigate = useNavigate();
 
   const onClick: MenuProps["onClick"] = (e) => {
     navigate(`${e.key}`);
   };
 
-  const authenticatedItems = menus(user, showLogin);
+  const authenticatedItems = menus(user, logOut, navigate, showLogin);
+  console.log({authenticatedItems});
 
   return (
     <Flex style={{ justifyContent: "space-between" }}>

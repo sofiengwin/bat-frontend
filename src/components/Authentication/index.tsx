@@ -18,16 +18,20 @@ const Authentication = () => {
   };
 
   const onCompleted = (data: Response) => {
+    console.log({data}, 'completed')
     if(data.createUser.errors) {
       foster(() => <ErrorModal
         onCancel={reset}
         onOk={reset}
         show={true}
+        message="There are some problems with your logging in."
+        actionButtonText='Close'
         />)
       setAppLoading(false)
     }
 
     if (data.createUser.userDetails){
+      console.log({data}, 'authentication');
       localStorage.setItem('session', data.createUser.userDetails.accessToken);
       addUser(data.createUser.userDetails.user);
       navigate("/dashboard");
@@ -38,11 +42,9 @@ const Authentication = () => {
   let [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (searchParams.get("code")) {
-      findOrCreateUser({variables: {accessCode: searchParams.get("code") || ''}})
-      setAppLoading(loading)
-    }
-  })
+    findOrCreateUser({variables: {accessCode: searchParams.get("code") || ''}})
+    setAppLoading(loading)
+  }, [])
 
   return null;
 }
