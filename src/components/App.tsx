@@ -36,11 +36,11 @@ const App: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const [fetchMe, { loading, error, data }] = useLazyQuery(gql(meQuery), {
     onCompleted: (data: { me: IUser }) => {
       setUser(data.me);
-      // setAppLoading(false);
+      setAppLoading(false);
     },
     onError: (error: any) => {
       console.log({ error }, "appolo error");
-      // setAppLoading(false);
+      setAppLoading(false);
     },
   });
 
