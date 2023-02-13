@@ -14,7 +14,13 @@ const Authentication = () => {
   const {foster, reset} = useFoster();
   const {setAppLoading, addUser} = useAppContext()
   const onError = (_error: any) => {
-    foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
+    foster(() => <ErrorModal
+      onCancel={reset}
+      onOk={reset}
+      show={true}
+      actionButtonText='Close'
+      message="There are some problems with your logging in."
+    />)
   };
 
   const onCompleted = (data: Response) => {
