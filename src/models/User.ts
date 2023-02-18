@@ -17,4 +17,4 @@ type References = {
   comments: string[];
 }
 
-export type UserSnapshot = IUser & References;
+
