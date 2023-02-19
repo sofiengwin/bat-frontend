@@ -11,10 +11,3 @@ export const userFields = `
   email
   avatarUrl
 `
-
-type References = {
-  tips: string[];
-  comments: string[];
-}
-
-
