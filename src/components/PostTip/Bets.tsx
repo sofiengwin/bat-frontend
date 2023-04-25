@@ -62,7 +62,7 @@ const Bets = ({ fixtureId, handleStageSelect }: Props) => {
               <div
                 className="bet-values"
                 onClick={handleStageSelect({
-                  nextStage: undefined,
+                  nextStage: 'summary',
                   value: {
                     betCategory: bet.name,
                     bet: value.value,

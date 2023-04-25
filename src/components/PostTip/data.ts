@@ -53,7 +53,7 @@ export const countryLeagueMap: Dict<ILeague[]> = {
   'France': frenchLeagues,
 }
 
-export type IStage = 'country' | 'league' | 'fixtures' | 'bet';
+export type IStage = 'country' | 'league' | 'fixtures' | 'bet' | 'summary';
 export type IHandleStageSelect = (params: IHandleStageSelectParams) => () => void
 export interface IHandleStageSelectParams {
   nextStage?: IStage;

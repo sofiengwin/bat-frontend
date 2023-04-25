@@ -1,9 +1,10 @@
 import * as React from "react";
+import { collection, query, where, addDoc } from "firebase/firestore";
+import { db } from "../../lib/firebase";
 
 import styled from "styled-components";
 import { Button } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
 
 import Countries from "./Countries";
 import Leagues from "./Leagues";
@@ -14,11 +15,10 @@ import {
   countries,
   countryLeagueMap,
   IHandleStageSelectParams,
-  IPostTipParams
 } from "./data";
 // import { useAppContext } from "../App";
 // import { useFoster } from "../Fosterage";
-import {QUERY as postTipQuery, Response} from '../../data/graphql/postTip'
+import Summary from "./Summary";
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -48,24 +48,17 @@ const PostTip = () => {
     navigate(-1);
   };
 
-  const onSubmitTip = () => {
+  const onSubmitTip = async () => {
     console.log({tip})
-    postTip({
-      variables: {
-        homeTeamName: tip.homeTeamName,
-        awayTeamName: tip.awayTeamName,
-        fixtureId: tip.fixtureId,
-        league: tip.league,
-        country: tip.country,
-        bet: tip.bet,
-        betCategory: tip.betCategory,
-        odd: '1.55',
-        startAt: tip.startAt,
-      }
-    })
+    try {
+      const docRef = await addDoc(collection(db, "tip"), tip);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
 
-  const showSubmitBtn = stage === "bet";
+  const showSubmitBtn = stage === "summary";
   const showBackBtn = stage === "country";
 
   const navigate = useNavigate();
@@ -90,8 +83,6 @@ const PostTip = () => {
 
     // }
   };
-  const [postTip, {loading}] = useMutation<Response, IPostTipParams>(gql(postTipQuery), {onCompleted, onError});
-  console.log({loading})
 
   return (
     <div>
@@ -122,6 +113,11 @@ const PostTip = () => {
         fixtureId={tip.fixtureId}
         handleStageSelect={handleStageSelect}
       />}
+
+      {stage === "summary" && <Summary
+        {...tip}
+      />}
+
 
       <Flex>
         {!showBackBtn && (

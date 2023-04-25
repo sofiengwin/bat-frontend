@@ -17,7 +17,7 @@ import TipsAndHistory from "./components/TipsAndHistory";
 import Trending from "./components/Trending";
 import ValueAccumulations from "./components/ValueAccumulations";
 import PostTip from "./components/PostTip";
-import Authenticate from "./components/Authentication";
+import Authenticate from "./components/Authentication/FirebaseAuthenticator";
 //import NoMatch from './components/NoMatch';
 // import TrackPageView from './components/PageTracking';
 import * as serviceWorker from "./serviceWorker";

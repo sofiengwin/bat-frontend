@@ -5,7 +5,7 @@ import styled from '../../styles'
 import { useEffect, useState } from 'react';
 import {rapidApiClient} from '../../lib/client';
 import {IHandleStageSelect, IStage} from './data';
-// import {dateString, yearString} from '../../lib/time';
+import {dateString, yearString} from '../../lib/time';
 
 const Flex = styled.div`
   display: flex;
@@ -81,10 +81,11 @@ const transformFixtures: (raf: any[]) => RapidActionMatch[] = (rapidActionFixtur
 }
 
 const Fixtures = ({nextStage, handleStageSelect, leagueId, leagueName}: Props) => {
+  console.log('dateString', dateString())
   const [matches, setMatches] = useState<RapidActionMatch[]>([]);
   console.log({matches})
   useEffect(() => {
-    rapidApiClient(`/fixtures?date=${'2023-01-21'}&league=${leagueId}&season=2022`)
+    rapidApiClient(`/fixtures?date=${dateString()}&league=${leagueId}&season=2022`)
       .then((fixtures) => {
         console.log({fixtures})
         setMatches(transformFixtures(fixtures));
