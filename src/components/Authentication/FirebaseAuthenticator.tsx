@@ -1,8 +1,8 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import { provider } from "../../lib/firebase";
+import { provider, auth } from "../../lib/firebase";
 
 import ErrorModal from '../ui/ErrorModal';
 import {useFoster} from '../Fosterage';
@@ -46,7 +46,6 @@ const FirebaseAuthenticator = () => {
   };
 
   useEffect(() => {
-    const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log({result})

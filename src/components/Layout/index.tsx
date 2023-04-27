@@ -23,17 +23,17 @@ const Layout: React.FC<{children?: React.ReactNode}> = ({children}) => {
       </Row>
 
       <MainContainer gutter={24}>
-        {isDesktopOrLaptop && <Col span={5} style={{marginLeft: '20px'}}>
+        {/* {isDesktopOrLaptop && <Col span={5} style={{marginLeft: '20px'}}>
           <Trending />
-        </Col>}
+        </Col>} */}
 
         <Col span={mainColSpan}>
           {children}
         </Col>
 
-        {isDesktopOrLaptop && <Col span={6} >
+        {/* {isDesktopOrLaptop && <Col span={6} >
           <Points />
-        </Col>}
+        </Col>} */}
       </MainContainer>
     </div>
   );

@@ -9,12 +9,13 @@ const buttonStyle = {
   fontWeigth: 'bolder'
 }
 
-const Google = () => {
+const Google = ({startLogin}: {startLogin: () => void}) => {
   return (
     <Button
       style={{background: '#DB4437', ...buttonStyle}}
       icon="google"
-      href='https://mila.auth.us-east-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=uant5uiclfaft11m867m7qh08&redirect_uri=http://localhost:3001&identity_provider=Google&scope=openid+profile+aws.cognito.signin.user.admin'
+      // href='https://mila.auth.us-east-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=uant5uiclfaft11m867m7qh08&redirect_uri=http://localhost:3001&identity_provider=Google&scope=openid+profile+aws.cognito.signin.user.admin'
+      onClick={startLogin}
     >
       Login With Google
     </Button>
