@@ -23,6 +23,7 @@ import Authenticate from "./components/Authentication/FirebaseAuthenticator";
 import * as serviceWorker from "./serviceWorker";
 // import "./styles/main.css";
 import "antd/dist/reset.css";
+import SimpleTip from "./components/Tips/SimpleTip";
 
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
@@ -87,7 +88,7 @@ root.render(
               <Route path="/bet-generator" element={<BetGenerator />}></Route>
               <Route path="/post-tip/:stage" element={<PostTip />}></Route>
               <Route path="/dashboard" element={<HomePage />}></Route>
-              <Route path="/" element={<Authenticate />}></Route>
+              <Route path="/" element={<SimpleTip />}></Route>
               {/* <Route path="*">
                 <NoMatch />
               </Route> */}
