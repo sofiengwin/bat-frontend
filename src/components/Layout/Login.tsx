@@ -4,8 +4,10 @@ import styled from '../../styles';
 
 import FacebookLogin from '../ui/Facebook';
 import GoogleLogin from '../ui/Google';
-import {GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {signInWithPopup } from 'firebase/auth';
 import { provider, auth } from '../../lib/firebase';
+import { useAppContext } from '../App';
+import { IUser } from '../../models/User';
 
 
 interface Props {
@@ -22,29 +24,22 @@ const SocialButtons = styled.div`
 `;
 
 const LoginModal:React.FC<Props> = ({visible, handleCancel, handleSuccess}) => {
+  const {addUser} = useAppContext()
   const startLogin = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log({result})
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        // The signed-in user info.
         const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
+
+        addUser({
+          id: user.uid,
+          email: user.email,
+          name: user.displayName,
+          avatarUrl: user.photoURL
+        } as IUser)
+        handleSuccess()
       }).catch((error) => {
-        console.log({error})
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        console.log('Error Login', {error})
       });
-    // setAppLoading(false)
   };
 
   return (

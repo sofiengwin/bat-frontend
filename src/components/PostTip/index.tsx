@@ -1,9 +1,9 @@
 import * as React from "react";
-import { collection, query, where, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
 
 import Countries from "./Countries";
@@ -19,6 +19,7 @@ import {
 // import { useAppContext } from "../App";
 // import { useFoster } from "../Fosterage";
 import Summary from "./Summary";
+import { useAppContext } from "../App";
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -26,7 +27,7 @@ const Flex = styled.div`
 `;
 
 const PostTip = () => {
-  const [tip, setTip] = React.useState<ITip>({});
+  const [tip, setTip] = React.useState<ITip>({id: ''});
 
   const { stage } = useParams<{ stage: string }>();
 
@@ -51,9 +52,13 @@ const PostTip = () => {
   const onSubmitTip = async () => {
     console.log({tip})
     try {
-      const docRef = await addDoc(collection(db, "tip"), tip);
+      setAppLoading(true)
+      const docRef = await addDoc(collection(db, "tip"), {...tip, outcome: 'PENDING'});
+      setAppLoading(false)
+      navigate('/')
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
+      setAppLoading(false)
       console.error("Error adding document: ", e);
     }
   }
@@ -63,29 +68,10 @@ const PostTip = () => {
 
   const navigate = useNavigate();
 
-  // const {foster, reset} = useFoster();
-  // const {setAppLoading, addUser} = useAppContext()
-  const onError = (_error: any) => {
-    console.log({_error})
-    // foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
-  };
-
-  const onCompleted = (data: Response) => {
-    console.log({data})
-    // if(data.createUser.errors) {
-    //   foster(() => <ErrorModal onCancel={reset} onOk={reset} show={true}/>)
-    // }
-
-    // if (data.createUser.userDetails){
-    //   localStorage.setItem('session', data.createUser.userDetails.accessToken);
-    //   addUser(data.createUser.userDetails.user);
-    //   navigate("/dashboard");
-
-    // }
-  };
+  const {setAppLoading} = useAppContext()
 
   return (
-    <div>
+    <Space direction="vertical">
       {stage === "country" && (
         <Countries
           nextStage="league"
@@ -132,7 +118,7 @@ const PostTip = () => {
           </Button>
         )}
       </Flex>
-    </div>
+    </Space>
   );
 };
 

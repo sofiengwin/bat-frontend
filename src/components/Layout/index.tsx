@@ -1,21 +1,23 @@
 import * as React from 'react';
 import {Row, Col} from 'antd';
 import Header from './Header';
-import Trending from '../Trending';
-import Points from '../Points';
+// import Trending from '../Trending';
+// import Points from '../Points';
 
 import styled from '../../styles'
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 const MainContainer = styled(Row)`
   margin-top: 20px;
+  justify-content: center;
+  width: 100%;
 `;
 
 const Layout: React.FC<{children?: React.ReactNode}> = ({children}) => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1224px)'
-  })
-  const mainColSpan = isDesktopOrLaptop ? 12 : undefined;
+  // const isDesktopOrLaptop = useMediaQuery({
+  //   query: '(min-device-width: 1224px)'
+  // })
+  // const mainColSpan = isDesktopOrLaptop ? 12 : undefined;
   return (
     <div>
       <Row>
@@ -27,7 +29,7 @@ const Layout: React.FC<{children?: React.ReactNode}> = ({children}) => {
           <Trending />
         </Col>} */}
 
-        <Col span={mainColSpan}>
+        <Col>
           {children}
         </Col>
 

@@ -5,6 +5,7 @@ import { rapidApiClient } from "../../lib/client";
 
 import styled from "../../styles";
 import { IHandleStageSelect } from "./data";
+import { useAppContext } from "../App";
 
 const { Panel } = Collapse;
 
@@ -38,7 +39,9 @@ interface Props {
 
 const Bets = ({ fixtureId, handleStageSelect }: Props) => {
   const [bets, setBets] = React.useState([]);
+  const {setAppLoading} = useAppContext()
   React.useEffect(() => {
+    setAppLoading(true)
     rapidApiClient(`/odds?bookmaker=1&fixture=${fixtureId}`).then((result) => {
       const [bmkResult] = result;
       const { bookmakers } = bmkResult;
@@ -46,8 +49,13 @@ const Bets = ({ fixtureId, handleStageSelect }: Props) => {
       const { bets = [] } = bmkDetails;
       console.log({ result, bookmakers, bmkResult, bmkDetails, bets });
       setBets(bets);
-    });
-  }, [fixtureId]);
+      setAppLoading(false)
+    })
+    .catch((error) => {
+      console.log('Error fetching tips', {error});
+      setAppLoading(false)
+    })
+  });
 
   const onChange = (key: string | string[]) => {
     console.log(key);

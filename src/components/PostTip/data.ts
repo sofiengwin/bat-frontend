@@ -61,6 +61,7 @@ export interface IHandleStageSelectParams {
 }
 
 export interface ITip {
+  id: string;
   awayTeamName?: string;
   homeTeamName?: string;
   country?: string;
@@ -71,6 +72,7 @@ export interface ITip {
   fixtureId?: number;
   odd?: string;
   startAt?: number;
+  outcome?: string;
 }
 export type IPostTipParams = Omit<ITip, 'leagueId'>
 export type ILeague = {leagueName: string; leagueId: number};
